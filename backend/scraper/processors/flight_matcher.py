@@ -1,5 +1,5 @@
 from typing import List, Dict
-from backend.scraper.models.fare_observation import FareObservation
+from scraper.models.fare_observation import FareObservation
 
 class FlightMatcher:
 
@@ -23,3 +23,4 @@ class FlightMatcher:
                 grouped[key] = []
             grouped[key].append(obs)
         return grouped
+

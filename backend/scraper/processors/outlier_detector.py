@@ -1,6 +1,6 @@
 import numpy as np
 from typing import List, Tuple
-from backend.scraper.models.fare_observation import FareObservation
+from scraper.models.fare_observation import FareObservation
 
 class OutlierDetector:
 
@@ -31,3 +31,4 @@ class OutlierDetector:
             results.append((obs, status))
             
         return results
+

@@ -1,8 +1,8 @@
-from typing import List, Dict, Any
-from backend.scraper.collectors.collector_base import SourceAdapter
-from backend.scraper.models.fare_observation import FareObservation
+from typing import List, Dict, Any, Optional
+from scraper.sources.base_playwright_adapter import BasePlaywrightAdapter
+from scraper.models.fare_observation import FareObservation
 
-class SpiceJetSourceAdapter(SourceAdapter):
+class SpiceJetSourceAdapter(BasePlaywrightAdapter):
 
     def get_source_name(self) -> str:
         return "SpiceJet Direct"
@@ -10,10 +10,19 @@ class SpiceJetSourceAdapter(SourceAdapter):
     def get_source_type(self) -> str:
         return "AIRLINE"
 
-    async def search_flights(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
+    def get_search_url(self, origin: str, destination: str, travel_date: str) -> str:
+        return f"https://www.spicejet.com/select-flight?origin={origin}&destination={destination}&date={travel_date}"
+
+    def get_result_selectors(self) -> List[str]:
+        return [
+            ".spicejet-flight-card",
+            "div[data-testid*='flight-card']"
+        ]
+
+    def get_fallback_demo_observations(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
         return [
             FareObservation(
-                id="obs-sg-01",
+                id=f"obs-sg-{origin}-{destination}-SG8169",
                 source="SpiceJet Direct",
                 source_type="AIRLINE",
                 airline="SpiceJet",
@@ -34,11 +43,4 @@ class SpiceJetSourceAdapter(SourceAdapter):
             )
         ]
 
-    def health_check(self) -> Dict[str, Any]:
-        return {
-            "name": self.get_source_name(),
-            "type": self.get_source_type(),
-            "enabled": False,
-            "status": "DEMO_DATA",
-            "collection_method": "PERMITTED_WEB_OR_API"
-        }
+

@@ -6,13 +6,12 @@ import { Footer } from '../components/layout/Footer';
 export const metadata: Metadata = {
   title: 'AERODEX — Track. Compare. Understand Airfare | Real-Time Airfare Intelligence Platform',
   description:
-    'AERODEX is an Indian airfare price index and flight analytics platform developed for SIH 2026. Monitor price movements, compare fares across airlines & OTAs, and explore CPI-oriented airfare insights.',
+    'AERODEX is an Indian airfare price index and flight analytics platform. Monitor price movements, compare fares across airlines & OTAs, and explore CPI-oriented airfare insights.',
   keywords: [
     'AERODEX',
     'Airfare Price Index',
     'India Flights',
     'Flight Analytics',
-    'SIH 2026',
     'IndiGo',
     'Air India',
     'CPI Airfare',

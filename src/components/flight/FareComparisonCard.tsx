@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { ExternalLink, CheckCircle2 } from 'lucide-react';
 import { FlightSource } from '../../types';
 import { Badge } from '../ui/Badge';
@@ -52,12 +53,12 @@ export const FareComparisonCard: React.FC<FareComparisonCardProps> = ({ sources,
                   <div className="text-[11px] text-emerald-700 font-semibold">Lowest Fare</div>
                 )}
               </div>
-              <a href={`/book?flightId=${flightId}&source=${encodeURIComponent(source.name)}`}>
+              <Link href={`/book?flightId=${flightId}&source=${encodeURIComponent(source.name)}`}>
                 <Button size="sm" variant={source.isCheapest ? 'primary' : 'outline'}>
                   <span>Select</span>
                   <ExternalLink className="w-3.5 h-3.5 ml-1" />
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         ))}

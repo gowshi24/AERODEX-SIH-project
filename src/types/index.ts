@@ -20,7 +20,8 @@ export interface FlightSource {
   fees?: number;
   isCheapest: boolean;
   type: 'airline' | 'ota';
-  bookingUrl?: string;
+  bookingUrl?: string | null;
+  bookingAvailable?: boolean;
 }
 
 export interface Flight {

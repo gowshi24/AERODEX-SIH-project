@@ -1,8 +1,8 @@
-from typing import List, Dict, Any
-from backend.scraper.collectors.collector_base import SourceAdapter
-from backend.scraper.models.fare_observation import FareObservation
+from typing import List, Dict, Any, Optional
+from scraper.sources.base_playwright_adapter import BasePlaywrightAdapter
+from scraper.models.fare_observation import FareObservation
 
-class MakeMyTripSourceAdapter(SourceAdapter):
+class MakeMyTripSourceAdapter(BasePlaywrightAdapter):
 
     def get_source_name(self) -> str:
         return "MakeMyTrip"
@@ -10,10 +10,22 @@ class MakeMyTripSourceAdapter(SourceAdapter):
     def get_source_type(self) -> str:
         return "OTA"
 
-    async def search_flights(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
+    def get_search_url(self, origin: str, destination: str, travel_date: str) -> str:
+        dt_parts = travel_date.split("-")
+        dt_formatted = f"{dt_parts[2]}/{dt_parts[1]}/{dt_parts[0]}" if len(dt_parts) == 3 else travel_date
+        return f"https://www.makemytrip.com/flight/search?itinerary={origin}-{destination}-{dt_formatted}&tripType=O&paxType=A-1_C-0_I-0&intl=false&cabinClass=E"
+
+    def get_result_selectors(self) -> List[str]:
+        return [
+            ".listingCard",
+            "div[id*='flightListing']",
+            ".flightCard"
+        ]
+
+    def get_fallback_demo_observations(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
         return [
             FareObservation(
-                id="obs-mmt-01",
+                id=f"obs-mmt-{origin}-{destination}-6E2041",
                 source="MakeMyTrip",
                 source_type="OTA",
                 airline="IndiGo",
@@ -26,7 +38,7 @@ class MakeMyTripSourceAdapter(SourceAdapter):
                 fare_class="Saver",
                 base_fare=4250.0,
                 taxes=620.0,
-                fees=350.0,  # Convenience fee included
+                fees=350.0,
                 total_fare=5220.0,
                 currency="INR",
                 advance_purchase_days=14,
@@ -34,11 +46,4 @@ class MakeMyTripSourceAdapter(SourceAdapter):
             )
         ]
 
-    def health_check(self) -> Dict[str, Any]:
-        return {
-            "name": self.get_source_name(),
-            "type": self.get_source_type(),
-            "enabled": False,
-            "status": "DEMO_DATA",
-            "collection_method": "PERMITTED_WEB_OR_API"
-        }
+

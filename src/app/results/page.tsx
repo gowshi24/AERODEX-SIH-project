@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo, Suspense } from 'react';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Plane, ArrowUpDown, Filter } from 'lucide-react';
 import { MOCK_FLIGHTS, AIRPORTS } from '../../data/mockData';
@@ -89,11 +90,11 @@ function ResultsContent() {
             <Filter className="w-4 h-4" />
             <span>Filters</span>
           </button>
-          <a href="/search">
+          <Link href="/search">
             <Button size="sm" variant="outline" className="bg-slate-800/80 text-white border-slate-700 hover:bg-slate-800">
               Change Search
             </Button>
-          </a>
+          </Link>
         </div>
       </div>
 

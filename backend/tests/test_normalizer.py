@@ -1,5 +1,5 @@
-from backend.scraper.processors.normalizer import DataNormalizer
-from backend.scraper.models.fare_observation import FareObservation
+from scraper.processors.normalizer import DataNormalizer
+from scraper.models.fare_observation import FareObservation
 
 def test_normalize_observation_usd_conversion():
     obs = FareObservation(
@@ -25,3 +25,12 @@ def test_normalize_observation_usd_conversion():
     assert normalized.destination == "BOM"
     assert normalized.flight_number == "6E-2041"
     assert normalized.total_fare > 4000.0  # Converted from 60 USD
+
+def test_parse_currency_formats():
+    assert DataNormalizer.parse_currency("₹4,999") == 4999.0
+    assert DataNormalizer.parse_currency("₹ 4,999") == 4999.0
+    assert DataNormalizer.parse_currency("INR 4,250.50") == 4250.5
+    assert DataNormalizer.parse_currency("4,999.00 INR") == 4999.0
+    assert DataNormalizer.parse_currency("") == 0.0
+
+

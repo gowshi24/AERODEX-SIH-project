@@ -12,6 +12,7 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
+    { name: 'Dashboard', href: '/dashboard' },
     { name: 'Search Flights', href: '/search' },
     { name: 'Price Trends', href: '/trends' },
     { name: 'Airfare Index', href: '/index' },
@@ -72,6 +73,12 @@ export const Navbar: React.FC = () => {
               title="Search Flights"
             >
               <Search className="w-4.5 h-4.5" />
+            </Link>
+
+            <Link href="/login">
+              <Button variant="outline" size="sm" className="font-bold border-slate-300">
+                Sign In
+              </Button>
             </Link>
 
             <Link href="/book">

@@ -1,8 +1,8 @@
-from typing import List, Dict, Any
-from backend.scraper.collectors.collector_base import SourceAdapter
-from backend.scraper.models.fare_observation import FareObservation
+from typing import List, Dict, Any, Optional
+from scraper.sources.base_playwright_adapter import BasePlaywrightAdapter
+from scraper.models.fare_observation import FareObservation
 
-class IndiGoSourceAdapter(SourceAdapter):
+class IndiGoSourceAdapter(BasePlaywrightAdapter):
 
     def get_source_name(self) -> str:
         return "IndiGo Direct"
@@ -10,11 +10,22 @@ class IndiGoSourceAdapter(SourceAdapter):
     def get_source_type(self) -> str:
         return "AIRLINE"
 
-    async def search_flights(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
-        # Unconfigured source adapter returning permitted demo data
+    def get_search_url(self, origin: str, destination: str, travel_date: str) -> str:
+        # Public fare search URL template for IndiGo direct portal
+        return f"https://www.goindigo.in/flight-booking.html?origin={origin}&dest={destination}&date={travel_date}"
+
+    def get_result_selectors(self) -> List[str]:
+        return [
+            ".flight-search-result-card",
+            ".indigo-flight-item",
+            "div[data-test-id='flight-card']",
+            ".fare-card"
+        ]
+
+    def get_fallback_demo_observations(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
         return [
             FareObservation(
-                id="obs-indigo-01",
+                id=f"obs-indigo-{origin}-{destination}-6E2041",
                 source="IndiGo Direct",
                 source_type="AIRLINE",
                 airline="IndiGo",
@@ -35,11 +46,3 @@ class IndiGoSourceAdapter(SourceAdapter):
             )
         ]
 
-    def health_check(self) -> Dict[str, Any]:
-        return {
-            "name": self.get_source_name(),
-            "type": self.get_source_type(),
-            "enabled": False,
-            "status": "DEMO_DATA",
-            "collection_method": "PERMITTED_WEB_OR_API"
-        }

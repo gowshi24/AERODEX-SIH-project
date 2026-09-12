@@ -52,7 +52,7 @@ export default function AirfareIndexPage() {
             The AERODEX Airfare Price Index is an independent <span className="font-bold">AERODEX analytical airfare indicator</span> designed to measure relative domestic airfare movements across major Indian aviation corridors.
           </p>
           <p className="text-blue-800">
-            This platform provides <span className="font-semibold">CPI-oriented airfare analysis</span> for economic modeling and prototype research for SIH 2026. It is not an official government CPI release.
+            This platform provides <span className="font-semibold">CPI-oriented airfare analysis</span> for economic modeling and market research. It is not an official government CPI release.
           </p>
         </div>
       </div>

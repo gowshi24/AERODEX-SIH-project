@@ -1,8 +1,8 @@
-from typing import List, Dict, Any
-from backend.scraper.collectors.collector_base import SourceAdapter
-from backend.scraper.models.fare_observation import FareObservation
+from typing import List, Dict, Any, Optional
+from scraper.sources.base_playwright_adapter import BasePlaywrightAdapter
+from scraper.models.fare_observation import FareObservation
 
-class AirIndiaSourceAdapter(SourceAdapter):
+class AirIndiaSourceAdapter(BasePlaywrightAdapter):
 
     def get_source_name(self) -> str:
         return "Air India Direct"
@@ -10,10 +10,20 @@ class AirIndiaSourceAdapter(SourceAdapter):
     def get_source_type(self) -> str:
         return "AIRLINE"
 
-    async def search_flights(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
+    def get_search_url(self, origin: str, destination: str, travel_date: str) -> str:
+        return f"https://www.airindia.com/in/en/book/flight-select.html?origin={origin}&destination={destination}&date={travel_date}"
+
+    def get_result_selectors(self) -> List[str]:
+        return [
+            ".flight-card",
+            ".air-india-bound-card",
+            "div[class*='flightResultCard']"
+        ]
+
+    def get_fallback_demo_observations(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
         return [
             FareObservation(
-                id="obs-ai-01",
+                id=f"obs-ai-{origin}-{destination}-AI803",
                 source="Air India Direct",
                 source_type="AIRLINE",
                 airline="Air India",
@@ -34,11 +44,4 @@ class AirIndiaSourceAdapter(SourceAdapter):
             )
         ]
 
-    def health_check(self) -> Dict[str, Any]:
-        return {
-            "name": self.get_source_name(),
-            "type": self.get_source_type(),
-            "enabled": False,
-            "status": "DEMO_DATA",
-            "collection_method": "PERMITTED_WEB_OR_API"
-        }
+

@@ -1,5 +1,5 @@
-from backend.scraper.processors.flight_matcher import FlightMatcher
-from backend.scraper.models.fare_observation import FareObservation
+from scraper.processors.flight_matcher import FlightMatcher
+from scraper.models.fare_observation import FareObservation
 
 def test_generate_flight_key():
     obs1 = FareObservation(
@@ -37,3 +37,4 @@ def test_generate_flight_key():
     key1 = FlightMatcher.generate_flight_key(obs1)
     key2 = FlightMatcher.generate_flight_key(obs2)
     assert key1 == key2
+

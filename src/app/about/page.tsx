@@ -10,17 +10,17 @@ export default function AboutPage() {
       {/* TITLE & OVERVIEW */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <Badge variant="blue" size="md">
-          SIH 2026 Prototype Project
+          Airfare Intelligence Platform
         </Badge>
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900">
           About AERODEX Platform
         </h1>
         <p className="text-slate-600 text-sm font-medium leading-relaxed">
-          AERODEX is an Indian airfare intelligence and price analytics platform developed for SIH 2026.
+          AERODEX is an Indian airfare intelligence and price analytics platform designed for real-time price monitoring and Consumer Price Index (CPI) analytics.
         </p>
       </div>
 
-      {/* WHAT IS AERODEX & PROBLEM STATEMENT */}
+      {/* WHAT IS AERODEX & MISSION */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 space-y-4 shadow-xs">
           <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
@@ -36,9 +36,9 @@ export default function AboutPage() {
           <div className="w-10 h-10 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center font-bold">
             <Award className="w-5 h-5" />
           </div>
-          <h2 className="text-xl font-black text-slate-900">SIH 2026 Problem Statement</h2>
+          <h2 className="text-xl font-black text-slate-900">Core Mission & Objective</h2>
           <p className="text-xs text-slate-600 font-medium leading-relaxed border-l-2 border-cyan-500 pl-3 italic">
-            “Development of a Real-time Airfare Price Index for India through Automated Web Scraping of Airline and Online Travel Aggregator Portals for Augmentation of the Consumer Price Index (CPI).”
+            “Providing high-frequency airfare intelligence for India by aggregating real-time flight data across airline direct portals and Online Travel Aggregators to augment CPI analytics.”
           </p>
         </div>
       </div>

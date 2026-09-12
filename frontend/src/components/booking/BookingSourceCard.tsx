@@ -1,15 +1,24 @@
 import React from 'react';
-import { ExternalLink, ShieldCheck, Tag } from 'lucide-react';
-import { FlightSource } from '../../types';
+import { ExternalLink, ShieldCheck, Tag, Search } from 'lucide-react';
+import { FlightSource, Flight } from '../../types';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
+import { getBookingUrl, getProviderSearchUrl } from '../../lib/booking';
 
 interface BookingSourceCardProps {
   source: FlightSource;
-  airlineName: string;
+  flight?: Flight;
+  airlineName?: string;
 }
 
-export const BookingSourceCard: React.FC<BookingSourceCardProps> = ({ source, airlineName }) => {
+export const BookingSourceCard: React.FC<BookingSourceCardProps> = ({
+  source,
+  flight,
+  airlineName = 'Airline',
+}) => {
+  const targetUrl = getBookingUrl(flight, source);
+  const fallbackUrl = getProviderSearchUrl(flight, source.name);
+
   return (
     <div
       className={`aerodex-card p-6 bg-white border rounded-2xl flex flex-col justify-between transition-all ${
@@ -45,17 +54,26 @@ export const BookingSourceCard: React.FC<BookingSourceCardProps> = ({ source, ai
           </li>
           <li className="flex items-center space-x-2">
             <Tag className="w-4 h-4 text-blue-500" />
-            <span>Instant booking redirection (Simulated Frontend Mock)</span>
+            <span>Direct external provider redirection</span>
           </li>
         </ul>
       </div>
 
-      <a href={source.bookingUrl} target="_blank" rel="noopener noreferrer">
-        <Button variant={source.isCheapest ? 'primary' : 'outline'} className="w-full">
-          <span>Continue to {source.name}</span>
-          <ExternalLink className="w-4 h-4 ml-2" />
-        </Button>
-      </a>
+      {targetUrl ? (
+        <a href={targetUrl} target="_blank" rel="noopener noreferrer">
+          <Button variant={source.isCheapest ? 'primary' : 'outline'} className="w-full">
+            <span>Continue to {source.name}</span>
+            <ExternalLink className="w-4 h-4 ml-2" />
+          </Button>
+        </a>
+      ) : (
+        <a href={fallbackUrl} target="_blank" rel="noopener noreferrer">
+          <Button variant="outline" className="w-full border-slate-300">
+            <span>Search on {source.name}</span>
+            <Search className="w-4 h-4 ml-2" />
+          </Button>
+        </a>
+      )}
     </div>
   );
 };

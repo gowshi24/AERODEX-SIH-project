@@ -1,7 +1,7 @@
 from typing import List, Dict, Any
 import datetime
-from backend.scraper.collectors.collector_base import SourceAdapter
-from backend.scraper.models.fare_observation import FareObservation
+from scraper.collectors.collector_base import SourceAdapter
+from scraper.models.fare_observation import FareObservation
 
 class DemoSourceAdapter(SourceAdapter):
 
@@ -66,3 +66,4 @@ class DemoSourceAdapter(SourceAdapter):
             "status": "HEALTHY",
             "collection_method": "SYNTHETIC_GENERATOR"
         }
+

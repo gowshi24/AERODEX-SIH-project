@@ -1,8 +1,8 @@
-from typing import List, Dict, Any
-from backend.scraper.collectors.collector_base import SourceAdapter
-from backend.scraper.models.fare_observation import FareObservation
+from typing import List, Dict, Any, Optional
+from scraper.sources.base_playwright_adapter import BasePlaywrightAdapter
+from scraper.models.fare_observation import FareObservation
 
-class YatraSourceAdapter(SourceAdapter):
+class YatraSourceAdapter(BasePlaywrightAdapter):
 
     def get_source_name(self) -> str:
         return "Yatra"
@@ -10,10 +10,21 @@ class YatraSourceAdapter(SourceAdapter):
     def get_source_type(self) -> str:
         return "OTA"
 
-    async def search_flights(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
+    def get_search_url(self, origin: str, destination: str, travel_date: str) -> str:
+        dt_parts = travel_date.split("-")
+        dt_formatted = f"{dt_parts[2]}/{dt_parts[1]}/{dt_parts[0]}" if len(dt_parts) == 3 else travel_date
+        return f"https://flight.yatra.com/air-search/dom/v2/full?flight_departure_date={dt_formatted}&origin={origin}&destination={destination}"
+
+    def get_result_selectors(self) -> List[str]:
+        return [
+            ".flight-summary",
+            ".flight-list-item"
+        ]
+
+    def get_fallback_demo_observations(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
         return [
             FareObservation(
-                id="obs-yt-01",
+                id=f"obs-yt-{origin}-{destination}-AI803",
                 source="Yatra",
                 source_type="OTA",
                 airline="Air India",
@@ -34,11 +45,4 @@ class YatraSourceAdapter(SourceAdapter):
             )
         ]
 
-    def health_check(self) -> Dict[str, Any]:
-        return {
-            "name": self.get_source_name(),
-            "type": self.get_source_type(),
-            "enabled": False,
-            "status": "DEMO_DATA",
-            "collection_method": "PERMITTED_WEB_OR_API"
-        }
+

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Plane, TrendingUp, TrendingDown, Info, ExternalLink } from 'lucide-react';
 import { Modal } from '../ui/Modal';
 import { Badge } from '../ui/Badge';
@@ -48,6 +49,7 @@ const ROUTES_DATA: MapRoute[] = [
 ];
 
 export const HeatmapVisualizer: React.FC = () => {
+  const router = useRouter();
   const [selectedRoute, setSelectedRoute] = useState<MapRoute | null>(null);
 
   const getCity = (code: string) => CITIES.find((c) => c.code === code)!;
@@ -195,7 +197,7 @@ export const HeatmapVisualizer: React.FC = () => {
                 onClick={() => {
                   const r = selectedRoute;
                   setSelectedRoute(null);
-                  window.location.href = `/search?from=${r.from}&to=${r.to}`;
+                  router.push(`/search?from=${r.from}&to=${r.to}`);
                 }}
               >
                 Search Flights on Route <ExternalLink className="w-3.5 h-3.5 ml-1" />

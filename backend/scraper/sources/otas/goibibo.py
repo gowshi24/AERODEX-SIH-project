@@ -1,8 +1,8 @@
-from typing import List, Dict, Any
-from backend.scraper.collectors.collector_base import SourceAdapter
-from backend.scraper.models.fare_observation import FareObservation
+from typing import List, Dict, Any, Optional
+from scraper.sources.base_playwright_adapter import BasePlaywrightAdapter
+from scraper.models.fare_observation import FareObservation
 
-class GoibiboSourceAdapter(SourceAdapter):
+class GoibiboSourceAdapter(BasePlaywrightAdapter):
 
     def get_source_name(self) -> str:
         return "Goibibo"
@@ -10,10 +10,20 @@ class GoibiboSourceAdapter(SourceAdapter):
     def get_source_type(self) -> str:
         return "OTA"
 
-    async def search_flights(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
+    def get_search_url(self, origin: str, destination: str, travel_date: str) -> str:
+        dt_clean = travel_date.replace("-", "")
+        return f"https://www.goibibo.com/flights/air-{origin}-{destination}-{dt_clean}--1-0-0-E-d/"
+
+    def get_result_selectors(self) -> List[str]:
+        return [
+            "div[class*='srp-card']",
+            "div[class*='flightCard']"
+        ]
+
+    def get_fallback_demo_observations(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
         return [
             FareObservation(
-                id="obs-go-01",
+                id=f"obs-go-{origin}-{destination}-IX1421",
                 source="Goibibo",
                 source_type="OTA",
                 airline="Air India Express",
@@ -34,11 +44,4 @@ class GoibiboSourceAdapter(SourceAdapter):
             )
         ]
 
-    def health_check(self) -> Dict[str, Any]:
-        return {
-            "name": self.get_source_name(),
-            "type": self.get_source_type(),
-            "enabled": False,
-            "status": "DEMO_DATA",
-            "collection_method": "PERMITTED_WEB_OR_API"
-        }
+

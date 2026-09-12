@@ -1,8 +1,8 @@
-from typing import List, Dict, Any
-from backend.scraper.collectors.collector_base import SourceAdapter
-from backend.scraper.models.fare_observation import FareObservation
+from typing import List, Dict, Any, Optional
+from scraper.sources.base_playwright_adapter import BasePlaywrightAdapter
+from scraper.models.fare_observation import FareObservation
 
-class AkasaAirSourceAdapter(SourceAdapter):
+class AkasaAirSourceAdapter(BasePlaywrightAdapter):
 
     def get_source_name(self) -> str:
         return "Akasa Air Direct"
@@ -10,10 +10,19 @@ class AkasaAirSourceAdapter(SourceAdapter):
     def get_source_type(self) -> str:
         return "AIRLINE"
 
-    async def search_flights(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
+    def get_search_url(self, origin: str, destination: str, travel_date: str) -> str:
+        return f"https://www.akasaair.com/fly/select-flight?origin={origin}&dest={destination}&date={travel_date}"
+
+    def get_result_selectors(self) -> List[str]:
+        return [
+            ".akasa-flight-card",
+            "div[class*='flightItem']"
+        ]
+
+    def get_fallback_demo_observations(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
         return [
             FareObservation(
-                id="obs-qp-01",
+                id=f"obs-qp-{origin}-{destination}-QP1102",
                 source="Akasa Air Direct",
                 source_type="AIRLINE",
                 airline="Akasa Air",
@@ -34,11 +43,4 @@ class AkasaAirSourceAdapter(SourceAdapter):
             )
         ]
 
-    def health_check(self) -> Dict[str, Any]:
-        return {
-            "name": self.get_source_name(),
-            "type": self.get_source_type(),
-            "enabled": False,
-            "status": "DEMO_DATA",
-            "collection_method": "PERMITTED_WEB_OR_API"
-        }
+

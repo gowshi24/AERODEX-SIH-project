@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
             </div>
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-950 border border-blue-800/60 text-cyan-400 text-[11px] font-bold">
               <Award className="w-3.5 h-3.5" />
-              <span>SIH 2026 Prototype Project</span>
+              <span>Real-Time Airfare Intelligence</span>
             </div>
           </div>
 
@@ -35,7 +35,12 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-xs font-medium">
               <li>
                 <Link href="/" className="hover:text-white transition-colors">
-                  Home Dashboard
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/dashboard" className="hover:text-white transition-colors">
+                  Analytics Dashboard
                 </Link>
               </li>
               <li>
@@ -51,6 +56,11 @@ export const Footer: React.FC = () => {
               <li>
                 <Link href="/about" className="hover:text-white transition-colors">
                   About AERODEX
+                </Link>
+              </li>
+              <li>
+                <Link href="/login" className="hover:text-white transition-colors">
+                  Sign In / Register
                 </Link>
               </li>
             </ul>
@@ -83,20 +93,20 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* COLUMN 3: PROTOTYPE NOTICE */}
+          {/* COLUMN 3: PLATFORM OVERVIEW */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">SIH 2026</h4>
+            <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">Airfare Index</h4>
             <p className="text-[11px] text-slate-400 leading-relaxed font-medium">
-              Real-time Airfare Price Index for India through Automated Web Scraping for Augmentation of the Consumer Price Index (CPI).
+              Real-time Airfare Price Index for India through automated data collection for Augmentation of the Consumer Price Index (CPI).
             </p>
           </div>
         </div>
 
         {/* BOTTOM DISCLAIMER & COPYRIGHT */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <div>© {new Date().getFullYear()} AERODEX Platform • SIH 2026</div>
+          <div>© {new Date().getFullYear()} AERODEX Platform</div>
           <div className="text-[11px] text-slate-400 text-center sm:text-right italic">
-            Disclaimer: AERODEX is a prototype analytical platform. Data shown in this frontend is mock data for demonstration.
+            Disclaimer: AERODEX is an analytical platform. Data shown in this frontend provides price intelligence demonstration.
           </div>
         </div>
       </div>

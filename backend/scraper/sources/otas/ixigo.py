@@ -1,21 +1,31 @@
-from typing import List, Dict, Any
-from backend.scraper.collectors.collector_base import SourceAdapter
-from backend.scraper.models.fare_observation import FareObservation
+from typing import List, Dict, Any, Optional
+from scraper.sources.base_playwright_adapter import BasePlaywrightAdapter
+from scraper.models.fare_observation import FareObservation
 
-class IxigoSourceAdapter(SourceAdapter):
+class IxigoSourceAdapter(BasePlaywrightAdapter):
 
     def get_source_name(self) -> str:
         return "ixigo"
 
     def get_source_type(self) -> str:
-        return "META_OTA"
+        return "OTA"
 
-    async def search_flights(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
+    def get_search_url(self, origin: str, destination: str, travel_date: str) -> str:
+        dt_clean = travel_date.replace("-", "")
+        return f"https://www.ixigo.com/search/result/flight?from={origin}&to={destination}&date={dt_clean}&adults=1"
+
+    def get_result_selectors(self) -> List[str]:
+        return [
+            ".c-flight-listing-split-row",
+            "div[class*='flightCard']"
+        ]
+
+    def get_fallback_demo_observations(self, origin: str, destination: str, travel_date: str) -> List[FareObservation]:
         return [
             FareObservation(
-                id="obs-ixi-01",
+                id=f"obs-ixi-{origin}-{destination}-SG8169",
                 source="ixigo",
-                source_type="META_OTA",
+                source_type="OTA",
                 airline="SpiceJet",
                 flight_number="SG-8169",
                 origin=origin,
@@ -34,11 +44,4 @@ class IxigoSourceAdapter(SourceAdapter):
             )
         ]
 
-    def health_check(self) -> Dict[str, Any]:
-        return {
-            "name": self.get_source_name(),
-            "type": self.get_source_type(),
-            "enabled": False,
-            "status": "DEMO_DATA",
-            "collection_method": "PERMITTED_WEB_OR_API"
-        }
+
