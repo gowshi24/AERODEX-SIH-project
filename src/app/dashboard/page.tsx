@@ -17,6 +17,7 @@ import {
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
 import { StatCard } from '../../components/analytics/StatCard';
+import { LiveStatusBadge } from '../../components/ui/LiveStatusBadge';
 import { INDEX_SUMMARY, POPULAR_ROUTES, ANOMALIES } from '../../data/mockData';
 
 export default function DashboardPage() {
@@ -37,7 +38,8 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <LiveStatusBadge sourceName="SerpAPI Google Flights" />
           <Link href="/search">
             <Button variant="primary" size="md" className="shadow-md font-bold">
               <Search className="w-4 h-4 mr-2" />

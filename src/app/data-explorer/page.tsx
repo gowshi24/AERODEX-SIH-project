@@ -6,6 +6,7 @@ import { getDataExplorerFares } from '../../lib/api';
 import { ExplorerFareRecord } from '../../types';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
+import { LiveStatusBadge } from '../../components/ui/LiveStatusBadge';
 
 export default function DataExplorerPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -80,10 +81,13 @@ export default function DataExplorerPage() {
           </p>
         </div>
 
-        <Button variant="primary" size="sm" onClick={handleExportCSV}>
-          <Download className="w-4 h-4 mr-2" />
-          Export CSV Data
-        </Button>
+        <div className="flex items-center space-x-3">
+          <LiveStatusBadge isLoading={loading} sourceName="Supabase DB / SerpAPI" />
+          <Button variant="primary" size="sm" onClick={handleExportCSV}>
+            <Download className="w-4 h-4 mr-2" />
+            Export CSV Data
+          </Button>
+        </div>
       </div>
 
       {/* SEARCH CONTROL */}

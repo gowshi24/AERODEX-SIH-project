@@ -1,34 +1,19 @@
 from typing import List, Dict, Any, Optional
+from sqlalchemy.orm import Session
+from backend.app.services.db_service import db_service
 
 EXPLORER_FARES_DATA = [
     {
         "id": "exp-01",
-        "collectedAt": "2026-09-06T14:30:00",
-        "source": "IndiGo Direct",
+        "collectedAt": "2026-09-13T10:14:00",
+        "source": "SerpApi / Google Flights",
         "airline": "IndiGo",
         "flightNumber": "6E-2041",
         "origin": "DEL",
         "destination": "BOM",
         "travelDate": "2026-09-20",
         "advanceWindow": 14,
-        "fareClass": "Saver",
-        "baseFare": 4250.0,
-        "taxes": 620.0,
-        "fees": 230.0,
-        "totalFare": 5100.0,
-        "status": "VALIDATED"
-    },
-    {
-        "id": "exp-02",
-        "collectedAt": "2026-09-06T14:30:00",
-        "source": "EaseMyTrip",
-        "airline": "IndiGo",
-        "flightNumber": "6E-2041",
-        "origin": "DEL",
-        "destination": "BOM",
-        "travelDate": "2026-09-20",
-        "advanceWindow": 14,
-        "fareClass": "Saver",
+        "fareClass": "Economy Saver",
         "baseFare": 4250.0,
         "taxes": 620.0,
         "fees": 0.0,
@@ -36,16 +21,16 @@ EXPLORER_FARES_DATA = [
         "status": "VALIDATED"
     },
     {
-        "id": "exp-03",
-        "collectedAt": "2026-09-06T14:30:00",
-        "source": "Air India Direct",
+        "id": "exp-02",
+        "collectedAt": "2026-09-13T10:14:00",
+        "source": "SerpApi / Google Flights",
         "airline": "Air India",
         "flightNumber": "AI-803",
         "origin": "DEL",
         "destination": "BOM",
         "travelDate": "2026-09-20",
         "advanceWindow": 14,
-        "fareClass": "Economy",
+        "fareClass": "Economy Flex",
         "baseFare": 4800.0,
         "taxes": 750.0,
         "fees": 250.0,
@@ -56,7 +41,22 @@ EXPLORER_FARES_DATA = [
 
 class FareService:
     @staticmethod
-    def get_explorer_fares(query: Optional[str] = None) -> List[Dict[str, Any]]:
+    def get_explorer_fares(query: Optional[str] = None, db: Optional[Session] = None) -> List[Dict[str, Any]]:
+        if db:
+            db_records = db_service.get_historical_fares(db, limit=100)
+            if db_records:
+                if not query:
+                    return db_records
+                q = query.lower()
+                return [
+                    f for f in db_records
+                    if q in str(f.get("airline", "")).lower()
+                    or q in str(f.get("source", "")).lower()
+                    or q in str(f.get("flightNumber", "")).lower()
+                    or q in str(f.get("origin", "")).lower()
+                    or q in str(f.get("destination", "")).lower()
+                ]
+
         if not query:
             return EXPLORER_FARES_DATA
         q = query.lower()

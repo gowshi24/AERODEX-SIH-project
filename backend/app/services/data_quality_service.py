@@ -5,6 +5,17 @@ class DataQualityService:
     def get_data_sources() -> List[Dict[str, Any]]:
         return [
             {
+                "id": "ds-00",
+                "name": "SerpApi / Google Flights",
+                "type": "REALTIME_META_OTA",
+                "collectionMethod": "SERPAPI_REALTIME_HTTP",
+                "status": "Connected",
+                "lastCollection": "2026-09-13T10:14:00",
+                "recordsCollected": 68400,
+                "dataQuality": 99.8,
+                "coverage": "Real-time Live Google Flights Market"
+            },
+            {
                 "id": "ds-01",
                 "name": "IndiGo Direct",
                 "type": "AIRLINE",

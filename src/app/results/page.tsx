@@ -1,30 +1,38 @@
 'use client';
 
-import React, { useState, useMemo, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Plane, ArrowUpDown, Filter } from 'lucide-react';
-import { MOCK_FLIGHTS, AIRPORTS } from '../../data/mockData';
+import { AIRPORTS } from '../../data/mockData';
+import { searchFlights } from '../../lib/api';
+import { Flight, FlightFilterState } from '../../types';
 import { FlightCard } from '../../components/flight/FlightCard';
 import { FilterSidebar } from '../../components/flight/FilterSidebar';
-import { FlightFilterState } from '../../types';
 import { Button } from '../../components/ui/Button';
+import { LiveStatusBadge } from '../../components/ui/LiveStatusBadge';
 
 function ResultsContent() {
   const searchParams = useSearchParams();
   const fromCode = searchParams.get('from') || 'DEL';
   const toCode = searchParams.get('to') || 'BOM';
-  const departDate = searchParams.get('depart') || '20 Sep 2026';
+  const departDate = searchParams.get('depart') || '2026-09-20';
   const travellers = searchParams.get('travellers') || '1 Traveller';
 
   const fromAirport = AIRPORTS.find((a) => a.code === fromCode) || AIRPORTS[0];
   const toAirport = AIRPORTS.find((a) => a.code === toCode) || AIRPORTS[1];
 
+  const [flights, setFlights] = useState<Flight[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [isCached, setIsCached] = useState<boolean>(false);
+  const [lastUpdated, setLastUpdated] = useState<string>('');
+
   const [sortBy, setSortBy] = useState<'cheapest' | 'fastest' | 'value'>('cheapest');
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   const defaultFilters: FlightFilterState = {
-    maxPrice: 10000,
+    maxPrice: 20000,
     stops: [],
     airlines: [],
     departureTimeRange: 'all',
@@ -33,30 +41,55 @@ function ResultsContent() {
 
   const [filters, setFilters] = useState<FlightFilterState>(defaultFilters);
 
+  const fetchFlightData = async (forceRefresh: boolean = false) => {
+    setLoading(true);
+    setIsError(false);
+    try {
+      const results = await searchFlights({
+        fromCode,
+        toCode,
+        departureDate: departDate,
+      });
+      setFlights(results);
+      setLastUpdated(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+      setIsCached(!forceRefresh && results.some((f) => f.id.includes('db')));
+    } catch {
+      setIsError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchFlightData(false);
+  }, [fromCode, toCode, departDate]);
+
   const filteredFlights = useMemo(() => {
-    return MOCK_FLIGHTS.filter((flight) => {
-      if (flight.basePrice > filters.maxPrice) return false;
-      if (filters.stops.length > 0) {
-        const stopStr = flight.stops === 0 ? '0' : flight.stops === 1 ? '1' : '2+';
-        if (!filters.stops.includes(stopStr)) return false;
-      }
-      if (filters.airlines.length > 0) {
-        if (!filters.airlines.includes(flight.airline)) return false;
-      }
-      if (filters.departureTimeRange !== 'all') {
-        const hour = parseInt(flight.departureTime.split(':')[0], 10);
-        if (filters.departureTimeRange === 'morning' && (hour < 6 || hour >= 12)) return false;
-        if (filters.departureTimeRange === 'afternoon' && (hour < 12 || hour >= 18)) return false;
-        if (filters.departureTimeRange === 'evening' && (hour < 18 || hour > 23)) return false;
-      }
-      return true;
-    }).sort((a, b) => {
-      if (sortBy === 'cheapest') return a.basePrice - b.basePrice;
-      if (sortBy === 'fastest') return a.duration.localeCompare(b.duration);
-      if (sortBy === 'value') return b.priceTrendPercent - a.priceTrendPercent;
-      return 0;
-    });
-  }, [filters, sortBy]);
+    return flights
+      .filter((flight) => {
+        if (flight.basePrice > filters.maxPrice) return false;
+        if (filters.stops.length > 0) {
+          const stopStr = flight.stops === 0 ? '0' : flight.stops === 1 ? '1' : '2+';
+          if (!filters.stops.includes(stopStr)) return false;
+        }
+        if (filters.airlines.length > 0) {
+          if (!filters.airlines.includes(flight.airline)) return false;
+        }
+        if (filters.departureTimeRange !== 'all') {
+          const hour = parseInt(flight.departureTime.split(':')[0], 10);
+          if (filters.departureTimeRange === 'morning' && (hour < 6 || hour >= 12)) return false;
+          if (filters.departureTimeRange === 'afternoon' && (hour < 12 || hour >= 18)) return false;
+          if (filters.departureTimeRange === 'evening' && (hour < 18 || hour > 23)) return false;
+        }
+        return true;
+      })
+      .sort((a, b) => {
+        if (sortBy === 'cheapest') return a.basePrice - b.basePrice;
+        if (sortBy === 'fastest') return a.duration.localeCompare(b.duration);
+        if (sortBy === 'value') return b.priceTrendPercent - a.priceTrendPercent;
+        return 0;
+      });
+  }, [flights, filters, sortBy]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
@@ -82,19 +115,30 @@ function ResultsContent() {
           </div>
         </div>
 
-        <div className="flex items-center space-x-3">
-          <button
-            onClick={() => setShowMobileFilters(!showMobileFilters)}
-            className="lg:hidden flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-slate-800 text-slate-200 border border-slate-700 text-xs font-semibold"
-          >
-            <Filter className="w-4 h-4" />
-            <span>Filters</span>
-          </button>
-          <Link href="/search">
-            <Button size="sm" variant="outline" className="bg-slate-800/80 text-white border-slate-700 hover:bg-slate-800">
-              Change Search
-            </Button>
-          </Link>
+        <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
+          <LiveStatusBadge
+            isLoading={loading}
+            isLive={!isCached && !isError}
+            isCached={isCached}
+            isError={isError}
+            lastUpdated={lastUpdated}
+            sourceName="SerpAPI / Google Flights"
+            onRefresh={() => fetchFlightData(true)}
+          />
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setShowMobileFilters(!showMobileFilters)}
+              className="lg:hidden flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-slate-800 text-slate-200 border border-slate-700 text-xs font-semibold"
+            >
+              <Filter className="w-4 h-4" />
+              <span>Filters</span>
+            </button>
+            <Link href="/search">
+              <Button size="sm" variant="outline" className="bg-slate-800/80 text-white border-slate-700 hover:bg-slate-800">
+                Change Search
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -143,7 +187,12 @@ function ResultsContent() {
           </div>
 
           {/* RESULTS CARDS LIST */}
-          {filteredFlights.length > 0 ? (
+          {loading ? (
+            <div className="bg-white p-12 text-center border border-slate-200 rounded-3xl space-y-3">
+              <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
+              <p className="text-xs font-bold text-slate-600">Loading latest airfare data from SerpAPI...</p>
+            </div>
+          ) : filteredFlights.length > 0 ? (
             <div className="space-y-4">
               {filteredFlights.map((flight) => (
                 <FlightCard key={flight.id} flight={flight} />

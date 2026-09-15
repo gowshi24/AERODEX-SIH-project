@@ -14,6 +14,7 @@ from .otas import (
     GoibiboSourceAdapter,
 )
 from .demo_source import DemoSourceAdapter
+from .serp_api import SerpApiSourceAdapter
 
 __all__ = [
     "IndiGoSourceAdapter",
@@ -28,4 +29,5 @@ __all__ = [
     "IxigoSourceAdapter",
     "GoibiboSourceAdapter",
     "DemoSourceAdapter",
+    "SerpApiSourceAdapter",
 ]

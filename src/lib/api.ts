@@ -45,7 +45,26 @@ export interface SearchFlightParams {
 }
 
 export async function searchFlights(params?: SearchFlightParams): Promise<Flight[]> {
-  // Simulate network latency
+  try {
+    const queryParts: string[] = [];
+    if (params?.fromCode) queryParts.push(`fromCode=${encodeURIComponent(params.fromCode)}`);
+    if (params?.toCode) queryParts.push(`toCode=${encodeURIComponent(params.toCode)}`);
+    if (params?.departureDate) queryParts.push(`travelDate=${encodeURIComponent(params.departureDate)}`);
+    queryParts.push('live=true');
+
+    const url = `http://localhost:8000/api/flights/search?${queryParts.join('&')}`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        return data as Flight[];
+      }
+    }
+  } catch {
+    // Fallback to local mock data if FastAPI backend is offline
+  }
+
+  // Local fallback
   await new Promise((res) => setTimeout(res, 300));
   if (!params || (!params.fromCode && !params.toCode)) {
     return MOCK_FLIGHTS;
@@ -104,6 +123,18 @@ export async function getBacktestResults(): Promise<BacktestResult> {
 }
 
 export async function getDataSources(): Promise<DataSource[]> {
+  try {
+    const url = 'http://localhost:8000/api/data-sources';
+    const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        return data as DataSource[];
+      }
+    }
+  } catch {
+    // Fallback to local mock data
+  }
   await new Promise((res) => setTimeout(res, 150));
   return DATA_SOURCES;
 }
@@ -114,6 +145,19 @@ export async function getDataQuality(): Promise<DataQuality> {
 }
 
 export async function getDataExplorerFares(query?: string): Promise<ExplorerFareRecord[]> {
+  try {
+    const url = `http://localhost:8000/api/fares/explorer${query ? `?q=${encodeURIComponent(query)}` : ''}`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        return data as ExplorerFareRecord[];
+      }
+    }
+  } catch {
+    // Fallback to local mock data
+  }
+
   await new Promise((res) => setTimeout(res, 200));
   if (!query) return EXPLORER_FARES;
   const q = query.toLowerCase();

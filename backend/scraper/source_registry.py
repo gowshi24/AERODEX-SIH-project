@@ -13,6 +13,7 @@ from scraper.sources import (
     IxigoSourceAdapter,
     GoibiboSourceAdapter,
     DemoSourceAdapter,
+    SerpApiSourceAdapter,
 )
 from scraper.models.fare_observation import FareObservation
 
@@ -36,6 +37,7 @@ class SourceRegistry:
             "cleartrip": CleartripSourceAdapter(),
             "ixigo": IxigoSourceAdapter(),
             "goibibo": GoibiboSourceAdapter(),
+            "serpapi": SerpApiSourceAdapter(),
             "demo": DemoSourceAdapter(),
         }
         self.last_collection_logs: List[Dict[str, Any]] = []

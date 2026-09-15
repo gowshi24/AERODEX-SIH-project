@@ -339,6 +339,7 @@ export const BACKTEST_RESULTS = {
 };
 
 export const DATA_SOURCES = [
+  { id: 'src-00', name: 'SerpApi / Google Flights', type: 'META_OTA' as const, collectionMethod: 'Realtime API', status: 'HEALTHY' as const, lastCollection: '2026-09-13 10:14', recordsCollected: 68400, dataQuality: 99.8, coverage: 'Real-Time Google Flights Data' },
   { id: 'src-01', name: 'IndiGo Direct', type: 'AIRLINE' as const, collectionMethod: 'Demo Data', status: 'DEMO_DATA' as const, lastCollection: '2026-09-06 02:10', recordsCollected: 4820, dataQuality: 99.6, coverage: 'All Domestic Routes' },
   { id: 'src-02', name: 'Air India Direct', type: 'AIRLINE' as const, collectionMethod: 'Demo Data', status: 'DEMO_DATA' as const, lastCollection: '2026-09-06 02:08', recordsCollected: 3150, dataQuality: 99.2, coverage: 'Full Service Domestic' },
   { id: 'src-03', name: 'Akasa Air Direct', type: 'AIRLINE' as const, collectionMethod: 'Demo Data', status: 'DEMO_DATA' as const, lastCollection: '2026-09-06 02:12', recordsCollected: 2100, dataQuality: 99.1, coverage: 'Metro & Regional' },
