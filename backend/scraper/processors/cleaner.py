@@ -1,5 +1,8 @@
 from typing import List, Dict, Any, Optional
-from scraper.models.fare_observation import FareObservation
+try:
+    from backend.scraper.models.fare_observation import FareObservation
+except ImportError:
+    from scraper.models.fare_observation import FareObservation
 import logging
 
 logger = logging.getLogger("aerodex.cleaner")

@@ -1,6 +1,9 @@
-import re
-from scraper.models.fare_observation import FareObservation
-from scraper.utils.currency import convert_to_inr
+try:
+    from backend.scraper.models.fare_observation import FareObservation
+    from backend.scraper.utils.currency import convert_to_inr
+except ImportError:
+    from scraper.models.fare_observation import FareObservation
+    from scraper.utils.currency import convert_to_inr
 
 class FareNormalizer:
 

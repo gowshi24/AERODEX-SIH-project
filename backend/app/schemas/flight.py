@@ -12,8 +12,8 @@ class FlightSourceSchema(BaseModel):
     bookingUrl: Optional[str] = "#"
 
 class BaggageSchema(BaseModel):
-    cabin: str = "7 kg"
-    checkIn: str = "15 kg"
+    cabin: str = "Not specified"
+    checkIn: str = "Not specified"
 
 class PriceHistoryPointSchema(BaseModel):
     date: str
@@ -33,15 +33,15 @@ class FlightSchema(BaseModel):
     travelDate: Optional[str] = "2026-09-20"
     duration: str
     stops: int = 0
-    aircraft: Optional[str] = "Airbus A320"
-    fareClass: Optional[str] = "Economy Saver"
+    aircraft: Optional[str] = None
+    fareClass: Optional[str] = "Economy"
     basePrice: float
     cheapestSource: str
     priceTrendPercent: float = 0.0
     priceTrendDirection: str = "stable"
     sources: List[FlightSourceSchema] = []
     baggage: BaggageSchema = BaggageSchema()
-    refundability: str = "Partially Refundable"
+    refundability: str = "Not specified"
     priceHistory: List[PriceHistoryPointSchema] = []
 
     class Config:

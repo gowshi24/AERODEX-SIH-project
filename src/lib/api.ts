@@ -35,6 +35,8 @@ import {
  * Next.js -> FastAPI -> PostgreSQL/Supabase
  */
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
 export interface SearchFlightParams {
   fromCode?: string;
   toCode?: string;
@@ -42,38 +44,33 @@ export interface SearchFlightParams {
   returnDate?: string;
   travellers?: number;
   cabinClass?: string;
+  refresh?: boolean;
 }
 
 export async function searchFlights(params?: SearchFlightParams): Promise<Flight[]> {
-  try {
-    const queryParts: string[] = [];
-    if (params?.fromCode) queryParts.push(`fromCode=${encodeURIComponent(params.fromCode)}`);
-    if (params?.toCode) queryParts.push(`toCode=${encodeURIComponent(params.toCode)}`);
-    if (params?.departureDate) queryParts.push(`travelDate=${encodeURIComponent(params.departureDate)}`);
-    queryParts.push('live=true');
+  const searchParams = new URLSearchParams();
+  if (params?.fromCode) searchParams.append('origin', params.fromCode);
+  if (params?.toCode) searchParams.append('destination', params.toCode);
+  if (params?.departureDate) searchParams.append('travel_date', params.departureDate);
+  if (params?.returnDate) searchParams.append('return_date', params.returnDate);
+  if (params?.travellers) searchParams.append('passengers', params.travellers.toString());
+  if (params?.cabinClass) searchParams.append('cabin_class', params.cabinClass);
+  if (params?.refresh) searchParams.append('refresh', 'true');
 
-    const url = `http://localhost:8000/api/flights/search?${queryParts.join('&')}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
-    if (res.ok) {
-      const data = await res.json();
-      if (Array.isArray(data) && data.length > 0) {
-        return data as Flight[];
-      }
-    }
-  } catch {
-    // Fallback to local mock data if FastAPI backend is offline
+  const url = `${API_BASE_URL}/api/flights/search?${searchParams.toString()}`;
+  const res = await fetch(url);
+  
+  if (!res.ok) {
+    const errorText = await res.text().catch(() => '');
+    throw new Error(`Backend error (${res.status}): ${errorText || res.statusText}`);
   }
 
-  // Local fallback
-  await new Promise((res) => setTimeout(res, 300));
-  if (!params || (!params.fromCode && !params.toCode)) {
-    return MOCK_FLIGHTS;
+  const data = await res.json();
+  if (!Array.isArray(data)) {
+    throw new Error('Invalid response payload format from flight search API');
   }
-  return MOCK_FLIGHTS.filter((f) => {
-    const matchFrom = !params.fromCode || f.departureCode.toUpperCase() === params.fromCode.toUpperCase();
-    const matchTo = !params.toCode || f.arrivalCode.toUpperCase() === params.toCode.toUpperCase();
-    return matchFrom && matchTo;
-  });
+
+  return data as Flight[];
 }
 
 export async function getFlightDetails(id: string): Promise<Flight | null> {
@@ -124,7 +121,7 @@ export async function getBacktestResults(): Promise<BacktestResult> {
 
 export async function getDataSources(): Promise<DataSource[]> {
   try {
-    const url = 'http://localhost:8000/api/data-sources';
+    const url = `${API_BASE_URL}/api/data-sources`;
     const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
     if (res.ok) {
       const data = await res.json();
@@ -146,7 +143,7 @@ export async function getDataQuality(): Promise<DataQuality> {
 
 export async function getDataExplorerFares(query?: string): Promise<ExplorerFareRecord[]> {
   try {
-    const url = `http://localhost:8000/api/fares/explorer${query ? `?q=${encodeURIComponent(query)}` : ''}`;
+    const url = `${API_BASE_URL}/api/fares/explorer${query ? `?q=${encodeURIComponent(query)}` : ''}`;
     const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
     if (res.ok) {
       const data = await res.json();

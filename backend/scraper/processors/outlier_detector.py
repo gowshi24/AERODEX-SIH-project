@@ -1,6 +1,9 @@
 import numpy as np
 from typing import List, Tuple
-from scraper.models.fare_observation import FareObservation
+try:
+    from backend.scraper.models.fare_observation import FareObservation
+except ImportError:
+    from scraper.models.fare_observation import FareObservation
 
 class OutlierDetector:
 

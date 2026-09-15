@@ -4,10 +4,16 @@ from typing import List, Dict, Any, Optional
 from datetime import datetime, timezone
 
 from backend.app.core.config import settings
-from scraper.models.fare_observation import FareObservation
-from scraper.processors.cleaner import FareCleaner
-from scraper.processors.validator import FareValidator
-from scraper.processors.normalizer import FareNormalizer
+try:
+    from backend.scraper.models.fare_observation import FareObservation
+    from backend.scraper.processors.cleaner import FareCleaner
+    from backend.scraper.processors.validator import FareValidator
+    from backend.scraper.processors.normalizer import FareNormalizer
+except ImportError:
+    from scraper.models.fare_observation import FareObservation
+    from scraper.processors.cleaner import FareCleaner
+    from scraper.processors.validator import FareValidator
+    from scraper.processors.normalizer import FareNormalizer
 
 logger = logging.getLogger("aerodex.serpapi_service")
 
@@ -118,11 +124,24 @@ class SerpAPIService:
             dep_datetime = dep_time_str.replace(" ", "T") if dep_time_str else f"{travel_date}T08:00:00"
             arr_datetime = arr_time_str.replace(" ", "T") if arr_time_str else f"{travel_date}T10:15:00"
 
-            price = float(item.get("price", 4500))
+            price = float(item.get("price", 0))
             base_fare = round(price * 0.85, 2)
             taxes = round(price * 0.15, 2)
 
             fare_class = first_leg.get("travel_class", "Economy")
+            aircraft = first_leg.get("airplane") or None
+
+            # Calculate stops and total duration
+            stops = len(flights) - 1 if len(flights) > 0 else 0
+            if "layovers" in item and isinstance(item["layovers"], list):
+                stops = max(stops, len(item["layovers"]))
+
+            duration_mins = item.get("total_duration") or first_leg.get("duration")
+
+            # Extract baggage/extensions if available
+            extensions = item.get("extensions", []) + first_leg.get("extensions", [])
+            baggage_info = ", ".join([e for e in extensions if "bag" in e.lower() or "carry-on" in e.lower()]) if extensions else None
+            refundable_info = next((e for e in extensions if "refund" in e.lower()), None)
 
             return FareObservation(
                 id=f"obs-serpapi-{origin.lower()}-{destination.lower()}-{flight_number.lower()}-{idx}",
@@ -141,8 +160,14 @@ class SerpAPIService:
                 fees=0.0,
                 total_fare=price,
                 currency="INR",
-                advance_purchase_days=14,
+                advance_purchase_days=0,
                 availability_status="AVAILABLE",
+                stops=stops,
+                duration_minutes=duration_mins,
+                aircraft=aircraft,
+                baggage=baggage_info,
+                refundable=refundable_info,
+                cabin_class=fare_class,
             )
         except Exception as e:
             logger.warning(f"[SerpAPI] Error parsing flight item: {str(e)}")

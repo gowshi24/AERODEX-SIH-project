@@ -15,8 +15,8 @@ class Settings(BaseSettings):
     API_PREFIX: str = "/api"
     API_V1_STR: str = "/api"
 
-    # Supabase PostgreSQL connection
-    DATABASE_URL: str
+    # Supabase PostgreSQL connection (Optional for database-less / SerpAPI mode)
+    DATABASE_URL: Optional[str] = None
 
     # SerpApi Google Flights Real-time API Key
     SERPAPI_KEY: Optional[str] = None

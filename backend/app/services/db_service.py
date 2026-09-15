@@ -5,7 +5,10 @@ from sqlalchemy.orm import Session
 
 from backend.models.flight import FlightModel
 from backend.models.fare import FareModel
-from scraper.models.fare_observation import FareObservation
+try:
+    from backend.scraper.models.fare_observation import FareObservation
+except ImportError:
+    from scraper.models.fare_observation import FareObservation
 
 logger = logging.getLogger("aerodex.db_service")
 

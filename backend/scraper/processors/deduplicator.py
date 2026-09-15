@@ -1,5 +1,8 @@
 from typing import List
-from scraper.models.fare_observation import FareObservation
+try:
+    from backend.scraper.models.fare_observation import FareObservation
+except ImportError:
+    from scraper.models.fare_observation import FareObservation
 
 class FareDeduplicator:
 

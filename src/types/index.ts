@@ -140,9 +140,9 @@ export interface BacktestResult {
 export interface DataSource {
   id: string;
   name: string;
-  type: 'AIRLINE' | 'OTA' | 'REFERENCE';
+  type: 'AIRLINE' | 'OTA' | 'REFERENCE' | 'META_OTA';
   collectionMethod: string;
-  status: 'Connected' | 'Monitoring' | 'Scheduled' | 'Unavailable' | 'DEMO_DATA';
+  status: 'Connected' | 'Monitoring' | 'Scheduled' | 'Unavailable' | 'DEMO_DATA' | 'HEALTHY';
   lastCollection: string;
   recordsCollected: number;
   dataQuality: number;

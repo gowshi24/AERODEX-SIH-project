@@ -17,10 +17,11 @@ from backend.app.api.routes import (
 )
 
 # Initialize Database tables if missing
-try:
-    Base.metadata.create_all(bind=engine)
-except Exception as e:
-    pass
+if engine is not None:
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as e:
+        pass
 
 app = FastAPI(
     title=settings.PROJECT_NAME,

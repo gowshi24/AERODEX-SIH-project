@@ -18,6 +18,8 @@ function ResultsContent() {
   const toCode = searchParams.get('to') || 'BOM';
   const departDate = searchParams.get('depart') || '2026-09-20';
   const travellers = searchParams.get('travellers') || '1 Traveller';
+  const returnDate = searchParams.get('return') || undefined;
+  const tripType = searchParams.get('tripType') || 'oneWay';
 
   const fromAirport = AIRPORTS.find((a) => a.code === fromCode) || AIRPORTS[0];
   const toAirport = AIRPORTS.find((a) => a.code === toCode) || AIRPORTS[1];
@@ -25,6 +27,7 @@ function ResultsContent() {
   const [flights, setFlights] = useState<Flight[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [isCached, setIsCached] = useState<boolean>(false);
   const [lastUpdated, setLastUpdated] = useState<string>('');
 
@@ -32,7 +35,7 @@ function ResultsContent() {
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   const defaultFilters: FlightFilterState = {
-    maxPrice: 20000,
+    maxPrice: 50000,
     stops: [],
     airlines: [],
     departureTimeRange: 'all',
@@ -44,17 +47,23 @@ function ResultsContent() {
   const fetchFlightData = async (forceRefresh: boolean = false) => {
     setLoading(true);
     setIsError(false);
+    setErrorMessage('');
     try {
       const results = await searchFlights({
         fromCode,
         toCode,
         departureDate: departDate,
+        returnDate: tripType === 'roundTrip' ? returnDate : undefined,
+        travellers: parseInt(travellers) || 1,
+        refresh: forceRefresh,
       });
       setFlights(results);
       setLastUpdated(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
-      setIsCached(!forceRefresh && results.some((f) => f.id.includes('db')));
-    } catch {
+      setIsCached(!forceRefresh && results.some((f) => f.id.includes('cache')));
+    } catch (err: any) {
       setIsError(true);
+      setErrorMessage(err.message || 'Unable to fetch live flight data right now.');
+      setFlights([]);
     } finally {
       setLoading(false);
     }
@@ -192,6 +201,19 @@ function ResultsContent() {
               <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
               <p className="text-xs font-bold text-slate-600">Loading latest airfare data from SerpAPI...</p>
             </div>
+          ) : isError ? (
+            <div className="bg-rose-50 border border-rose-200 p-8 text-center rounded-3xl space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mx-auto">
+                <Plane className="w-6 h-6" />
+              </div>
+              <h3 className="font-bold text-rose-900 text-lg">Live Search Request Failed</h3>
+              <p className="text-xs text-rose-700 max-w-sm mx-auto">
+                {errorMessage || 'Unable to fetch live flight data right now. Please check your backend server.'}
+              </p>
+              <Button size="sm" variant="primary" onClick={() => fetchFlightData(true)}>
+                Retry Live Search
+              </Button>
+            </div>
           ) : filteredFlights.length > 0 ? (
             <div className="space-y-4">
               {filteredFlights.map((flight) => (
@@ -203,9 +225,9 @@ function ResultsContent() {
               <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto">
                 <Plane className="w-6 h-6" />
               </div>
-              <h3 className="font-bold text-slate-900 text-lg">No Flights Match Your Selected Filters</h3>
+              <h3 className="font-bold text-slate-900 text-lg">No Flights Found For This Search</h3>
               <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                Try widening your max price range slider or clearing stop / airline filter checkboxes.
+                No flights were returned by SerpAPI for route {fromCode} → {toCode} on {departDate}. Try adjusting your search criteria or max price.
               </p>
               <Button size="sm" variant="outline" onClick={() => setFilters(defaultFilters)}>
                 Reset Filters

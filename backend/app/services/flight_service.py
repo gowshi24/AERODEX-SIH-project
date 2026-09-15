@@ -1,13 +1,33 @@
 import logging
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Tuple
 from datetime import datetime, timezone
 from sqlalchemy.orm import Session
 
 from backend.app.services.serpapi_service import serpapi_service
 from backend.app.services.db_service import db_service
-from scraper.models.fare_observation import FareObservation
+try:
+    from backend.scraper.models.fare_observation import FareObservation
+except ImportError:
+    from scraper.models.fare_observation import FareObservation
 
 logger = logging.getLogger("aerodex.flight_service")
+
+# In-memory short-lived cache for database-less SerpAPI execution: key = (origin, destination, date)
+IN_MEMORY_CACHE: Dict[Tuple[str, str, str], Dict[str, Any]] = {}
+
+AIRLINE_IATA_MAP = {
+    "INDIGO": "6E",
+    "AIR INDIA": "AI",
+    "VISTARA": "UK",
+    "AKASA AIR": "QP",
+    "SPICEJET": "SG",
+    "AIR INDIA EXPRESS": "IX",
+    "AIX CONNECT": "IX",
+    "ALLIANCE AIR": "9I",
+    "FLY91": "IC",
+    "STAR AIR": "S5",
+    "GO FIRST": "G8",
+}
 
 CITY_NAMES = {
     "DEL": "New Delhi",
@@ -21,6 +41,33 @@ CITY_NAMES = {
     "GOI": "Goa",
     "COK": "Kochi",
 }
+
+def get_airline_code(airline: str, flight_number: str) -> str:
+    clean_airline = (airline or "").strip().upper()
+    if clean_airline in AIRLINE_IATA_MAP:
+        return AIRLINE_IATA_MAP[clean_airline]
+    for key, code in AIRLINE_IATA_MAP.items():
+        if key in clean_airline:
+            return code
+    if flight_number and "-" in flight_number:
+        prefix = flight_number.split("-")[0].strip().upper()
+        if 2 <= len(prefix) <= 3:
+            return prefix
+    if flight_number and len(flight_number) >= 2 and flight_number[:2].isalnum():
+        return flight_number[:2].upper()
+    return "FL"
+
+def format_duration(duration_minutes: Optional[int]) -> str:
+    if not duration_minutes or duration_minutes <= 0:
+        return "Direct"
+    hours = duration_minutes // 60
+    mins = duration_minutes % 60
+    if hours > 0 and mins > 0:
+        return f"{hours}h {mins}m"
+    elif hours > 0:
+        return f"{hours}h"
+    else:
+        return f"{mins}m"
 
 MOCK_FLIGHTS_DATA = [
     {
@@ -37,12 +84,12 @@ MOCK_FLIGHTS_DATA = [
         "travelDate": "2026-09-20",
         "duration": "2h 15m",
         "stops": 0,
-        "aircraft": "Airbus A320neo",
+        "aircraft": None,
         "fareClass": "Saver",
         "basePrice": 4250.0,
         "cheapestSource": "SerpApi / Google Flights",
-        "priceTrendPercent": -4.2,
-        "priceTrendDirection": "down",
+        "priceTrendPercent": 0.0,
+        "priceTrendDirection": "stable",
         "sources": [
             {
                 "id": "src-serp-1",
@@ -56,52 +103,9 @@ MOCK_FLIGHTS_DATA = [
                 "bookingUrl": "https://www.google.com/travel/flights"
             }
         ],
-        "baggage": {"cabin": "7 Kgs", "checkIn": "15 Kgs"},
-        "refundability": "Partially Refundable",
-        "priceHistory": [
-            {"date": "2026-09-01", "price": 5300.0},
-            {"date": "2026-09-06", "price": 4870.0}
-        ]
-    },
-    {
-        "id": "fl-ai-803",
-        "airline": "Air India",
-        "airlineCode": "AI",
-        "flightNumber": "AI-803",
-        "departureCity": "New Delhi",
-        "departureCode": "DEL",
-        "departureTime": "10:00",
-        "arrivalCity": "Mumbai",
-        "arrivalCode": "BOM",
-        "arrivalTime": "12:15",
-        "travelDate": "2026-09-20",
-        "duration": "2h 15m",
-        "stops": 0,
-        "aircraft": "Boeing 787-8",
-        "fareClass": "Economy",
-        "basePrice": 4800.0,
-        "cheapestSource": "SerpApi / Google Flights",
-        "priceTrendPercent": 2.5,
-        "priceTrendDirection": "up",
-        "sources": [
-            {
-                "id": "src-serp-2",
-                "name": "SerpApi / Google Flights",
-                "price": 5800.0,
-                "baseFare": 4800.0,
-                "taxes": 750.0,
-                "fees": 250.0,
-                "isCheapest": True,
-                "type": "airline",
-                "bookingUrl": "https://www.google.com/travel/flights"
-            }
-        ],
-        "baggage": {"cabin": "8 Kgs", "checkIn": "20 Kgs"},
-        "refundability": "Refundable",
-        "priceHistory": [
-            {"date": "2026-09-01", "price": 5750.0},
-            {"date": "2026-09-06", "price": 5800.0}
-        ]
+        "baggage": {"cabin": "Not specified", "checkIn": "Not specified"},
+        "refundability": "Not specified",
+        "priceHistory": []
     }
 ]
 
@@ -120,15 +124,29 @@ class FlightService:
         orig_code = (origin or "DEL").upper()
         dest_code = (destination or "BOM").upper()
         t_date = travel_date or "2026-09-20"
+        cache_key = (orig_code, dest_code, t_date)
+        now = datetime.now(timezone.utc)
 
-        # 1. Check Supabase DB for recent observations (< 15 min cache window) if refresh is not explicitly requested
+        # 1. In-Memory Cache Lookup (15 min TTL) if refresh=False
+        if not refresh and cache_key in IN_MEMORY_CACHE:
+            entry = IN_MEMORY_CACHE[cache_key]
+            if (now - entry["timestamp"]).total_seconds() < 900:
+                logger.info(f"[FlightService] Returning {len(entry['flights'])} in-memory cached results for {orig_code}-{dest_code}")
+                return entry["flights"]
+
+        # 2. Check DB Cache if DB session available
         if not refresh and db:
-            cached_fares = db_service.get_cached_observations(db, orig_code, dest_code, t_date, max_age_minutes=15)
-            if cached_fares:
-                logger.info(f"[FlightService] Returning {len(cached_fares)} fresh cached observations from Supabase PostgreSQL.")
-                return FlightService._map_db_fares_to_flights(cached_fares, orig_code, dest_code, t_date)
+            try:
+                cached_fares = db_service.get_cached_observations(db, orig_code, dest_code, t_date, max_age_minutes=15)
+                if cached_fares:
+                    mapped = FlightService._map_db_fares_to_flights(cached_fares, orig_code, dest_code, t_date)
+                    IN_MEMORY_CACHE[cache_key] = {"timestamp": now, "flights": mapped}
+                    logger.info(f"[FlightService] Returning {len(mapped)} DB cached observations for {orig_code}-{dest_code}")
+                    return mapped
+            except Exception as e:
+                logger.warning(f"[FlightService] DB cache lookup failed: {e}")
 
-        # 2. Call SerpAPI from backend if data is stale or forced refresh requested
+        # 3. Call SerpAPI live service
         logger.info(f"[FlightService] Fetching live airfare data from SerpAPI for route {orig_code}-{dest_code} on {t_date}")
         live_observations = await serpapi_service.fetch_flights(
             origin=orig_code,
@@ -140,27 +158,24 @@ class FlightService:
         )
 
         if live_observations:
-            # 3. Persist observations into Supabase PostgreSQL
+            mapped = FlightService._map_observations_to_flights(live_observations, orig_code, dest_code, t_date)
+            IN_MEMORY_CACHE[cache_key] = {"timestamp": now, "flights": mapped}
+
             if db:
-                db_service.save_fare_observations(db, live_observations)
+                try:
+                    db_service.save_fare_observations(db, live_observations)
+                except Exception as e:
+                    logger.warning(f"[FlightService] DB save observations failed: {e}")
 
-            return FlightService._map_observations_to_flights(live_observations, orig_code, dest_code, t_date)
+            return mapped
 
-        # 4. Fallback to existing database records if live SerpAPI call returns no items
-        if db:
-            older_fares = db_service.get_cached_observations(db, orig_code, dest_code, t_date, max_age_minutes=1440)
-            if older_fares:
-                logger.info(f"[FlightService] SerpAPI empty/failed. Returning {len(older_fares)} recent database records.")
-                return FlightService._map_db_fares_to_flights(older_fares, orig_code, dest_code, t_date)
+        # 4. Fallback to existing in-memory cache if live search returned empty
+        if cache_key in IN_MEMORY_CACHE:
+            logger.info(f"[FlightService] Live fetch empty. Returning cached results for {cache_key}")
+            return IN_MEMORY_CACHE[cache_key]["flights"]
 
-        # 5. Ultimate fallback to structured fallback options filtered by origin/destination
-        logger.info("[FlightService] Returning structured fallback results.")
-        results = MOCK_FLIGHTS_DATA
-        if origin:
-            results = [f for f in results if f["departureCode"].upper() == orig_code]
-        if destination:
-            results = [f for f in results if f["arrivalCode"].upper() == dest_code]
-        return results
+        logger.warning(f"[FlightService] SerpAPI returned no flight results for route {orig_code}-{dest_code}.")
+        return []
 
     @staticmethod
     def _map_observations_to_flights(
@@ -171,46 +186,50 @@ class FlightService:
     ) -> List[Dict[str, Any]]:
         flights_list = []
         for idx, obs in enumerate(observations):
+            airline_code = get_airline_code(obs.airline, obs.flight_number)
+            duration_str = format_duration(obs.duration_minutes)
+            dep_time = obs.departure_datetime.split("T")[1][:5] if "T" in obs.departure_datetime else "08:00"
+            arr_time = obs.arrival_datetime.split("T")[1][:5] if "T" in obs.arrival_datetime else "10:15"
+
             fl_dict = {
                 "id": f"fl-serp-{obs.flight_number.lower()}-{idx}",
                 "airline": obs.airline,
-                "airlineCode": obs.flight_number.split("-")[0] if "-" in obs.flight_number else "6E",
+                "airlineCode": airline_code,
                 "flightNumber": obs.flight_number,
                 "departureCity": CITY_NAMES.get(obs.origin.upper(), obs.origin),
                 "departureCode": obs.origin.upper(),
-                "departureTime": obs.departure_datetime.split("T")[1][:5] if "T" in obs.departure_datetime else "08:00",
+                "departureTime": dep_time,
                 "arrivalCity": CITY_NAMES.get(obs.destination.upper(), obs.destination),
                 "arrivalCode": obs.destination.upper(),
-                "arrivalTime": obs.arrival_datetime.split("T")[1][:5] if "T" in obs.arrival_datetime else "10:15",
+                "arrivalTime": arr_time,
                 "travelDate": obs.travel_date,
-                "duration": "2h 15m",
-                "stops": 0,
-                "aircraft": "Airbus A320neo",
-                "fareClass": obs.fare_class or "Economy Saver",
-                "basePrice": float(obs.base_fare),
+                "duration": duration_str,
+                "stops": obs.stops if obs.stops is not None else 0,
+                "aircraft": obs.aircraft or None,
+                "fareClass": obs.fare_class or "Economy",
+                "basePrice": float(obs.base_fare) if obs.base_fare else float(obs.total_fare),
                 "cheapestSource": obs.source,
-                "priceTrendPercent": -1.8,
-                "priceTrendDirection": "down",
+                "priceTrendPercent": 0.0,
+                "priceTrendDirection": "stable",
                 "sources": [
                     {
                         "id": f"src-serp-{idx}",
                         "name": obs.source,
                         "price": float(obs.total_fare),
-                        "baseFare": float(obs.base_fare),
-                        "taxes": float(obs.taxes),
-                        "fees": float(obs.fees),
+                        "baseFare": float(obs.base_fare) if obs.base_fare else float(obs.total_fare),
+                        "taxes": float(obs.taxes) if obs.taxes else 0.0,
+                        "fees": float(obs.fees) if obs.fees else 0.0,
                         "isCheapest": True,
                         "type": "ota",
                         "bookingUrl": "https://www.google.com/travel/flights"
                     }
                 ],
-                "baggage": {"cabin": "7 Kgs", "checkIn": "15 Kgs"},
-                "refundability": "Standard Economy",
-                "priceHistory": [
-                    {"date": "2026-09-01", "price": round(float(obs.total_fare) * 1.06, 2)},
-                    {"date": "2026-09-06", "price": round(float(obs.total_fare) * 1.02, 2)},
-                    {"date": "2026-09-12", "price": float(obs.total_fare)},
-                ]
+                "baggage": {
+                    "cabin": obs.baggage or "Not specified",
+                    "checkIn": "Not specified"
+                },
+                "refundability": obs.refundable or "Not specified",
+                "priceHistory": []
             }
             flights_list.append(fl_dict)
         return flights_list
@@ -227,7 +246,7 @@ class FlightService:
             flight_obj = fare.flight
             airline = flight_obj.airline if flight_obj else "Airline"
             flight_num = flight_obj.flight_number if flight_obj else f"FL-{100 + idx}"
-            airline_code = flight_obj.airline_code if flight_obj else "6E"
+            airline_code = flight_obj.airline_code if flight_obj else get_airline_code(airline, flight_num)
             dep_time = flight_obj.departure_time if flight_obj else "08:00"
             arr_time = flight_obj.arrival_time if flight_obj else "10:15"
 
@@ -243,9 +262,9 @@ class FlightService:
                 "arrivalCode": destination.upper(),
                 "arrivalTime": arr_time,
                 "travelDate": fare.travel_date,
-                "duration": "2h 15m",
+                "duration": "Direct",
                 "stops": 0,
-                "aircraft": "Airbus A320neo",
+                "aircraft": None,
                 "fareClass": fare.availability_status or "Economy",
                 "basePrice": float(fare.base_fare or fare.total_fare * 0.85),
                 "cheapestSource": fare.source,
@@ -264,12 +283,9 @@ class FlightService:
                         "bookingUrl": "https://www.google.com/travel/flights"
                     }
                 ],
-                "baggage": {"cabin": "7 Kgs", "checkIn": "15 Kgs"},
-                "refundability": "Standard Economy",
-                "priceHistory": [
-                    {"date": "2026-09-01", "price": round(float(fare.total_fare) * 1.05, 2)},
-                    {"date": "2026-09-12", "price": float(fare.total_fare)},
-                ]
+                "baggage": {"cabin": "Not specified", "checkIn": "Not specified"},
+                "refundability": "Not specified",
+                "priceHistory": []
             }
             flights_list.append(fl_dict)
         return flights_list

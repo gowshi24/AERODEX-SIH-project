@@ -1,7 +1,10 @@
 from typing import Tuple, List
-from scraper.models.fare_observation import FareObservation
+try:
+    from backend.scraper.models.fare_observation import FareObservation
+except ImportError:
+    from scraper.models.fare_observation import FareObservation
 
-VALID_IATA_CODES = {"DEL", "BOM", "BLR", "MAA", "HYD", "CCU", "GOI"}
+VALID_IATA_CODES = {"DEL", "BOM", "BLR", "MAA", "HYD", "CCU", "GOI", "AMD", "PNQ", "COK", "TRV", "JAI", "IXC", "VTZ", "NAG", "ATQ", "BHO", "IDR", "GAU", "PAT", "IXB", "SXR", "IXR", "RPR"}
 
 class FareValidator:
 
