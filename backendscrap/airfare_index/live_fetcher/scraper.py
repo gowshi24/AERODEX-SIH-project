@@ -1858,7 +1858,8 @@ class RealtimeFlightScraper:
             print(f"[LIVE SCRAPER] HTTP SSR note: {http_err}")
 
         # 3. Strategy 2: SQLite Microdata Warehouse Check (Fallback if live network failed or produced < 5 flights)
-        if db:
+        # Skip this early DB check if force_live=True so we always attempt fresh Playwright scraping first
+        if db and not force_live:
             try:
                 db_quotes = db.get_recent_quotes_for_corridor(origin, destination, travel_date=travel_date, limit=100)
                 if db_quotes and len(db_quotes) >= 5:

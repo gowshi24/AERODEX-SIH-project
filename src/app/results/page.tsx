@@ -38,7 +38,7 @@ function ResultsContent() {
 
   const [filters, setFilters] = useState<FlightFilterState>(defaultFilters);
 
-  const fetchLiveFlights = async (force: boolean = false) => {
+  const fetchLiveFlights = async (force: boolean = true) => {
     if (force) setForceScraping(true);
     else setLoading(true);
 
@@ -47,7 +47,7 @@ function ResultsContent() {
         fromCode,
         toCode,
         departureDate: departDate,
-        forceLive: force,
+        forceLive: true, // Always fetch fresh live prices from Google Flights
       });
 
       if (results && results.length > 0) {
@@ -63,7 +63,7 @@ function ResultsContent() {
   };
 
   useEffect(() => {
-    fetchLiveFlights(false);
+    fetchLiveFlights(true); // Always force live fetch on mount
   }, [fromCode, toCode, departDate]);
 
   const filteredFlights = useMemo(() => {
