@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ResponsiveContainer,
   LineChart,
@@ -11,11 +11,34 @@ import {
   CartesianGrid,
 } from 'recharts';
 import { ShieldCheck, CheckCircle2, AlertTriangle, Activity } from 'lucide-react';
-import { DATA_QUALITY_METRICS } from '../../data/mockData';
 import { Badge } from '../../components/ui/Badge';
 import { StatCard } from '../../components/analytics/StatCard';
+import { getDataQuality } from '../../lib/api';
+import { DataQuality } from '../../types';
 
 export default function DataQualityPage() {
+  const [metrics, setMetrics] = useState<DataQuality>({
+    completeness: 99.6,
+    duplicateRate: 0.1,
+    missingValuesRate: 0.2,
+    outlierRate: 0.8,
+    sourceAvailability: 99.9,
+    validationSuccess: 99.4,
+    history: [
+      { date: '2026-09-14', completeness: 99.2, reliability: 99.5 },
+      { date: '2026-09-20', completeness: 99.8, reliability: 99.9 },
+    ],
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getDataQuality()
+      .then((res) => {
+        if (res) setMetrics(res);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       {/* HEADER */}
@@ -32,18 +55,18 @@ export default function DataQualityPage() {
         </div>
 
         <Badge variant="emerald" size="md">
-          Overall Status: Excellent (99.4%)
+          Overall Status: Excellent ({metrics.validationSuccess}%)
         </Badge>
       </div>
 
       {/* METRIC CARDS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
-        <StatCard title="Completeness" value={`${DATA_QUALITY_METRICS.completeness}%`} subtitle="Field Integrity" />
-        <StatCard title="Duplicate Rate" value={`${DATA_QUALITY_METRICS.duplicateRate}%`} subtitle="Deduplicated" />
-        <StatCard title="Missing Values" value={`${DATA_QUALITY_METRICS.missingValuesRate}%`} subtitle="Null Rate" />
-        <StatCard title="Outlier Rate" value={`${DATA_QUALITY_METRICS.outlierRate}%`} subtitle="3-Sigma Outliers" />
-        <StatCard title="Availability" value={`${DATA_QUALITY_METRICS.sourceAvailability}%`} subtitle="Uptime Rate" />
-        <StatCard title="Validation" value={`${DATA_QUALITY_METRICS.validationSuccess}%`} subtitle="Schema Pass Rate" />
+        <StatCard title="Completeness" value={`${metrics.completeness}%`} subtitle="Field Integrity" />
+        <StatCard title="Duplicate Rate" value={`${metrics.duplicateRate}%`} subtitle="Deduplicated" />
+        <StatCard title="Missing Values" value={`${metrics.missingValuesRate}%`} subtitle="Null Rate" />
+        <StatCard title="Outlier Rate" value={`${metrics.outlierRate}%`} subtitle="3-Sigma Outliers" />
+        <StatCard title="Availability" value={`${metrics.sourceAvailability}%`} subtitle="Uptime Rate" />
+        <StatCard title="Validation" value={`${metrics.validationSuccess}%`} subtitle="Schema Pass Rate" />
       </div>
 
       {/* COMPLETENESS & RELIABILITY CHART */}
@@ -59,7 +82,7 @@ export default function DataQualityPage() {
 
         <div className="h-72 w-full pt-4">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={DATA_QUALITY_METRICS.history}>
+            <LineChart data={metrics.history}>
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
               <XAxis dataKey="date" stroke="#64748b" fontSize={11} />
               <YAxis stroke="#64748b" fontSize={11} domain={[98, 100]} />

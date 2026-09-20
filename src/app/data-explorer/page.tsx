@@ -21,48 +21,52 @@ export default function DataExplorerPage() {
   }, [searchQuery]);
 
   const handleExportCSV = () => {
-    const headers = [
-      'ID',
-      'Collected At',
-      'Source',
-      'Airline',
-      'Flight Number',
-      'Origin',
-      'Destination',
-      'Travel Date',
-      'Base Fare',
-      'Taxes',
-      'Fees',
-      'Total Fare',
-      'Status',
-    ];
-    const rows = records.map((r) => [
-      r.id,
-      r.collectedAt,
-      r.source,
-      r.airline,
-      r.flightNumber,
-      r.origin,
-      r.destination,
-      r.travelDate,
-      r.baseFare,
-      r.taxes,
-      r.fees,
-      r.totalFare,
-      r.status,
-    ]);
+    try {
+      window.open('http://localhost:8000/api/v1/export/quotes', '_blank');
+    } catch (err) {
+      const headers = [
+        'ID',
+        'Collected At',
+        'Source',
+        'Airline',
+        'Flight Number',
+        'Origin',
+        'Destination',
+        'Travel Date',
+        'Base Fare',
+        'Taxes',
+        'Fees',
+        'Total Fare',
+        'Status',
+      ];
+      const rows = records.map((r) => [
+        r.id,
+        r.collectedAt,
+        r.source,
+        r.airline,
+        r.flightNumber,
+        r.origin,
+        r.destination,
+        r.travelDate,
+        r.baseFare,
+        r.taxes,
+        r.fees,
+        r.totalFare,
+        r.status,
+      ]);
 
-    const csvContent =
-      'data:text/csv;charset=utf-8,' +
-      [headers.join(','), ...rows.map((e) => e.join(','))].join('\n');
+      const csvContent =
+        'data:text/csv;charset=utf-8,' +
+        [headers.join(','), ...rows.map((e) => e.join(','))].join('\n');
 
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `AERODEX_Fare_Data_${new Date().toISOString().slice(0, 10)}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `AERODEX_Fare_Data_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
 
   return (

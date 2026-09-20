@@ -11,17 +11,21 @@ import {
   ArrowRight,
   ShieldCheck,
   Search,
-  MapPin,
-  Calendar,
-  Users,
-  ArrowLeftRight,
 } from 'lucide-react';
 import { FlightSearchForm } from '../components/search/FlightSearchForm';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
-import { POPULAR_ROUTES } from '../data/mockData';
+import { getPopularRoutes } from '../lib/api';
+import { PopularRouteItem } from '../types';
 
 export default function HomePage() {
+  const [routes, setRoutes] = React.useState<PopularRouteItem[]>([]);
+
+  React.useEffect(() => {
+    getPopularRoutes().then((res) => {
+      if (res) setRoutes(res);
+    });
+  }, []);
   return (
     <div className="space-y-16 pb-20 bg-slate-50/50">
       {/* HERO SECTION */}
@@ -59,8 +63,8 @@ export default function HomePage() {
               <Link href="/trends">
                 <Button
                   size="lg"
-                  variant="outline"
-                  className="bg-slate-800/80 text-white border-slate-700 hover:bg-slate-800"
+                  variant="dark-outline"
+                  className="shadow-md"
                 >
                   <BarChart3 className="w-4 h-4 mr-2 text-cyan-400" />
                   Explore Price Trends
@@ -167,7 +171,7 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {POPULAR_ROUTES.map((route) => (
+          {routes.map((route) => (
             <div
               key={`${route.fromCode}-${route.toCode}`}
               className="bg-white rounded-2xl border border-slate-200 p-5 space-y-4 hover:border-blue-300 hover:shadow-md transition-all"
@@ -189,7 +193,7 @@ export default function HomePage() {
 
               <div className="flex items-baseline justify-between pt-2 border-t border-slate-100">
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-slate-400">Mock Average Fare</span>
+                  <span className="text-[10px] uppercase font-bold text-slate-400">Live Benchmark Fare</span>
                   <div className="text-xl font-black text-blue-700">
                     ₹{route.avgFare.toLocaleString('en-IN')}
                   </div>

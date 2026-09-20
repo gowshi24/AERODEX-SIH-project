@@ -22,7 +22,8 @@ import {
   Tooltip,
   CartesianGrid,
 } from 'recharts';
-import { MOCK_FLIGHTS } from '../../../data/mockData';
+import { getFlightDetails } from '../../../lib/api';
+import { getDirectFlightWebsiteUrl } from '../../../lib/booking';
 import { Flight } from '../../../types';
 import { Button } from '../../../components/ui/Button';
 import { Badge } from '../../../components/ui/Badge';
@@ -31,10 +32,16 @@ import { LoadingSkeleton } from '../../../components/ui/LoadingSkeleton';
 export default function FlightDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const [flight, setFlight] = useState<Flight | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const found = MOCK_FLIGHTS.find((f) => f.id === resolvedParams.id) || MOCK_FLIGHTS[0];
-    setFlight(found);
+    if (resolvedParams.id) {
+      getFlightDetails(resolvedParams.id)
+        .then((f) => {
+          if (f) setFlight(f);
+        })
+        .finally(() => setLoading(false));
+    }
   }, [resolvedParams.id]);
 
   if (!flight) {
@@ -46,6 +53,7 @@ export default function FlightDetailsPage({ params }: { params: Promise<{ id: st
   }
 
   const cheapestSource = flight.sources.find((s) => s.isCheapest) || flight.sources[0];
+  const directAirlineUrl = getDirectFlightWebsiteUrl(flight);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
@@ -87,11 +95,15 @@ export default function FlightDetailsPage({ params }: { params: Promise<{ id: st
                 ₹{flight.basePrice.toLocaleString('en-IN')}
               </div>
             </div>
-            <Link href={`/book?flightId=${flight.id}&price=${flight.basePrice}`}>
+            <a
+              href={directAirlineUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button variant="primary" size="md">
-                Continue to Booking <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                Book on {flight.airline} <ExternalLink className="w-3.5 h-3.5 ml-1" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -225,20 +237,28 @@ export default function FlightDetailsPage({ params }: { params: Promise<{ id: st
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {flight.sources.map((src, idx) => (
-                <div
-                  key={idx}
-                  className="bg-slate-50 rounded-2xl border border-slate-200 p-4 text-center space-y-3"
-                >
-                  <div className="font-extrabold text-slate-900 text-sm">{src.name}</div>
-                  <div className="text-lg font-black text-blue-700">₹{src.price.toLocaleString('en-IN')}</div>
-                  <Link href={`/book?flightId=${flight.id}&source=${encodeURIComponent(src.name)}&price=${src.price}`}>
-                    <Button variant={src.isCheapest ? 'primary' : 'outline'} size="sm" className="w-full text-xs">
-                      Continue to Booking
-                    </Button>
-                  </Link>
-                </div>
-              ))}
+              {flight.sources.map((src, idx) => {
+                const targetUrl = src.bookingUrl || directAirlineUrl;
+                return (
+                  <div
+                    key={idx}
+                    className="bg-slate-50 rounded-2xl border border-slate-200 p-4 text-center space-y-3"
+                  >
+                    <div className="font-extrabold text-slate-900 text-sm">{src.name}</div>
+                    <div className="text-lg font-black text-blue-700">₹{src.price.toLocaleString('en-IN')}</div>
+                    <a
+                      href={targetUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full"
+                    >
+                      <Button variant={src.isCheapest ? 'primary' : 'outline'} size="sm" className="w-full text-xs">
+                        {src.type === 'airline' ? `Book on ${flight.airline}` : `Continue on ${src.name}`}
+                      </Button>
+                    </a>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

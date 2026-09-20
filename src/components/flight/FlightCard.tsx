@@ -6,14 +6,15 @@ import { Plane, TrendingDown, TrendingUp, ExternalLink, ArrowRight } from 'lucid
 import { Flight } from '../../types';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
+import { getDirectFlightWebsiteUrl, getProviderSearchUrl } from '../../lib/booking';
 
 interface FlightCardProps {
   flight: Flight;
 }
 
 export const FlightCard: React.FC<FlightCardProps> = ({ flight }) => {
-  const cheapestSource = flight.sources.find((s) => s.isCheapest) || flight.sources[0];
   const isDown = flight.priceTrendDirection === 'down';
+  const directAirlineUrl = getDirectFlightWebsiteUrl(flight);
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-5 shadow-xs hover:shadow-md hover:border-blue-300 transition-all">
@@ -82,30 +83,45 @@ export const FlightCard: React.FC<FlightCardProps> = ({ flight }) => {
 
       {/* SOURCE COMPARISON BAR */}
       <div className="bg-slate-50 rounded-xl p-3 border border-slate-200/80 space-y-2">
-        <span className="text-[10px] uppercase font-bold text-slate-400 block">
-          Source Comparison
-        </span>
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] uppercase font-bold text-slate-400 block">
+            Direct & OTA Price Comparison
+          </span>
+          <span className="text-[10px] font-semibold text-slate-500">
+            Click provider to book directly
+          </span>
+        </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-          {flight.sources.map((src, idx) => (
-            <div
-              key={idx}
-              className={`p-2 rounded-lg border text-center ${
-                src.isCheapest
-                  ? 'bg-emerald-50 border-emerald-200 text-emerald-900 font-extrabold'
-                  : 'bg-white border-slate-200 text-slate-700'
-              }`}
-            >
-              <div className="text-[10px] text-slate-500 font-medium truncate">{src.name}</div>
-              <div className="font-black pt-0.5">₹{src.price.toLocaleString('en-IN')}</div>
-            </div>
-          ))}
+          {flight.sources.map((src, idx) => {
+            const destUrl = src.bookingUrl || (src.type === 'airline' ? directAirlineUrl : getProviderSearchUrl(flight, src.name));
+            return (
+              <a
+                key={idx}
+                href={destUrl || directAirlineUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`Auto-search on ${src.name}`}
+                className={`p-2 rounded-lg border text-center transition-all hover:scale-[1.02] block cursor-pointer ${
+                  src.isCheapest
+                    ? 'bg-emerald-50 border-emerald-300 text-emerald-900 font-extrabold shadow-xs'
+                    : 'bg-white border-slate-200 text-slate-700 hover:border-blue-300'
+                }`}
+              >
+                <div className="text-[10px] text-slate-500 font-medium truncate flex items-center justify-center gap-1">
+                  <span>{src.name}</span>
+                  <ExternalLink className="w-2.5 h-2.5 text-slate-400 flex-shrink-0" />
+                </div>
+                <div className="font-black pt-0.5">₹{src.price.toLocaleString('en-IN')}</div>
+              </a>
+            );
+          })}
         </div>
       </div>
 
       {/* ACTION BUTTONS BAR */}
-      <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2 border-t border-slate-100">
         <div>
-          <span className="text-[10px] uppercase font-bold text-slate-400 block">Lowest Price</span>
+          <span className="text-[10px] uppercase font-bold text-slate-400 block">Lowest Direct Price</span>
           <div className="text-2xl font-black text-blue-700">
             ₹{flight.basePrice.toLocaleString('en-IN')}
           </div>
@@ -117,11 +133,16 @@ export const FlightCard: React.FC<FlightCardProps> = ({ flight }) => {
               View Details
             </Button>
           </Link>
-          <Link href={`/book?flightId=${flight.id}&price=${flight.basePrice}`}>
-            <Button variant="primary" size="sm" className="font-bold shadow-xs">
-              Book Now
+          <a
+            href={directAirlineUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="primary" size="sm" className="font-bold shadow-xs flex items-center space-x-1.5">
+              <span>Auto-Search on {flight.airline}</span>
+              <ExternalLink className="w-3.5 h-3.5 ml-1" />
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
     </div>

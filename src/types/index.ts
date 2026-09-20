@@ -61,12 +61,24 @@ export interface FlightFilterState {
   sortBy: 'cheapest' | 'fastest' | 'value';
 }
 
+export interface FlightPriceAttribution {
+  airline: string;
+  flightNumber: string;
+  source: string;
+  fare: number;
+  benchmarkNote?: string;
+}
+
 export interface HistoricalTrendPoint {
   date: string;
+  fullDate?: string;
   avgFare: number;
   minFare: number;
   maxFare: number;
   volume?: number;
+  minFlight?: FlightPriceAttribution;
+  maxFlight?: FlightPriceAttribution;
+  avgFlight?: FlightPriceAttribution;
 }
 
 export interface WeeklyTrendPoint {
@@ -137,12 +149,20 @@ export interface BacktestResult {
   historicalPoints: { date: string; actual: number; estimated: number }[];
 }
 
+export interface PopularRouteItem {
+  fromCity: string;
+  fromCode: string;
+  toCity: string;
+  toCode: string;
+  avgFare: number;
+}
+
 export interface DataSource {
   id: string;
   name: string;
   type: 'AIRLINE' | 'OTA' | 'REFERENCE';
   collectionMethod: string;
-  status: 'Connected' | 'Monitoring' | 'Scheduled' | 'Unavailable' | 'DEMO_DATA';
+  status: 'Connected' | 'Monitoring' | 'Scheduled' | 'Unavailable' | 'ACTIVE_SCRAPE' | 'DEMO_DATA';
   lastCollection: string;
   recordsCollected: number;
   dataQuality: number;

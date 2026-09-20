@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   LayoutDashboard,
@@ -13,13 +13,55 @@ import {
   ArrowRight,
   ShieldCheck,
   Zap,
+  Radio,
 } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
 import { StatCard } from '../../components/analytics/StatCard';
-import { INDEX_SUMMARY, POPULAR_ROUTES, ANOMALIES } from '../../data/mockData';
+import {
+  getIndexSummary,
+  getLiveMarketSnapshot,
+  getPopularRoutes,
+  getAnomalies,
+} from '../../lib/api';
+import { AirfareAnomaly, PopularRouteItem } from '../../types';
 
 export default function DashboardPage() {
+  const [indexSummary, setIndexSummary] = useState({
+    currentIndex: 127.44,
+    previousPeriod: 123.5,
+    changePercent: 3.2,
+    basePeriod: 100.0,
+  });
+  const [marketSnapshot, setMarketSnapshot] = useState({
+    currentAirfareIndex: 127.44,
+    dailyChange: 0.4,
+    weeklyChange: 1.2,
+    monthlyChange: 3.2,
+    routesTracked: 786,
+    flightsObserved: 366645,
+    sourcesMonitored: 12,
+  });
+  const [popularRoutes, setPopularRoutes] = useState<PopularRouteItem[]>([]);
+  const [anomalies, setAnomalies] = useState<AirfareAnomaly[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([
+      getIndexSummary(),
+      getLiveMarketSnapshot(),
+      getPopularRoutes(),
+      getAnomalies(),
+    ])
+      .then(([summary, snapshot, routes, anoms]) => {
+        if (summary) setIndexSummary(summary);
+        if (snapshot) setMarketSnapshot(snapshot);
+        if (routes) setPopularRoutes(routes);
+        if (anoms) setAnomalies(anoms);
+      })
+      .catch((err) => console.error('[Dashboard Live Fetch Error]', err))
+      .finally(() => setLoading(false));
+  }, []);
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       {/* HEADER SECTION */}
@@ -55,10 +97,10 @@ export default function DashboardPage() {
 
       {/* STAT CARDS ROW */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard title="Airfare Index" value={INDEX_SUMMARY.currentIndex} change={INDEX_SUMMARY.changePercent} subtitle="Base Period = 100.0" />
-        <StatCard title="Tracked Routes" value="12 Active" subtitle="Primary Metro Corridors" />
-        <StatCard title="Active Anomalies" value={`${ANOMALIES.length} Detected`} subtitle="Real-time price spikes" />
-        <StatCard title="CPI Correlation" value="94.2%" subtitle="Economic Augmentation Model" />
+        <StatCard title="Airfare Index" value={indexSummary.currentIndex} change={indexSummary.changePercent} subtitle="Base Period = 100.0" />
+        <StatCard title="Tracked Routes" value={`${marketSnapshot.routesTracked || 12} Active`} subtitle="Primary Metro Corridors" />
+        <StatCard title="Active Anomalies" value={`${anomalies.length} Detected`} subtitle="Real-time price spikes" />
+        <StatCard title="Scraped Quotes" value={marketSnapshot.flightsObserved.toLocaleString('en-IN')} subtitle="Multi-Portal Microdata" />
       </div>
 
       {/* CORE MODULE SHORTCUTS GRID */}
@@ -129,7 +171,7 @@ export default function DashboardPage() {
           </div>
 
           <div className="space-y-3">
-            {POPULAR_ROUTES.slice(0, 4).map((route) => (
+            {popularRoutes.slice(0, 4).map((route) => (
               <div
                 key={`${route.fromCode}-${route.toCode}`}
                 className="p-4 rounded-2xl border border-slate-100 bg-slate-50 flex items-center justify-between"
@@ -169,7 +211,7 @@ export default function DashboardPage() {
           </div>
 
           <div className="space-y-3">
-            {ANOMALIES.slice(0, 3).map((anom) => (
+            {anomalies.slice(0, 3).map((anom) => (
               <div
                 key={anom.id}
                 className="p-4 rounded-2xl border border-slate-100 bg-slate-50 flex items-center justify-between"

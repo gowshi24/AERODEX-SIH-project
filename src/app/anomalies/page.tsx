@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ResponsiveContainer,
   BarChart,
@@ -10,16 +10,29 @@ import {
   Tooltip,
   CartesianGrid,
 } from 'recharts';
-import { AlertTriangle, TrendingUp, Filter } from 'lucide-react';
-import { ANOMALIES } from '../../data/mockData';
+import { AlertTriangle, TrendingUp, Filter, ShieldCheck, Radio } from 'lucide-react';
 import { Badge } from '../../components/ui/Badge';
+import { getAnomalies } from '../../lib/api';
+import { AirfareAnomaly } from '../../types';
 
 export default function AnomaliesPage() {
+  const [anomalies, setAnomalies] = useState<AirfareAnomaly[]>([]);
+  const [loading, setLoading] = useState(true);
   const [severityFilter, setSeverityFilter] = useState<'All' | 'High' | 'Medium' | 'Low'>('All');
 
-  const filtered = ANOMALIES.filter((a) => severityFilter === 'All' || a.severity === severityFilter);
+  useEffect(() => {
+    getAnomalies()
+      .then((data) => {
+        if (data && data.length > 0) {
+          setAnomalies(data);
+        }
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
-  const anomalyChartData = ANOMALIES.map((a) => ({
+  const filtered = anomalies.filter((a) => severityFilter === 'All' || a.severity === severityFilter);
+
+  const anomalyChartData = anomalies.map((a) => ({
     route: a.route,
     change: a.percentageChange,
   }));
@@ -31,11 +44,11 @@ export default function AnomaliesPage() {
         <div>
           <div className="inline-flex items-center space-x-2 text-amber-600 text-xs font-black uppercase tracking-wider mb-1">
             <AlertTriangle className="w-4 h-4" />
-            <span>Automated Price Spike Watch</span>
+            <span>Automated Live Outlier & Tariff Surge Radar</span>
           </div>
-          <h1 className="text-3xl font-black text-slate-900">Airfare Anomalies</h1>
+          <h1 className="text-3xl font-black text-slate-900">Real-Time Airfare Anomalies</h1>
           <p className="text-slate-600 text-xs font-medium mt-1">
-            Detect unusual or unexpected airfare movements across Indian routes.
+            Statistical IQR outlier detection and sudden dynamic tariff surges observed on live domestic scrapers.
           </p>
         </div>
 
@@ -61,91 +74,109 @@ export default function AnomaliesPage() {
       <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-4">
         <div className="flex items-center justify-between border-b border-slate-100 pb-3">
           <h2 className="text-base font-extrabold text-slate-900 uppercase">
-            Anomaly Percentage Deviation Trend Chart
+            Live Anomaly Percentage Deviation vs Corridor Baseline
           </h2>
           <Badge variant="amber" size="sm">
-            Deviation %
+            Live Deviation %
           </Badge>
         </div>
 
-        <div className="h-64 w-full pt-2">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={anomalyChartData}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-              <XAxis dataKey="route" stroke="#64748b" fontSize={11} />
-              <YAxis stroke="#64748b" fontSize={11} />
-              <Tooltip
-                formatter={(val: any) => [`${val}%`, 'Deviation']}
-                contentStyle={{
-                  backgroundColor: '#0f172a',
-                  borderColor: '#1e293b',
-                  borderRadius: '10px',
-                  color: '#fff',
-                  fontSize: '11px',
-                }}
-              />
-              <Bar dataKey="change" name="Deviation %" fill="#f59e0b" radius={[4, 4, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+        {loading ? (
+          <div className="h-64 flex items-center justify-center">
+            <div className="w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : (
+          <div className="h-64 w-full pt-2">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={anomalyChartData}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <XAxis dataKey="route" stroke="#64748b" fontSize={11} />
+                <YAxis stroke="#64748b" fontSize={11} />
+                <Tooltip
+                  formatter={(val: any) => [`${val}%`, 'Deviation']}
+                  contentStyle={{
+                    backgroundColor: '#0f172a',
+                    borderColor: '#1e293b',
+                    borderRadius: '10px',
+                    color: '#fff',
+                    fontSize: '11px',
+                  }}
+                />
+                <Bar dataKey="change" name="Deviation %" fill="#f59e0b" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        )}
       </div>
 
       {/* ANOMALY CARDS LIST */}
       <div className="space-y-4">
-        <h2 className="text-lg font-black text-slate-900">Detected Anomalies</h2>
+        <h2 className="text-lg font-black text-slate-900">
+          Detected Surge Incidents ({filtered.length})
+        </h2>
 
         {filtered.map((anomaly) => (
           <div
             key={anomaly.id}
             className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-3 hover:border-amber-300 transition-all"
           >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div
-                  className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm ${
-                    anomaly.severity === 'High'
-                      ? 'bg-rose-50 text-rose-600'
-                      : anomaly.severity === 'Medium'
-                      ? 'bg-amber-50 text-amber-600'
-                      : 'bg-blue-50 text-blue-600'
-                  }`}
-                >
-                  <AlertTriangle className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-lg font-black text-slate-900">{anomaly.route}</span>
-                    <Badge variant={anomaly.severity === 'High' ? 'rose' : anomaly.severity === 'Medium' ? 'amber' : 'blue'} size="sm">
-                      {anomaly.severity} Severity
-                    </Badge>
-                  </div>
-                  <div className="text-xs text-slate-500 font-medium">
-                    {anomaly.airline} • Detected on {anomaly.detectedDate}
-                  </div>
-                </div>
-              </div>
-
-              <div className="text-left sm:text-right">
-                <div className="text-lg font-black text-slate-900">
-                  Current ₹{anomaly.currentPrice.toLocaleString('en-IN')}{' '}
-                  <span className="text-xs text-slate-400 font-normal">
-                    (Previous ₹{anomaly.previousPrice.toLocaleString('en-IN')})
+                <span className="text-lg font-black text-slate-900">{anomaly.route}</span>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 font-bold text-slate-700">
+                  {anomaly.airline} {anomaly.flightNumber ? `(${anomaly.flightNumber})` : ''}
+                </span>
+                {anomaly.source && (
+                  <span className="text-[11px] px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 font-semibold border border-blue-200">
+                    {anomaly.source}
                   </span>
-                </div>
-                <div
-                  className={`text-xs font-extrabold ${
-                    anomaly.percentageChange > 0 ? 'text-rose-600' : 'text-emerald-600'
-                  }`}
-                >
-                  Change: {anomaly.percentageChange > 0 ? '+' : ''}
-                  {anomaly.percentageChange}%
-                </div>
+                )}
+              </div>
+              <Badge
+                variant={
+                  anomaly.severity === 'High'
+                    ? 'rose'
+                    : anomaly.severity === 'Medium'
+                    ? 'amber'
+                    : 'blue'
+                }
+                size="sm"
+              >
+                {anomaly.severity} Severity
+              </Badge>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-2 border-y border-slate-100 text-xs">
+              <div>
+                <span className="text-slate-500 font-medium">Observed Fare:</span>
+                <p className="text-sm font-black text-rose-600">
+                  ₹{anomaly.currentPrice.toLocaleString('en-IN')}
+                </p>
+              </div>
+              <div>
+                <span className="text-slate-500 font-medium">Corridor Normal:</span>
+                <p className="text-sm font-bold text-slate-700">
+                  ₹{anomaly.previousPrice.toLocaleString('en-IN')}
+                </p>
+              </div>
+              <div>
+                <span className="text-slate-500 font-medium">Deviation:</span>
+                <p className="text-sm font-extrabold text-amber-600">
+                  +{anomaly.percentageChange}%
+                </p>
+              </div>
+              <div>
+                <span className="text-slate-500 font-medium">Detection Time:</span>
+                <p className="text-xs font-bold text-slate-600 mt-0.5 font-mono">
+                  {anomaly.detectedDate}
+                </p>
               </div>
             </div>
 
-            <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3 text-xs text-slate-700 font-medium">
-              <strong>Reason:</strong> {anomaly.reason}
-            </div>
+            <p className="text-xs text-slate-600 font-medium">
+              <span className="font-bold text-slate-800">Observation Note: </span>
+              {anomaly.reason}
+            </p>
           </div>
         ))}
       </div>

@@ -40,6 +40,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 aerodex.db
+*.db
+*.sqlite
+*.sqlite3
 frontend/.next/
 node_modules/
 __pycache__/
+scratch/
+*.log
+

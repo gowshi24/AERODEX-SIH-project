@@ -1,7 +1,7 @@
 'use client';
 
 import React, { Suspense, use } from 'react';
-import { BookContent } from '../page';
+import { BookContent } from '../../../components/booking/BookContent';
 
 function BookIdPageInner({ paramsPromise }: { paramsPromise: Promise<{ id: string }> }) {
   const { id } = use(paramsPromise);

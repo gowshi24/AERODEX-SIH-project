@@ -18,7 +18,7 @@ export const FlightSearchForm: React.FC<FlightSearchFormProps> = ({
   const router = useRouter();
   const [fromCode, setFromCode] = useState(initialFrom);
   const [toCode, setToCode] = useState(initialTo);
-  const [departureDate, setDepartureDate] = useState('2026-09-15');
+  const [departureDate, setDepartureDate] = useState('2026-09-21');
   const [returnDate, setReturnDate] = useState('');
   const [travellers, setTravellers] = useState(1);
   const [cabinClass, setCabinClass] = useState('Economy');
@@ -32,7 +32,7 @@ export const FlightSearchForm: React.FC<FlightSearchFormProps> = ({
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push(`/search?from=${fromCode}&to=${toCode}&date=${departureDate}&cabin=${cabinClass}`);
+    router.push(`/results?from=${fromCode}&to=${toCode}&depart=${departureDate}&cabin=${cabinClass}`);
   };
 
   const quickRoutes = [

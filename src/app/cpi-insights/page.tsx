@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ResponsiveContainer,
   LineChart,
@@ -13,12 +13,51 @@ import {
   CartesianGrid,
   Legend,
 } from 'recharts';
-import { ShieldCheck, Info, TrendingUp } from 'lucide-react';
-import { CPI_INSIGHT_DATA } from '../../data/mockData';
+import { ShieldCheck, Info, TrendingUp, Radio } from 'lucide-react';
 import { Badge } from '../../components/ui/Badge';
 import { StatCard } from '../../components/analytics/StatCard';
+import { getCPIInsights } from '../../lib/api';
+import { CPIInsightData } from '../../types';
 
 export default function CPIInsightsPage() {
+  const [data, setData] = useState<CPIInsightData>({
+    airfareChange: 3.2,
+    monthlyMovement: 1.9,
+    highestIncreaseRoute: 'DEL → BOM (+6.2%)',
+    lowestIncreaseRoute: 'BLR → BOM (-1.2%)',
+    inflationTrend: [
+      { month: 'May 2026', airfareInflation: 5.8, generalCPI: 4.9 },
+      { month: 'Jun 2026', airfareInflation: 6.4, generalCPI: 5.2 },
+      { month: 'Jul 2026', airfareInflation: 3.1, generalCPI: 4.8 },
+      { month: 'Aug 2026', airfareInflation: 3.9, generalCPI: 4.6 },
+      { month: 'Sep 2026', airfareInflation: 3.2, generalCPI: 4.7 },
+    ],
+    monthlyMovementData: [
+      { month: 'May', change: 3.4 },
+      { month: 'Jun', change: 2.0 },
+      { month: 'Jul', change: -3.0 },
+      { month: 'Aug', change: 1.4 },
+      { month: 'Sep', change: 1.9 },
+    ],
+    routeComparison: [
+      { route: 'DEL → BOM', change: 6.2 },
+      { route: 'MAA → DEL', change: 4.8 },
+      { route: 'BOM → DEL', change: 3.2 },
+      { route: 'HYD → DEL', change: 1.1 },
+      { route: 'BLR → BOM', change: -1.2 },
+    ],
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getCPIInsights()
+      .then((res) => {
+        if (res) setData(res);
+      })
+      .catch((err) => console.error('[CPI Insights Fetch Error]', err))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       {/* HEADER */}
@@ -50,10 +89,10 @@ export default function CPIInsightsPage() {
 
       {/* SUMMARY CARDS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard title="Airfare Change" value={`+${CPI_INSIGHT_DATA.airfareChange}%`} subtitle="Overall Rate" />
-        <StatCard title="Monthly Movement" value={`+${CPI_INSIGHT_DATA.monthlyMovement}%`} subtitle="MoM Rate" />
-        <StatCard title="Highest Increase" value={CPI_INSIGHT_DATA.highestIncreaseRoute} subtitle="Max Inflation Impact" />
-        <StatCard title="Lowest Increase" value={CPI_INSIGHT_DATA.lowestIncreaseRoute} subtitle="Lowest Inflation Impact" />
+        <StatCard title="Airfare Change" value={`+${data.airfareChange}%`} subtitle="Overall Rate" />
+        <StatCard title="Monthly Movement" value={`+${data.monthlyMovement}%`} subtitle="MoM Rate" />
+        <StatCard title="Highest Increase" value={data.highestIncreaseRoute} subtitle="Max Inflation Impact" />
+        <StatCard title="Lowest Increase" value={data.lowestIncreaseRoute} subtitle="Lowest Inflation Impact" />
       </div>
 
       {/* CHARTS GRID */}
@@ -71,7 +110,7 @@ export default function CPIInsightsPage() {
 
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={CPI_INSIGHT_DATA.inflationTrend}>
+              <LineChart data={data.inflationTrend}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="month" stroke="#64748b" fontSize={11} />
                 <YAxis stroke="#64748b" fontSize={11} domain={[0, 10]} />
@@ -106,7 +145,7 @@ export default function CPIInsightsPage() {
 
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={CPI_INSIGHT_DATA.monthlyMovementData}>
+              <BarChart data={data.monthlyMovementData}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="month" stroke="#64748b" fontSize={11} />
                 <YAxis stroke="#64748b" fontSize={11} />
@@ -139,7 +178,7 @@ export default function CPIInsightsPage() {
 
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={CPI_INSIGHT_DATA.routeComparison}>
+              <BarChart data={data.routeComparison}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="route" stroke="#64748b" fontSize={11} />
                 <YAxis stroke="#64748b" fontSize={11} />

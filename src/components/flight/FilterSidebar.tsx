@@ -24,7 +24,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onChange,
   };
 
   return (
-    <div className="bg-white rounded-3xl border border-slate-200 p-6 space-y-6 shadow-xs">
+    <div className="bg-white rounded-3xl border border-slate-200 p-6 space-y-6 shadow-xs max-h-[calc(100vh-3rem)] overflow-y-auto">
       {/* HEADER */}
       <div className="flex items-center justify-between border-b border-slate-100 pb-4">
         <div className="flex items-center space-x-2 text-slate-900 font-black text-base">
@@ -48,9 +48,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({ filters, onChange,
         </div>
         <input
           type="range"
-          min="3500"
-          max="10000"
-          step="250"
+          min="2000"
+          max="40000"
+          step="500"
           value={filters.maxPrice}
           onChange={(e) => onChange({ ...filters, maxPrice: Number(e.target.value) })}
           className="w-full accent-blue-600 cursor-pointer"

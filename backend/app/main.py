@@ -4,6 +4,7 @@ import datetime
 
 from backend.app.core.config import settings
 from backend.app.core.database import engine, Base
+import backend.models
 from backend.app.api.routes import (
     flights_router,
     fares_router,
@@ -15,6 +16,8 @@ from backend.app.api.routes import (
     data_sources_router,
     data_quality_router,
 )
+from backend.app.api.routes.live_fetcher import router as live_fetcher_router
+
 
 # Initialize Database tables if missing
 try:
@@ -71,3 +74,5 @@ app.include_router(cpi_router, prefix=settings.API_V1_STR)
 app.include_router(backtesting_router, prefix=settings.API_V1_STR)
 app.include_router(data_sources_router, prefix=settings.API_V1_STR)
 app.include_router(data_quality_router, prefix=settings.API_V1_STR)
+app.include_router(live_fetcher_router)
+

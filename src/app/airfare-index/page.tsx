@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ResponsiveContainer,
   LineChart,
@@ -12,12 +12,38 @@ import {
   Tooltip,
   CartesianGrid,
 } from 'recharts';
-import { Activity, ShieldAlert, TrendingUp, BarChart as BarChartIcon, Layers, ArrowUpRight, ArrowDownRight } from 'lucide-react';
-import { INDEX_SUMMARY, INDEX_HISTORY, ROUTE_INDEX_DATA } from '../../data/mockData';
+import { Activity, ShieldAlert, TrendingUp, BarChart as BarChartIcon, Layers, ArrowUpRight, ArrowDownRight, Radio } from 'lucide-react';
 import { Badge } from '../../components/ui/Badge';
 import { StatCard } from '../../components/analytics/StatCard';
+import { getIndexSummary, getAirfareIndexHistory, getRouteBasketContribution } from '../../lib/api';
+import { IndexHistoryPoint, RouteIndexItem } from '../../types';
 
 export default function AirfareIndexPage() {
+  const [indexSummary, setIndexSummary] = useState({
+    currentIndex: 127.44,
+    previousPeriod: 123.5,
+    changePercent: 3.2,
+    basePeriod: 100.0,
+  });
+  const [indexHistory, setIndexHistory] = useState<IndexHistoryPoint[]>([]);
+  const [routeIndexData, setRouteIndexData] = useState<RouteIndexItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([
+      getIndexSummary(),
+      getAirfareIndexHistory(),
+      getRouteBasketContribution(),
+    ])
+      .then(([summary, history, routes]) => {
+        if (summary) setIndexSummary(summary);
+        if (history) setIndexHistory(history);
+        if (routes) setRouteIndexData(routes);
+      })
+      .catch((err) => console.error('[Airfare Index Live Fetch Error]', err))
+      .finally(() => setLoading(false));
+  }, []);
+
   const airlineIndexData = [
     { name: 'IndiGo', index: 125.4 },
     { name: 'Air India', index: 128.2 },
@@ -59,10 +85,10 @@ export default function AirfareIndexPage() {
 
       {/* SUMMARY CARDS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard title="Current Index" value={INDEX_SUMMARY.currentIndex} subtitle="Base Period = 100.0" />
-        <StatCard title="Previous Period" value={INDEX_SUMMARY.previousPeriod} subtitle="August 2026 reading" />
-        <StatCard title="Change" value={`+${INDEX_SUMMARY.changePercent}%`} change={INDEX_SUMMARY.changePercent} subtitle="Month-over-Month" />
-        <StatCard title="Base Period" value={INDEX_SUMMARY.basePeriod} subtitle="Normalized Benchmark Baseline" />
+        <StatCard title="Current Index" value={indexSummary.currentIndex} subtitle="Base Period = 100.0" />
+        <StatCard title="Previous Period" value={indexSummary.previousPeriod} subtitle="Base Period Baseline" />
+        <StatCard title="Change" value={`+${indexSummary.changePercent}%`} change={indexSummary.changePercent} subtitle="Month-over-Month" />
+        <StatCard title="Base Period" value={indexSummary.basePeriod} subtitle="Normalized Benchmark Baseline" />
       </div>
 
       {/* CHARTS GRID */}
@@ -80,10 +106,10 @@ export default function AirfareIndexPage() {
 
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={INDEX_HISTORY}>
+              <LineChart data={indexHistory}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="month" stroke="#64748b" fontSize={11} />
-                <YAxis stroke="#64748b" fontSize={11} domain={[90, 135]} />
+                <YAxis stroke="#64748b" fontSize={11} domain={[90, 145]} />
                 <Tooltip
                   formatter={(val: any) => [val, 'Index Value']}
                   contentStyle={{
@@ -114,10 +140,10 @@ export default function AirfareIndexPage() {
 
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={INDEX_HISTORY}>
+              <BarChart data={indexHistory}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="month" stroke="#64748b" fontSize={11} />
-                <YAxis stroke="#64748b" fontSize={11} domain={[90, 135]} />
+                <YAxis stroke="#64748b" fontSize={11} domain={[90, 145]} />
                 <Tooltip
                   formatter={(val: any) => [val, 'Index']}
                   contentStyle={{
@@ -147,7 +173,7 @@ export default function AirfareIndexPage() {
 
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={ROUTE_INDEX_DATA}>
+              <BarChart data={routeIndexData}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="route" stroke="#64748b" fontSize={11} />
                 <YAxis stroke="#64748b" fontSize={11} domain={[100, 140]} />
@@ -206,7 +232,7 @@ export default function AirfareIndexPage() {
         <h2 className="text-lg font-black text-slate-900">Route Analysis</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {ROUTE_INDEX_DATA.map((item) => (
+          {routeIndexData.map((item) => (
             <div
               key={item.route}
               className="p-5 rounded-2xl border border-slate-200 bg-slate-50 space-y-3"
