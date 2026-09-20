@@ -86,6 +86,20 @@ class SourceRegistry:
 
         return all_observations
 
+    def collect_live_realtime(self, origin: str, destination: str, travel_date: str, force_live: bool = False) -> Dict[str, Any]:
+        """
+        Executes live Google Flights and multi-source extraction via RealtimeFlightScraper.
+        Deconstructs fares and persists microdata to SQLite.
+        """
+        try:
+            from backend.airfare_index.live_fetcher.scraper import RealtimeFlightScraper
+            scraper = RealtimeFlightScraper()
+            return scraper.search_live(origin, destination, travel_date, force_live=force_live)
+        except Exception as e:
+            logger.error(f"RealtimeFlightScraper error: {e}")
+            return {"status": "FAILED", "error": str(e), "flights": []}
+
 source_registry = SourceRegistry()
+
 
 

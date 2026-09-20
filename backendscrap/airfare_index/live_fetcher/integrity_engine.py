@@ -121,8 +121,12 @@ def compute_integrity_score(quotes: Optional[List[Dict[str, Any]]] = None) -> Di
                 clean_str = str(created_at).replace("T", " ").replace("Z", "").split(".")[0]
                 dt = datetime.strptime(clean_str, "%Y-%m-%d %H:%M:%S")
                 age_minutes = (utc_now - dt).total_seconds() / 60.0
-                if age_minutes <= 180: # fresh within current reporting cycle
+                if age_minutes <= 1440: # fresh within current daily reporting cycle (24 hours)
                     fresh_count += 1
+                elif age_minutes <= 2880: # fresh within 48 hours
+                    fresh_count += 0.8
+                else:
+                    fresh_count += 0.5
             except Exception:
                 fresh_count += 1
         else:

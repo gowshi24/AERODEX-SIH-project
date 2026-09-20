@@ -1047,6 +1047,37 @@ class AirfareForecastingEngine:
             multiplier_type = "Econometric Heuristic Estimate (Calibrated)"
             methodology_note = "Festival & calamity multipliers represent calibrated heuristic benchmarks based on historical MoSPI seasonality curves (insufficient festival-tagged microdata for end-to-end ML prediction)."
 
+        is_live_sensors = scenario in ["real_live", "real_live_disruption"]
+        is_pure_ml = bool(self.is_festival_learned and active_event)
+        is_hybrid_ml = bool(self.model is not None and not is_pure_ml and not is_live_sensors)
+        ml_model_name = type(self.model).__name__ if self.model is not None else "None"
+
+        print(f"\n" + "="*80)
+        print(f"[DEBUG DATA ORIGIN: FORECASTING & NOWCASTING ENGINE]")
+        print(f"  Target Date    : {target_date_str} (Lead Days: {lead_days}) | Scenario: '{scenario}'")
+        if is_live_sensors:
+            print(f"  >>> DATA STATUS: LIVE METAR / GDACS WEATHER & CALAMITY SENSORS <<<")
+            print(f"  * is_live         : True")
+            print(f"  * ML Model Used   : Base ML Model ({ml_model_name}) + Real-time Live Sensor Multiplier ({scenario_multiplier}x)")
+            print(f"  * Telemetry       : Real-time ATC METAR sensor readings & GDACS catastrophe alerts")
+        elif is_pure_ml:
+            print(f"  >>> DATA STATUS: ML MODEL (100% Machine Learning - Random Forest) <<<")
+            print(f"  * is_live         : False (Predictive ML Model)")
+            print(f"  * ML Model Used   : YES ({ml_model_name} trained on festival/weather microdata)")
+            print(f"  * Verification    : Holdout validation verified with {self.festival_samples_count} festival quotes")
+        elif is_hybrid_ml:
+            print(f"  >>> DATA STATUS: HYBRID (ML Model Base Fares + Econometric Heuristic) <<<")
+            print(f"  * is_live         : False (Predictive Model)")
+            print(f"  * ML Model Used   : YES ({ml_model_name} for corridor base fare predictions)")
+            print(f"  * Multiplier Layer: Calibrated econometric heuristic ({scenario_multiplier}x)")
+        else:
+            print(f"  >>> DATA STATUS: ECONOMETRIC HEURISTIC FALLBACK (No ML Model) <<<")
+            print(f"  * is_live         : False (Calibrated Model)")
+            print(f"  * ML Model Used   : NO (Econometric exponential decay curve)")
+        print(f"  * Multiplier Type : {multiplier_type}")
+        print(f"  * Projected APIx  : {projected_national_index} | CPI Inflation Impact: +{cpi_impact_bps} bps")
+        print("="*80 + "\n")
+
         return {
             "target_date": target_date_str,
             "lead_days": lead_days,
@@ -1056,6 +1087,13 @@ class AirfareForecastingEngine:
             "scenario_multiplier": round(scenario_multiplier, 2),
             "multiplier_type": multiplier_type,
             "methodology_note": methodology_note,
+            "data_source_debug": {
+                "is_live": is_live_sensors,
+                "is_ml_model": (self.model is not None),
+                "model_name": ml_model_name,
+                "classification": "LIVE_SENSORS" if is_live_sensors else ("PURE_ML_MODEL" if is_pure_ml else ("HYBRID_ML_MODEL" if is_hybrid_ml else "ECONOMETRIC_FALLBACK")),
+                "multiplier_type": multiplier_type,
+            },
             "is_festival_window": bool(active_event),
             "projected_national_index": projected_national_index,
             "pct_vs_base": pct_vs_base,
@@ -1068,3 +1106,14 @@ class AirfareForecastingEngine:
 
 # Global Singleton
 forecast_engine = AirfareForecastingEngine()
+
+if __name__ == "__main__":
+    print("\n[TEST] Running AirfareForecastingEngine simulation debug tests...\n")
+    # Test 1: Auto calendar forecast
+    print("--- Test 1: Baseline Auto Scenario Forecast ---")
+    res1 = forecast_engine.simulate_forecast("2026-10-21", scenario="auto")
+    
+    # Test 2: Real live sensor scenario
+    print("--- Test 2: Real Live METAR / GDACS Disruption Scenario ---")
+    res2 = forecast_engine.simulate_forecast("2026-09-25", scenario="real_live")
+

@@ -5,7 +5,11 @@ echo   SIH 2026 Problem Statement: SIH26056
 echo =====================================================================
 echo.
 
-cd /d "%~dp0backendscrap"
+if exist "%~dp0backendscrap" (
+    cd /d "%~dp0backendscrap"
+) else (
+    cd /d "%~dp0"
+)
 
 echo Checking Python environment...
 python --version

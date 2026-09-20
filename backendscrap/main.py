@@ -5,6 +5,12 @@ Launches the MoSPI National Airfare Price Index Server & REST API.
 import os
 import sys
 
+try:
+    sys.stdout.reconfigure(line_buffering=True)
+    sys.stderr.reconfigure(line_buffering=True)
+except Exception:
+    pass
+
 # Ensure repository root and live_fetcher directory are in sys.path
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 FETCHER_DIR = os.path.join(ROOT_DIR, "airfare_index", "live_fetcher")

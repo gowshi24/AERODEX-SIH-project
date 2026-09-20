@@ -18,19 +18,88 @@ from datetime import datetime, timedelta
 # Ensure current module directory is in sys.path for cloud runners (Render/Railway/Docker)
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
-    sys.path.insert(0, CURRENT_DIR)
+    sys.path.append(CURRENT_DIR)
 
-# Import our live scraper, statistical index engine, SQLite database, and AI Situation Engine
-from scraper import RealtimeFlightScraper, AIRPORT_NAMES, DATA_SOURCES_CATALOG
-from index_engine import AirfareIndexEngine
-from database import db
-from ai_engine import AirfareAIEngine
-from forecasting_engine import forecast_engine
-from live_calamity_tracker import live_calamity_tracker
-from robot_guard import robot_guard
-from proxy_rotator import proxy_manager
-from integrity_engine import compute_integrity_score
-from shock_replay import list_shock_scenarios, replay_shock
+# Robust modular imports to prevent package name collisions
+try:
+    from airfare_index.live_fetcher.scraper import RealtimeFlightScraper, AIRPORT_NAMES, DATA_SOURCES_CATALOG
+except ImportError:
+    try:
+        from backend.airfare_index.live_fetcher.scraper import RealtimeFlightScraper, AIRPORT_NAMES, DATA_SOURCES_CATALOG
+    except ImportError:
+        from scraper import RealtimeFlightScraper, AIRPORT_NAMES, DATA_SOURCES_CATALOG
+
+try:
+    from airfare_index.index_engine import AirfareIndexEngine
+except ImportError:
+    try:
+        from backend.airfare_index.index_engine import AirfareIndexEngine
+    except ImportError:
+        from index_engine import AirfareIndexEngine
+
+try:
+    from airfare_index.live_fetcher.database import db
+except ImportError:
+    try:
+        from backend.airfare_index.live_fetcher.database import db
+    except ImportError:
+        from database import db
+
+try:
+    from airfare_index.live_fetcher.ai_engine import AirfareAIEngine
+except ImportError:
+    try:
+        from backend.airfare_index.live_fetcher.ai_engine import AirfareAIEngine
+    except ImportError:
+        from ai_engine import AirfareAIEngine
+
+try:
+    from airfare_index.live_fetcher.forecasting_engine import forecast_engine
+except ImportError:
+    try:
+        from backend.airfare_index.live_fetcher.forecasting_engine import forecast_engine
+    except ImportError:
+        from forecasting_engine import forecast_engine
+
+try:
+    from airfare_index.live_fetcher.live_calamity_tracker import live_calamity_tracker
+except ImportError:
+    try:
+        from backend.airfare_index.live_fetcher.live_calamity_tracker import live_calamity_tracker
+    except ImportError:
+        from live_calamity_tracker import live_calamity_tracker
+
+try:
+    from airfare_index.live_fetcher.robot_guard import robot_guard
+except ImportError:
+    try:
+        from backend.airfare_index.live_fetcher.robot_guard import robot_guard
+    except ImportError:
+        from robot_guard import robot_guard
+
+try:
+    from airfare_index.live_fetcher.proxy_rotator import proxy_manager
+except ImportError:
+    try:
+        from backend.airfare_index.live_fetcher.proxy_rotator import proxy_manager
+    except ImportError:
+        from proxy_rotator import proxy_manager
+
+try:
+    from airfare_index.live_fetcher.integrity_engine import compute_integrity_score
+except ImportError:
+    try:
+        from backend.airfare_index.live_fetcher.integrity_engine import compute_integrity_score
+    except ImportError:
+        from integrity_engine import compute_integrity_score
+
+try:
+    from airfare_index.live_fetcher.shock_replay import list_shock_scenarios, replay_shock
+except ImportError:
+    try:
+        from backend.airfare_index.live_fetcher.shock_replay import list_shock_scenarios, replay_shock
+    except ImportError:
+        from shock_replay import list_shock_scenarios, replay_shock
 
 PORT = int(os.environ.get("PORT", 8000))
 STATIC_DIR = os.path.join(CURRENT_DIR, "static")

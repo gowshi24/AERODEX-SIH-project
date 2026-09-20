@@ -10,11 +10,25 @@ import asyncio
 from unittest.mock import patch, MagicMock
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(REPO_ROOT, "airfare_index", "live_fetcher"))
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
+live_fetcher_dir = os.path.join(REPO_ROOT, "airfare_index", "live_fetcher")
+if live_fetcher_dir not in sys.path:
+    sys.path.append(live_fetcher_dir)
 
-from scraper import RealtimeFlightScraper, DATA_SOURCES_CATALOG
-from robot_guard import robot_guard
-from proxy_rotator import proxy_manager, ProxyManager
+try:
+    from airfare_index.live_fetcher.scraper import RealtimeFlightScraper, DATA_SOURCES_CATALOG
+    from airfare_index.live_fetcher.robot_guard import robot_guard
+    from airfare_index.live_fetcher.proxy_rotator import proxy_manager, ProxyManager
+except ImportError:
+    try:
+        from backend.airfare_index.live_fetcher.scraper import RealtimeFlightScraper, DATA_SOURCES_CATALOG
+        from backend.airfare_index.live_fetcher.robot_guard import robot_guard
+        from backend.airfare_index.live_fetcher.proxy_rotator import proxy_manager, ProxyManager
+    except ImportError:
+        from scraper import RealtimeFlightScraper, DATA_SOURCES_CATALOG
+        from robot_guard import robot_guard
+        from proxy_rotator import proxy_manager, ProxyManager
 
 class TestRealtimeScraper(unittest.TestCase):
     def setUp(self):
@@ -245,7 +259,9 @@ class TestRealtimeScraper(unittest.TestCase):
 
     def test_scraper_active_enforcement_gate_http(self):
         """Verify HTTP scraper aborts immediately and returns [] when robots.txt disallows."""
-        with patch.object(robot_guard, "can_fetch", return_value=(False, "Disallowed by robots.txt")):
+        sc_mod = sys.modules.get(self.scraper.__class__.__module__)
+        rg = getattr(sc_mod, "robot_guard", robot_guard)
+        with patch.object(rg, "can_fetch", return_value=(False, "Disallowed by robots.txt")):
             with patch("requests.get") as mock_get:
                 results = self.scraper._scrape_google_flights_http("DEL", "BOM", "2026-09-20")
                 self.assertEqual(results, [])
@@ -253,7 +269,9 @@ class TestRealtimeScraper(unittest.TestCase):
 
     def test_scraper_active_enforcement_gate_async(self):
         """Verify Playwright scrapers abort immediately and return [] when robots.txt disallows."""
-        with patch.object(robot_guard, "can_fetch", return_value=(False, "Disallowed by robots.txt")):
+        sc_mod = sys.modules.get(self.scraper.__class__.__module__)
+        rg = getattr(sc_mod, "robot_guard", robot_guard)
+        with patch.object(rg, "can_fetch", return_value=(False, "Disallowed by robots.txt")):
             results_emt = asyncio.run(self.scraper._scrape_easemytrip_async("DEL", "BOM", "2026-09-20"))
             self.assertEqual(results_emt, [])
 

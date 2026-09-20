@@ -458,9 +458,10 @@ class RealtimeFlightScraper:
             airline_portal_url = base_portal
 
         return {
-            "verification_url": airline_portal_url,
+            "verification_url": google_flights_url,
             "airline_portal_url": airline_portal_url,
-            "carrier_verified_url": airline_portal_url,
+            "carrier_verified_url": google_flights_url,
+            "google_flights_url": google_flights_url,
             "easemytrip_url": easemytrip_url,
             "makemytrip_url": makemytrip_url,
             "yatra_url": yatra_url,
@@ -576,14 +577,18 @@ class RealtimeFlightScraper:
 
         # 6. Strict Schedule Deduplication: eliminate duplicate / cloned flight cards
         dedup_map = {}
+        unique_cleaned = []
         for f in cleaned:
             c_code = str(f.get("carrier_code", "")).strip().upper() or "6E"
             dep_norm = self._normalize_time(f.get("departure_time", ""))
-            key = (c_code, dep_norm)
-            if key not in dedup_map or float(f.get("total_fare", 99999)) < float(dedup_map[key].get("total_fare", 99999)):
-                dedup_map[key] = f
+            if dep_norm:
+                key = (c_code, dep_norm)
+                if key not in dedup_map or float(f.get("total_fare", 99999)) < float(dedup_map[key].get("total_fare", 99999)):
+                    dedup_map[key] = f
+            else:
+                unique_cleaned.append(f)
 
-        unique_cleaned = list(dedup_map.values())
+        unique_cleaned.extend(dedup_map.values())
 
         cleaning_meta = {
             "raw_count": len(flights),
