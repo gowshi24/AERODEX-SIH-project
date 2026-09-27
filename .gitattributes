@@ -1,0 +1,4 @@
+*.pdf binary
+*.db binary
+*.sqlite binary
+*.sqlite3 binary

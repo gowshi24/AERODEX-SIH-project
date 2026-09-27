@@ -9,13 +9,13 @@ import { FlightCard } from '../../components/flight/FlightCard';
 import { FilterSidebar } from '../../components/flight/FilterSidebar';
 import { Flight, FlightFilterState } from '../../types';
 import { Button } from '../../components/ui/Button';
-import { searchFlights } from '../../lib/api';
+import { searchFlights, getDefaultDepartureDate } from '../../lib/api';
 
 function ResultsContent() {
   const searchParams = useSearchParams();
   const fromCode = searchParams.get('from') || 'DEL';
   const toCode = searchParams.get('to') || 'BOM';
-  const departDate = searchParams.get('depart') || '2026-09-21';
+  const departDate = searchParams.get('depart') || getDefaultDepartureDate(7);
   const travellers = searchParams.get('travellers') || '1 Traveller';
 
   const fromAirport = AIRPORTS.find((a) => a.code === fromCode) || { code: fromCode, name: fromCode, city: fromCode };
@@ -52,7 +52,7 @@ function ResultsContent() {
 
       if (results && results.length > 0) {
         setFlights(results);
-        setDataSource(results[0]?.cheapestSource || 'Live Web Scraped (Official Airline Portals & OTAs)');
+        setDataSource(results[0]?.sourcePortal || results[0]?.cheapestSource || 'Live Web Scraped (Google Flights & Airlines)');
       }
     } catch (e) {
       console.error('[Results] Failed to fetch live flights:', e);
@@ -138,7 +138,7 @@ function ResultsContent() {
             <span>Filters</span>
           </button>
           <Link href="/search">
-            <Button size="sm" variant="outline" className="bg-slate-800/80 text-white border-slate-700 hover:bg-slate-800">
+            <Button size="sm" variant="dark-outline">
               Change Search
             </Button>
           </Link>

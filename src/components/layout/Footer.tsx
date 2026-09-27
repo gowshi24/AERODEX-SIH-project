@@ -76,7 +76,7 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/index" className="hover:text-white transition-colors">
+                <Link href="/airfare-index" className="hover:text-white transition-colors">
                   Airfare Price Index
                 </Link>
               </li>

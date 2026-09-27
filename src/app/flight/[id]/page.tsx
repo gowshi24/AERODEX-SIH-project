@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, use } from 'react';
+import React, { useState, useEffect, use, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import {
   Plane,
   ArrowLeft,
@@ -29,20 +30,25 @@ import { Button } from '../../../components/ui/Button';
 import { Badge } from '../../../components/ui/Badge';
 import { LoadingSkeleton } from '../../../components/ui/LoadingSkeleton';
 
-export default function FlightDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+function FlightDetailsContent({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
+  const searchParams = useSearchParams();
+  const fromCode = searchParams.get('from') || undefined;
+  const toCode = searchParams.get('to') || undefined;
+  const travelDate = searchParams.get('date') || undefined;
+
   const [flight, setFlight] = useState<Flight | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (resolvedParams.id) {
-      getFlightDetails(resolvedParams.id)
+      getFlightDetails(resolvedParams.id, fromCode, toCode, travelDate)
         .then((f) => {
           if (f) setFlight(f);
         })
         .finally(() => setLoading(false));
     }
-  }, [resolvedParams.id]);
+  }, [resolvedParams.id, fromCode, toCode, travelDate]);
 
   if (!flight) {
     return (
@@ -264,5 +270,19 @@ export default function FlightDetailsPage({ params }: { params: Promise<{ id: st
         </div>
       </div>
     </div>
+  );
+}
+
+export default function FlightDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          <LoadingSkeleton count={3} />
+        </div>
+      }
+    >
+      <FlightDetailsContent params={params} />
+    </Suspense>
   );
 }

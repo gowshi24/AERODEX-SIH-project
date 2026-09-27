@@ -913,7 +913,7 @@ class AirfareDatabase:
         conn.close()
         return anomalies
 
-    def get_flight_by_id(self, flight_id: str):
+    def get_flight_by_id(self, flight_id: str, origin: str = None, destination: str = None):
         """Retrieves and reconstructs a flight quote by its quote ID, flight number, or composite hash with 100% genuine price parity."""
         import re
         conn = self.get_connection()
@@ -933,19 +933,29 @@ class AirfareDatabase:
             flight_digits = fn_match.group(2)
             possible_fns = [f"{carrier_code}-{flight_digits}", f"{carrier_code} {flight_digits}", f"{carrier_code}{flight_digits}"]
             placeholders = ', '.join(['?'] * len(possible_fns))
-            cur.execute(f"SELECT * FROM scraped_quotes WHERE flight_number IN ({placeholders}) ORDER BY total_fare ASC, id DESC LIMIT 1", tuple(possible_fns))
+            if origin and destination:
+                cur.execute(f"SELECT * FROM scraped_quotes WHERE flight_number IN ({placeholders}) AND origin = ? AND destination = ? ORDER BY total_fare ASC, id DESC LIMIT 1", (*possible_fns, origin.upper(), destination.upper()))
+            else:
+                cur.execute(f"SELECT * FROM scraped_quotes WHERE flight_number IN ({placeholders}) ORDER BY total_fare ASC, id DESC LIMIT 1", tuple(possible_fns))
             row = cur.fetchone()
 
         # 3. Direct match on flight_number column
         if not row:
-            cur.execute("SELECT * FROM scraped_quotes WHERE flight_number = ? ORDER BY total_fare ASC, id DESC LIMIT 1", (flight_id,))
+            if origin and destination:
+                cur.execute("SELECT * FROM scraped_quotes WHERE flight_number = ? AND origin = ? AND destination = ? ORDER BY total_fare ASC, id DESC LIMIT 1", (flight_id, origin.upper(), destination.upper()))
+            else:
+                cur.execute("SELECT * FROM scraped_quotes WHERE flight_number = ? ORDER BY total_fare ASC, id DESC LIMIT 1", (flight_id,))
             row = cur.fetchone()
 
-        # 4. If still not found, check if carrier code matches
+        # 4. If still not found, match by carrier code on the same route
         if not row and fn_match:
             carrier_code = fn_match.group(1).upper()
-            cur.execute("SELECT * FROM scraped_quotes WHERE carrier_code = ? ORDER BY total_fare ASC, id DESC LIMIT 1", (carrier_code,))
-            row = cur.fetchone()
+            if origin and destination:
+                cur.execute("SELECT * FROM scraped_quotes WHERE carrier_code = ? AND origin = ? AND destination = ? ORDER BY total_fare ASC, id DESC LIMIT 1", (carrier_code, origin.upper(), destination.upper()))
+                row = cur.fetchone()
+            if not row:
+                cur.execute("SELECT * FROM scraped_quotes WHERE carrier_code = ? ORDER BY id DESC LIMIT 1", (carrier_code,))
+                row = cur.fetchone()
 
         conn.close()
         if not row:

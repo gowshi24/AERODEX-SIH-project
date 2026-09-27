@@ -51,6 +51,9 @@ export interface Flight {
   };
   refundability: 'Refundable' | 'Non-refundable' | 'Partially Refundable';
   priceHistory: { date: string; price: number }[];
+  isLive?: boolean;
+  sourcePortal?: string;
+  verificationUrl?: string;
 }
 
 export interface FlightFilterState {

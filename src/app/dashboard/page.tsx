@@ -133,7 +133,7 @@ export default function DashboardPage() {
               Track macro-level price movements and historical fare variations across India.
             </p>
           </div>
-          <Link href="/index" className="inline-flex items-center text-xs font-bold text-cyan-600 hover:text-cyan-700 pt-2">
+          <Link href="/airfare-index" className="inline-flex items-center text-xs font-bold text-cyan-600 hover:text-cyan-700 pt-2">
             <span>View Airfare Index</span>
             <ArrowRight className="w-4 h-4 ml-1" />
           </Link>

@@ -6,13 +6,14 @@ import { Plane, Search, Sparkles, MapPin, Calendar, Users, ArrowLeftRight } from
 import { AIRPORTS, POPULAR_ROUTES } from '../../data/mockData';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
+import { getDefaultDepartureDate } from '../../lib/api';
 
 export default function SearchPage() {
   const router = useRouter();
   const [fromCode, setFromCode] = useState('DEL');
   const [toCode, setToCode] = useState('BOM');
-  const [departureDate, setDepartureDate] = useState('2026-09-20');
-  const [returnDate, setReturnDate] = useState('2026-09-23');
+  const [departureDate, setDepartureDate] = useState(() => getDefaultDepartureDate(7));
+  const [returnDate, setReturnDate] = useState(() => getDefaultDepartureDate(10));
   const [travellers, setTravellers] = useState('1 Traveller');
   const [tripType, setTripType] = useState<'oneWay' | 'roundTrip'>('roundTrip');
 
@@ -152,6 +153,7 @@ export default function SearchPage() {
                 <Calendar className="w-4 h-4 text-blue-600" />
                 <input
                   type="date"
+                  min={new Date().toISOString().split('T')[0]}
                   value={departureDate}
                   onChange={(e) => setDepartureDate(e.target.value)}
                   className="w-full bg-transparent font-bold text-slate-900 text-sm focus:outline-none cursor-pointer"
@@ -168,6 +170,7 @@ export default function SearchPage() {
                 <Calendar className="w-4 h-4 text-blue-600" />
                 <input
                   type="date"
+                  min={departureDate || new Date().toISOString().split('T')[0]}
                   value={returnDate}
                   disabled={tripType === 'oneWay'}
                   onChange={(e) => setReturnDate(e.target.value)}

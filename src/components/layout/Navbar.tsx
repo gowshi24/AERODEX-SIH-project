@@ -15,7 +15,7 @@ export const Navbar: React.FC = () => {
     { name: 'Dashboard', href: '/dashboard' },
     { name: 'Search Flights', href: '/search' },
     { name: 'Price Trends', href: '/trends' },
-    { name: 'Airfare Index', href: '/index' },
+    { name: 'Airfare Index', href: '/airfare-index' },
     { name: 'Anomalies', href: '/anomalies' },
     { name: 'CPI Insights', href: '/cpi-insights' },
     { name: 'About', href: '/about' },

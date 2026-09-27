@@ -30,7 +30,7 @@ export default function ProfilePage() {
         </div>
 
         <Link href="/settings">
-          <Button variant="outline" size="sm" className="bg-slate-800 text-white border-slate-700 hover:bg-slate-800">
+          <Button variant="dark-outline" size="sm">
             <Settings className="w-4 h-4 mr-2" />
             Account Settings
           </Button>

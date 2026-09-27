@@ -5,8 +5,8 @@ Implements official MoSPI / NSO Laspeyres aggregation methodology for PS SIH2605
 
 import json
 import os
-import io
 import csv
+import io
 from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -57,10 +57,25 @@ class AirfareIndexEngine:
             "BOM-GOI": 3100.0, "GOI-BOM": 3100.0,
             "BOM-MAA": 4200.0, "MAA-BOM": 4200.0,
             "AMD-DEL": 3400.0, "DEL-AMD": 3400.0,
+            "BLR-HYD": 2950.0, "HYD-BLR": 2950.0,
             "MAA-DEL": 5100.0, "DEL-MAA": 5100.0,
             "DEL-SXR": 4100.0, "SXR-DEL": 4100.0,
+            "DEL-GAU": 4750.0, "GAU-DEL": 4750.0,
+            "CCU-GAU": 2650.0, "GAU-CCU": 2650.0,
+            "DEL-IXZ": 6400.0, "IXZ-DEL": 6400.0,
+            "DEL-IXL": 4750.0, "IXL-DEL": 4750.0,
+            "DEL-COK": 5450.0, "COK-DEL": 5450.0,
+            "DEL-PAT": 3650.0, "PAT-DEL": 3650.0,
+            "DEL-LKO": 2950.0, "LKO-DEL": 2950.0,
+            "BOM-JAI": 3650.0, "JAI-BOM": 3650.0,
+            "BOM-AMD": 2450.0, "AMD-BOM": 2450.0,
+            "MAA-BLR": 2250.0, "BLR-MAA": 2250.0,
+            "DEL-BBI": 4150.0, "BBI-DEL": 4150.0,
+            "DEL-ATQ": 2650.0, "ATQ-DEL": 2650.0,
+            "DEL-IDR": 3050.0, "IDR-DEL": 3050.0,
+            "BOM-COK": 4250.0, "COK-BOM": 4250.0,
             "DEFAULT_METRO_METRO": 4500.0,
-            "DEFAULT_REGIONAL": 5200.0
+            "DEFAULT_REGIONAL": 4200.0
         }
 
     def compute_carrier_weighted_fare(self, flights):
@@ -84,6 +99,7 @@ class AirfareIndexEngine:
         if not valid_fares:
             return 0.0
 
+        # Corridor median
         sorted_fares = sorted(valid_fares)
         mid = len(sorted_fares) // 2
         median_fare = sorted_fares[mid] if len(sorted_fares) % 2 != 0 else (sorted_fares[mid - 1] + sorted_fares[mid]) / 2.0
@@ -102,8 +118,10 @@ class AirfareIndexEngine:
         if not carrier_groups:
             return round(median_fare, 2)
 
+        # Average fare per carrier
         carrier_avg_fares = {code: sum(fares) / len(fares) for code, fares in carrier_groups.items()}
 
+        # Weight by carrier market share
         weighted_sum = 0.0
         total_weight = 0.0
 
@@ -320,19 +338,19 @@ class AirfareIndexEngine:
 
                 if idx >= 140:
                     severity = "severe"
-                    color_class = "bg-rose-500/25 text-rose-300 border-rose-500/40"
+                    color_class = "bg-[#FFEBEF] text-[#B82846] border-[#FFA6BA] hover:bg-[#FFDFE6]"
                     badge_label = "Severe Surge"
                 elif idx >= 125:
                     severity = "high"
-                    color_class = "bg-amber-500/25 text-amber-300 border-amber-500/40"
+                    color_class = "bg-[#FFF2EB] text-[#B34B19] border-[#FFB899] hover:bg-[#FFE8DC]"
                     badge_label = "High Surge"
                 elif idx >= 110:
                     severity = "moderate"
-                    color_class = "bg-yellow-500/20 text-yellow-300 border-yellow-500/30"
+                    color_class = "bg-[#FFF9E6] text-[#8F6900] border-[#FFD166] hover:bg-[#FFF3CC]"
                     badge_label = "Moderate"
                 else:
                     severity = "normal"
-                    color_class = "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
+                    color_class = "bg-[#E8F7F5] text-[#1E6B60] border-[#8ED1C7] hover:bg-[#D7F2EE]"
                     badge_label = "Baseline Fare"
 
                 window_cells[w["key"]] = {
@@ -375,16 +393,16 @@ class AirfareIndexEngine:
 
                 if inf >= 35.0:
                     severity = "severe"
-                    color_class = "bg-rose-500/20 text-rose-300 border-rose-500/30"
+                    color_class = "bg-[#FFEBEF] text-[#B82846] border-[#FFA6BA]"
                 elif inf >= 20.0:
                     severity = "high"
-                    color_class = "bg-amber-500/20 text-amber-300 border-amber-500/30"
+                    color_class = "bg-[#FFF2EB] text-[#B34B19] border-[#FFB899]"
                 elif inf >= 5.0:
                     severity = "moderate"
-                    color_class = "bg-yellow-500/20 text-yellow-300 border-yellow-500/30"
+                    color_class = "bg-[#FFF9E6] text-[#8F6900] border-[#FFD166] hover:bg-[#FFF3CC]"
                 else:
                     severity = "cool"
-                    color_class = "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
+                    color_class = "bg-[#E8F7F5] text-[#1E6B60] border-[#8ED1C7] hover:bg-[#D7F2EE]"
 
                 state_records.append({
                     "state": st,
@@ -519,6 +537,139 @@ class AirfareIndexEngine:
         records.sort(key=lambda x: x["cpi_index"], reverse=True)
         return records
 
+
+    def generate_daily_bulletin_csv(self, pulse_data):
+        """
+        Generates official MoSPI / RBI Daily Airfare Price Index Bulletin CSV.
+        Includes statistical metadata, provisional nowcast tags, and 25-route sector details.
+        """
+        now = datetime.now()
+        timestamp_str = now.strftime("%Y-%m-%d %H:%M:%S IST")
+        national_index = pulse_data.get("national_index", 127.30)
+        cpi_bps = pulse_data.get("cpi_impact_bps", 2.10)
+        cpi_contrib = pulse_data.get("cpi_contribution_pct", 0.021)
+        total_quotes = pulse_data.get("total_quotes_logged", 8800)
+        latest_fares = pulse_data.get("latest_fares", {})
+
+        output = io.StringIO()
+        writer = csv.writer(output)
+
+        # Statistical Header Metadata Block (Official MoSPI & RBI Standard)
+        output.write("# =========================================================================\n")
+        output.write("# Ministry of Statistics and Programme Implementation (MoSPI) - NSO\n")
+        output.write("# Reserve Bank of India (RBI) - Monetary Policy Department\n")
+        output.write("# REAL-TIME AIRFARE PRICE INDEX (APIx) - DAILY SECTOR BULLETIN\n")
+        output.write("# =========================================================================\n")
+        output.write(f"# Report Status: INTRADAY NOWCAST (PROVISIONAL)\n")
+        output.write(f"# Cutoff Timestamp: {timestamp_str}\n")
+        output.write(f"# Base Period: Base Year 2024 = 100.0\n")
+        output.write(f"# National Composite Airfare Price Index (APIx): {national_index}\n")
+        output.write(f"# Airfare Price Change vs Base 2024: +{round(national_index - 100.0, 2)}%\n")
+        output.write(f"# MoSPI CPI Item Weight (COICOP 07.3.3): {MOSPI_AIRFARE_CPI_WEIGHT * 100}%\n")
+        output.write(f"# Headline Combined CPI Impact: +{cpi_bps} basis points (+{cpi_contrib}%)\n")
+        output.write(f"# Total Domestic Flight Quotes Ingested: {total_quotes}\n")
+        output.write(f"# Basket Representation: DGCA Form-A 786-Route Census (136.0M Passengers)\n")
+        output.write(f"# Aggregation Method: Laspeyres Index with Carrier & Sector Volume Weights\n")
+        output.write("# =========================================================================\n")
+
+        writer.writerow([
+            "Sector_Rank",
+            "Sector_Code",
+            "Origin_Code",
+            "Origin_City",
+            "Destination_Code",
+            "Destination_City",
+            "DGCA_Weight_Percent",
+            "Annual_Passengers",
+            "Base_Fare_P0_INR",
+            "Current_Tariff_Pt_INR",
+            "Sector_Price_Index",
+            "Price_Change_Percent",
+            "Advance_Window",
+            "Data_Status"
+        ])
+
+        for rank, r in enumerate(self.routes_list[:25], 1):
+            code = r["route_code"]
+            p0 = self.get_route_base_fare(code)
+            curr = latest_fares.get(code) or round(p0 * (national_index / 100.0), 2)
+            sec_idx = round((curr / p0) * 100.0, 2)
+            pct_chg = round(((curr - p0) / p0) * 100.0, 2)
+
+            writer.writerow([
+                rank,
+                code,
+                r.get("iata1") or code.split("-")[0],
+                r.get("city1") or "Metro",
+                r.get("iata2") or code.split("-")[1],
+                r.get("city2") or "Metro",
+                r["route_weight_percent"],
+                r["total_passengers"],
+                f"{p0:.2f}",
+                f"{curr:.2f}",
+                f"{sec_idx:.2f}",
+                f"{pct_chg:+.2f}%",
+                "Continuous (T+1 to T+15)",
+                "PROVISIONAL"
+            ])
+
+        return output.getvalue()
+
+    def generate_monthly_timeline_csv(self):
+        """
+        Generates 20-Month Historical MoSPI CPI vs ATF Fuel vs APIx Time-Series CSV.
+        Clearly separates FINAL historical months from the current PROVISIONAL MTD month.
+        """
+        timeline = self.get_macro_comparison_timeline()
+        now = datetime.now()
+        timestamp_str = now.strftime("%Y-%m-%d %H:%M:%S IST")
+
+        output = io.StringIO()
+        writer = csv.writer(output)
+
+        output.write("# =========================================================================\n")
+        output.write("# Ministry of Statistics and Programme Implementation (MoSPI) - NSO\n")
+        output.write("# MONTHLY AIRFARE PRICE INDEX (APIx) HISTORICAL TIME-SERIES\n")
+        output.write("# Benchmark Comparison: MoSPI CPI 07.3.3 vs IOCL ATF Jet Fuel Index\n")
+        output.write("# =========================================================================\n")
+        output.write(f"# Extraction Timestamp: {timestamp_str}\n")
+        output.write(f"# Base Period: 2024 = 100.0\n")
+        output.write(f"# Historical Months Status: FINAL (Closed Statistical Series)\n")
+        output.write(f"# Current Month Status: PROVISIONAL (Month-to-Date Flash Estimate)\n")
+        output.write("# =========================================================================\n")
+
+        writer.writerow([
+            "Period",
+            "Year",
+            "Month",
+            "MoSPI_Official_CPI_07_3_3",
+            "IOCL_ATF_Fuel_Index",
+            "RealTime_Scraped_APIx",
+            "Tracking_Variance_vs_MoSPI",
+            "Statistical_Status"
+        ])
+
+        for item in timeline:
+            period_str = item["period"]
+            parts = period_str.split(" ")
+            year = parts[0]
+            month = parts[1].replace("(Live)", "").strip()
+            is_live = "Live" in period_str or (year == "2026" and month == "September")
+            status = "PROVISIONAL (MTD Flash)" if is_live else "FINAL"
+            variance = round(item["realtime_scraped_index"] - item["mospi_official_index"], 2)
+
+            writer.writerow([
+                period_str,
+                year,
+                month,
+                f"{item['mospi_official_index']:.2f}",
+                f"{item['atf_fuel_index']:.2f}",
+                f"{item['realtime_scraped_index']:.2f}",
+                f"{variance:+.2f}",
+                status
+            ])
+
+        return output.getvalue()
 
     def get_weekly_aggregation_timeline(self, weeks=12):
         """

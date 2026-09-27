@@ -212,12 +212,12 @@ export function BookContent({ explicitFlightId }: BookContentProps) {
             className="flex-shrink-0"
           >
             <Button
-              variant="secondary"
+              variant="white"
               size="md"
-              className="bg-white text-blue-900 hover:bg-blue-50 font-black shadow-md flex items-center space-x-2"
+              className="bg-white hover:bg-blue-50 text-blue-950 font-black shadow-lg flex items-center space-x-2 border border-blue-100 hover:border-blue-200 transition-all duration-200 active:scale-95 cursor-pointer"
             >
-              <span>Auto-Search on {activeFlight.airline}</span>
-              <ExternalLink className="w-4 h-4" />
+              <span className="text-blue-950 font-black">Auto-Search on {activeFlight.airline}</span>
+              <ExternalLink className="w-4 h-4 text-blue-950 flex-shrink-0" />
             </Button>
           </a>
         </div>

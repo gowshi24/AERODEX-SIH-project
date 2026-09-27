@@ -36,13 +36,23 @@ export const FlightCard: React.FC<FlightCardProps> = ({ flight }) => {
           </div>
         </div>
 
-        {/* PRICE TREND INDICATOR BADGE */}
-        <div className="flex items-center space-x-2 self-start sm:self-auto">
+        {/* LIVE SCRAPED STATUS & PRICE TREND INDICATOR */}
+        <div className="flex items-center space-x-2 self-start sm:self-auto flex-wrap gap-y-1">
+          {flight.isLive !== false ? (
+            <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-extrabold">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>Live Web Scraped</span>
+            </span>
+          ) : (
+            <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200 text-xs font-bold">
+              <span>Warehouse Record</span>
+            </span>
+          )}
           <div
             className={`inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-full ${
               isDown
-                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                : 'bg-rose-50 text-rose-700 border border-rose-200'
+                ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                : 'bg-amber-50 text-amber-700 border border-amber-200'
             }`}
           >
             {isDown ? <TrendingDown className="w-3.5 h-3.5 mr-1" /> : <TrendingUp className="w-3.5 h-3.5 mr-1" />}
@@ -50,9 +60,6 @@ export const FlightCard: React.FC<FlightCardProps> = ({ flight }) => {
               {isDown ? '↓' : '↑'} {Math.abs(flight.priceTrendPercent)}%
             </span>
           </div>
-          <Badge variant="emerald" size="sm">
-            Cheapest
-          </Badge>
         </div>
       </div>
 
@@ -84,8 +91,8 @@ export const FlightCard: React.FC<FlightCardProps> = ({ flight }) => {
       {/* SOURCE COMPARISON BAR */}
       <div className="bg-slate-50 rounded-xl p-3 border border-slate-200/80 space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] uppercase font-bold text-slate-400 block">
-            Direct & OTA Price Comparison
+          <span className="text-[10px] uppercase font-bold text-slate-500 block truncate max-w-sm">
+            {flight.sourcePortal ? `Feed: ${flight.sourcePortal}` : 'Direct & OTA Price Comparison'}
           </span>
           <span className="text-[10px] font-semibold text-slate-500">
             Click provider to book directly
@@ -128,7 +135,20 @@ export const FlightCard: React.FC<FlightCardProps> = ({ flight }) => {
         </div>
 
         <div className="flex items-center space-x-3">
-          <Link href={`/flight/${flight.id}`}>
+          <Link
+            href={`/flight/${encodeURIComponent(flight.id)}?from=${flight.departureCode}&to=${flight.arrivalCode}&date=${flight.travelDate}`}
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                try {
+                  sessionStorage.setItem('aerodex_selected_flight', JSON.stringify(flight));
+                  sessionStorage.setItem(`aerodex_flight_${flight.id}`, JSON.stringify(flight));
+                  sessionStorage.setItem('aerodex_search_from', flight.departureCode);
+                  sessionStorage.setItem('aerodex_search_to', flight.arrivalCode);
+                  sessionStorage.setItem('aerodex_search_date', flight.travelDate || '');
+                } catch (e) {}
+              }
+            }}
+          >
             <Button variant="outline" size="sm" className="font-bold">
               View Details
             </Button>

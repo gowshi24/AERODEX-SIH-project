@@ -59,7 +59,7 @@ export default function NotFound() {
               Price Trends
             </Link>
             <span>•</span>
-            <Link href="/index" className="hover:text-blue-600 font-semibold transition-colors">
+            <Link href="/airfare-index" className="hover:text-blue-600 font-semibold transition-colors">
               Airfare Index
             </Link>
             <span>•</span>

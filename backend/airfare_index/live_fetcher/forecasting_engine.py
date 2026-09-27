@@ -852,8 +852,13 @@ class AirfareForecastingEngine:
         cal = []
         for ev in INDIAN_CALENDAR_EVENTS:
             p_date = datetime.strptime(ev["peak_date"], "%Y-%m-%d").date()
-            if month is not None and str(month) != "all" and int(month) != p_date.month:
-                continue
+            if month is not None and str(month).lower() not in ("all", "", "none"):
+                try:
+                    m_val = int(str(month).split("-")[-1]) if "-" in str(month) else int(month)
+                except Exception:
+                    m_val = None
+                if m_val is not None and m_val != p_date.month:
+                    continue
             if category is not None and str(category) != "all" and ev.get("category") != str(category):
                 continue
             days_away = (p_date - today).days

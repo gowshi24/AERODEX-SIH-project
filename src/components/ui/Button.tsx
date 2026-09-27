@@ -32,16 +32,37 @@ export const Button: React.FC<ButtonProps> = ({
     'dark-outline':
       'bg-slate-800/90 hover:bg-slate-700/90 text-white hover:text-cyan-300 border border-slate-700 hover:border-slate-500 shadow-sm focus:ring-slate-700',
     white:
-      'bg-white hover:bg-slate-100 text-slate-900 shadow-md border border-slate-200 hover:border-slate-300 focus:ring-slate-300',
+      'bg-white hover:bg-blue-50 text-blue-900 shadow-md border border-slate-200 hover:border-blue-200 focus:ring-blue-300',
     glass:
       'bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 backdrop-blur-md shadow-sm focus:ring-white/30',
     ghost:
       'bg-transparent hover:bg-slate-100 text-slate-700 hover:text-blue-600 border border-transparent focus:ring-slate-400',
   };
 
+  // Resolve Tailwind utility clashes between variantStyles and custom className
+  let effectiveVariant = variantStyles[variant];
+  if (className) {
+    const customTokens = className.trim().split(/\s+/);
+    const hasCustomText = customTokens.some((t) => /^text-(?!xs|sm|base|lg|xl|[0-9]|center|left|right|justify)/.test(t));
+    const hasCustomBg = customTokens.some((t) => /^bg-/.test(t));
+    const hasCustomBorder = customTokens.some((t) => /^border-(?!0|1|2|4|8|solid|dashed|dotted)/.test(t));
+
+    let vTokens = effectiveVariant.split(/\s+/);
+    if (hasCustomText) {
+      vTokens = vTokens.filter((t) => !/^text-(?!xs|sm|base|lg|xl|[0-9]|center|left|right|justify)/.test(t));
+    }
+    if (hasCustomBg) {
+      vTokens = vTokens.filter((t) => !/^(bg-|from-|to-|via-)/.test(t));
+    }
+    if (hasCustomBorder) {
+      vTokens = vTokens.filter((t) => !/^border-(?!0|1|2|4|8|solid|dashed|dotted)/.test(t));
+    }
+    effectiveVariant = vTokens.join(' ');
+  }
+
   return (
     <button
-      className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
+      className={`${baseStyles} ${sizeStyles[size]} ${effectiveVariant} ${className}`}
       {...props}
     >
       {children}

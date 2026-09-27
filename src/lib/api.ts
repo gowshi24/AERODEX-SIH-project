@@ -75,6 +75,12 @@ function normalizeTimeStr(t?: string): string {
   return `${hr.toString().padStart(2, '0')}:${mn}${plusSuffix}`;
 }
 
+export function getDefaultDepartureDate(daysAhead = 7): string {
+  const d = new Date();
+  d.setDate(d.getDate() + daysAhead);
+  return d.toISOString().split('T')[0];
+}
+
 /**
  * Transforms raw scraped flight quote dictionaries from SQLite / Live Scraper into the UI Flight interface.
  */
@@ -86,9 +92,9 @@ function transformScrapedFlight(f: any, idx: number): Flight {
   const flightNum = f.flight_number || (f.flightNumber ? f.flightNumber : `${carrierCode} ${100 + idx}`);
   const orig = (f.origin || f.departureCode || 'DEL').toUpperCase();
   const dest = (f.destination || f.arrivalCode || 'BOM').toUpperCase();
-  const sourcePortal = f.source_portal || f.cheapestSource || 'Live Web Scraped';
+  const sourcePortal = f.source_portal || f.cheapestSource || (f.is_live ? 'Live Web Scraped (Google Flights)' : 'Microdata Warehouse');
 
-  const travelDate = f.travel_date || f.departure_date || f.travelDate || '2026-09-20';
+  const travelDate = f.travel_date || f.departure_date || f.travelDate || getDefaultDepartureDate(7);
   const airlinePortalUrl =
     f.airline_portal_url ||
     f.carrier_verified_url ||
@@ -158,6 +164,20 @@ function transformScrapedFlight(f: any, idx: number): Flight {
     },
   ];
 
+  if (carrierCode === 'IX') {
+    // Air India website sells Air India Express operated flights as an interline/codeshare (INR 4,424)
+    sources.push({
+      name: 'Air India (Codeshare)',
+      price: roundedFare + 237,
+      baseFare: roundedBase + 237,
+      taxes: roundedTaxes,
+      isCheapest: false,
+      type: 'airline',
+      bookingUrl: `https://www.airindia.com/en-in/book-flights?from=${orig}&to=${dest}&trip=O&depart=${travelDate}&adult=1`,
+      bookingAvailable: true,
+    });
+  }
+
   const depNorm = normalizeTimeStr(f.departure_time || f.departureTime || '08:00');
   const arrNorm = normalizeTimeStr(f.arrival_time || f.arrivalTime || '10:15');
 
@@ -169,6 +189,8 @@ function transformScrapedFlight(f: any, idx: number): Flight {
       : typeof f.stops === 'string' && f.stops.toLowerCase().includes('non')
       ? 0
       : 1;
+
+  const isLiveQuote = f.is_live !== false;
 
   return {
     id: f.id ? `${f.id}-${idx}` : `quote-${f.flight_number || idx}-${depNorm.replace(/[:+]/g, '')}-${idx}`,
@@ -200,6 +222,9 @@ function transformScrapedFlight(f: any, idx: number): Flight {
       { date: 'T-3', price: Math.round(totalFare * 0.98) },
       { date: 'Today', price: Math.round(totalFare) },
     ],
+    isLive: isLiveQuote,
+    sourcePortal,
+    verificationUrl: f.verification_url || f.carrier_verified_url || f.google_flights_url || null,
   };
 }
 
@@ -219,8 +244,9 @@ export interface SearchFlightParams {
 export async function searchFlights(params?: SearchFlightParams): Promise<Flight[]> {
   const fromCode = (params?.fromCode || 'DEL').toUpperCase();
   const toCode = (params?.toCode || 'BOM').toUpperCase();
-  const travelDate = params?.departureDate || new Date().toISOString().split('T')[0];
-  const forceLive = Boolean(params?.forceLive);
+  const travelDate = params?.departureDate || getDefaultDepartureDate(7);
+  // Default to forceLive = true so search always queries live web scraper
+  const forceLive = params?.forceLive !== undefined ? Boolean(params.forceLive) : true;
 
   try {
     const res = await fetchWithTimeout(
@@ -235,7 +261,7 @@ export async function searchFlights(params?: SearchFlightParams): Promise<Flight
           force_live: forceLive,
         }),
       },
-      15000
+      25000
     );
 
     if (res) {
@@ -286,19 +312,50 @@ export async function searchFlights(params?: SearchFlightParams): Promise<Flight
 /**
  * Retrieves a single flight quote details by ID or flight number.
  */
-export async function getFlightDetails(id: string): Promise<Flight | null> {
+export async function getFlightDetails(
+  id: string,
+  fromCode?: string,
+  toCode?: string,
+  travelDate?: string
+): Promise<Flight | null> {
+  // 1. Check client-side cached flight in sessionStorage first (instant & exact match)
+  if (typeof window !== 'undefined') {
+    try {
+      const cached = sessionStorage.getItem(`aerodex_flight_${id}`) || sessionStorage.getItem('aerodex_selected_flight');
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (parsed && (parsed.id === id || parsed.flightNumber === id || !id)) {
+          return parsed;
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 2. Query backend /api/v1/flight endpoint
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/api/v1/flight?id=${encodeURIComponent(id)}`);
+    const origParam = fromCode || (typeof window !== 'undefined' ? sessionStorage.getItem('aerodex_search_from') : null) || '';
+    const destParam = toCode || (typeof window !== 'undefined' ? sessionStorage.getItem('aerodex_search_to') : null) || '';
+    const qParams = new URLSearchParams({ id });
+    if (origParam) qParams.set('origin', origParam);
+    if (destParam) qParams.set('destination', destParam);
+    const res = await fetchWithTimeout(`${API_BASE}/api/v1/flight?${qParams.toString()}`);
     if (res) {
       const data = await res.json();
-      if (data && data.flightNumber) {
+      if (data && data.airline && data.flightNumber && data.basePrice) {
+        return data as Flight;
+      }
+      if (data && (data.flightNumber || data.flight_number)) {
         return transformScrapedFlight(data, 0);
       }
     }
   } catch (e) {}
 
-  // Fallback to searching flights
-  const flights = await searchFlights({ fromCode: 'DEL', toCode: 'BOM' });
+  // 3. Fallback to searching the actual route if provided
+  const orig = fromCode || (typeof window !== 'undefined' ? sessionStorage.getItem('aerodex_search_from') : null) || 'DEL';
+  const dest = toCode || (typeof window !== 'undefined' ? sessionStorage.getItem('aerodex_search_to') : null) || 'BOM';
+  const date = travelDate || (typeof window !== 'undefined' ? sessionStorage.getItem('aerodex_search_date') : null);
+
+  const flights = await searchFlights({ fromCode: orig, toCode: dest, departureDate: date || undefined });
   const found = flights.find((f) => f.id === id || f.flightNumber === id);
   return found || flights[0] || null;
 }
@@ -527,38 +584,99 @@ export async function getAnomalies(): Promise<AirfareAnomaly[]> {
  */
 export async function getCPIInsights(): Promise<CPIInsightData> {
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/api/v1/live/pulse`);
-    if (res) {
-      const p = await res.json();
-      return {
-        airfareChange: Number(p.national_change_pct || 3.2),
-        monthlyMovement: 1.9,
-        highestIncreaseRoute: 'DEL → BOM (+6.2%)',
-        lowestIncreaseRoute: 'BLR → BOM (-1.2%)',
-        inflationTrend: [
-          { month: 'May 2026', airfareInflation: 5.8, generalCPI: 4.9 },
-          { month: 'Jun 2026', airfareInflation: 6.4, generalCPI: 5.2 },
-          { month: 'Jul 2026', airfareInflation: 3.1, generalCPI: 4.8 },
-          { month: 'Aug 2026', airfareInflation: 3.9, generalCPI: 4.6 },
-          { month: 'Sep 2026', airfareInflation: Number(p.national_change_pct || 3.2), generalCPI: 4.7 },
-        ],
-        monthlyMovementData: [
-          { month: 'May', change: 3.4 },
-          { month: 'Jun', change: 2.0 },
-          { month: 'Jul', change: -3.0 },
-          { month: 'Aug', change: 1.4 },
-          { month: 'Sep', change: 1.9 },
-        ],
-        routeComparison: [
-          { route: 'DEL → BOM', change: 6.2 },
-          { route: 'MAA → DEL', change: 4.8 },
-          { route: 'BOM → DEL', change: 3.2 },
-          { route: 'HYD → DEL', change: 1.1 },
-          { route: 'BLR → BOM', change: -1.2 },
-        ],
-      };
+    const [pulseRes, timelineRes] = await Promise.all([
+      fetchWithTimeout(`${API_BASE}/api/v1/live/pulse`),
+      fetchWithTimeout(`${API_BASE}/api/v1/macro/timeline`),
+    ]);
+
+    let nationalChange = 3.2;
+    let routeComparison: { route: string; change: number }[] = [];
+    let highestIncreaseRoute = 'DEL → BOM (+6.2%)';
+    let lowestIncreaseRoute = 'BLR → BOM (-1.2%)';
+
+    if (pulseRes) {
+      const p = await pulseRes.json();
+      if (p.national_change_pct) nationalChange = Number(p.national_change_pct);
+      const sectors = p.sector_matrix?.sectors || [];
+      if (sectors.length > 0) {
+        routeComparison = sectors.slice(0, 5).map((s: any) => {
+          const t7 = s.windows?.['T+7'] || s.windows?.['T+1'];
+          return {
+            route: s.route_code.replace('-', ' → '),
+            change: Number(t7?.surge_pct || 0),
+          };
+        });
+        const sorted = [...routeComparison].sort((a, b) => b.change - a.change);
+        if (sorted.length > 0) {
+          highestIncreaseRoute = `${sorted[0].route} (${sorted[0].change > 0 ? '+' : ''}${sorted[0].change}%)`;
+          lowestIncreaseRoute = `${sorted[sorted.length - 1].route} (${sorted[sorted.length - 1].change > 0 ? '+' : ''}${sorted[sorted.length - 1].change}%)`;
+        }
+      }
     }
-  } catch (e) {}
+
+    let inflationTrend = [
+      { month: 'May 2026', airfareInflation: 5.8, generalCPI: 4.9 },
+      { month: 'Jun 2026', airfareInflation: 6.4, generalCPI: 5.2 },
+      { month: 'Jul 2026', airfareInflation: 3.1, generalCPI: 4.8 },
+      { month: 'Aug 2026', airfareInflation: 3.9, generalCPI: 4.6 },
+      { month: 'Sep 2026 (Live)', airfareInflation: nationalChange, generalCPI: 4.7 },
+    ];
+    let monthlyMovementData = [
+      { month: 'May', change: 3.4 },
+      { month: 'Jun', change: 2.0 },
+      { month: 'Jul', change: -3.0 },
+      { month: 'Aug', change: 1.4 },
+      { month: 'Sep (Live)', change: nationalChange },
+    ];
+
+    if (timelineRes) {
+      const timeline = await timelineRes.json();
+      if (Array.isArray(timeline) && timeline.length >= 4) {
+        const lastPoints = timeline.slice(-5);
+        inflationTrend = lastPoints.map((pt: any) => {
+          const airfareInfl = Number(((pt.realtime_scraped_index || 120) - 100).toFixed(1));
+          const genCPI = Number(((pt.mospi_official_index || 120) - 100).toFixed(1));
+          return {
+            month: pt.period.replace('2026 ', '').replace('2025 ', ''),
+            airfareInflation: airfareInfl,
+            generalCPI: genCPI,
+          };
+        });
+        monthlyMovementData = lastPoints.map((pt: any, i: number) => {
+          const prev = i > 0 ? lastPoints[i - 1] : pt;
+          const currIdx = pt.realtime_scraped_index || 120;
+          const prevIdx = prev.realtime_scraped_index || 120;
+          const mom = Number(((currIdx - prevIdx) / prevIdx * 100).toFixed(1));
+          return {
+            month: pt.period.replace('2026 ', '').replace('2025 ', '').split(' ')[0],
+            change: mom,
+          };
+        });
+      }
+    }
+
+    if (routeComparison.length === 0) {
+      routeComparison = [
+        { route: 'DEL → BOM', change: 6.2 },
+        { route: 'MAA → DEL', change: 4.8 },
+        { route: 'BOM → DEL', change: 3.2 },
+        { route: 'HYD → DEL', change: 1.1 },
+        { route: 'BLR → BOM', change: -1.2 },
+      ];
+    }
+
+    return {
+      airfareChange: nationalChange,
+      monthlyMovement: monthlyMovementData[monthlyMovementData.length - 1]?.change || 1.9,
+      highestIncreaseRoute,
+      lowestIncreaseRoute,
+      inflationTrend,
+      monthlyMovementData,
+      routeComparison,
+    };
+  } catch (e) {
+    console.warn('[getCPIInsights live fetch error]', e);
+  }
 
   return {
     airfareChange: 3.2,
@@ -727,9 +845,28 @@ export async function getDataExplorerFares(query?: string): Promise<ExplorerFare
 }
 
 /**
- * Returns top DGCA monitored routes.
+ * Returns top DGCA monitored routes with live dynamically updated airfares.
  */
 export async function getPopularRoutes(): Promise<PopularRouteItem[]> {
+  try {
+    const res = await fetchWithTimeout(`${API_BASE}/api/v1/live/pulse`);
+    if (res) {
+      const data = await res.json();
+      if (data && data.latest_fares) {
+        const items = Object.entries(data.latest_fares).slice(0, 8).map(([pair, fare]) => {
+          const [f, t] = pair.split('-');
+          return {
+            fromCode: f,
+            fromCity: AIRPORT_CITY_MAP[f] || f,
+            toCode: t,
+            toCity: AIRPORT_CITY_MAP[t] || t,
+            avgFare: Math.round(Number(fare)),
+          };
+        });
+        if (items.length > 0) return items;
+      }
+    }
+  } catch (e) {}
   return POPULAR_ROUTES;
 }
 

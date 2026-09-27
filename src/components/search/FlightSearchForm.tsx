@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Plane, Calendar, Users, ArrowRightLeft, Search, BellRing, Sparkles } from 'lucide-react';
 import { AIRPORTS } from '../../data/mockData';
 import { Button } from '../ui/Button';
+import { getDefaultDepartureDate } from '../../lib/api';
 
 interface FlightSearchFormProps {
   initialFrom?: string;
@@ -18,7 +19,7 @@ export const FlightSearchForm: React.FC<FlightSearchFormProps> = ({
   const router = useRouter();
   const [fromCode, setFromCode] = useState(initialFrom);
   const [toCode, setToCode] = useState(initialTo);
-  const [departureDate, setDepartureDate] = useState('2026-09-21');
+  const [departureDate, setDepartureDate] = useState(() => getDefaultDepartureDate(7));
   const [returnDate, setReturnDate] = useState('');
   const [travellers, setTravellers] = useState(1);
   const [cabinClass, setCabinClass] = useState('Economy');
@@ -168,6 +169,7 @@ export const FlightSearchForm: React.FC<FlightSearchFormProps> = ({
               <Calendar className="w-4 h-4 text-blue-600" />
               <input
                 type="date"
+                min={new Date().toISOString().split('T')[0]}
                 value={departureDate}
                 onChange={(e) => setDepartureDate(e.target.value)}
                 className="w-full bg-transparent font-bold text-slate-900 text-sm focus:outline-none cursor-pointer"

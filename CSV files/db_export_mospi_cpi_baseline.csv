@@ -1,0 +1,1787 @@
+id,sector,year,month,state,sub_class,index_value,yoy_inflation_pct
+1,Rural,2026,July,All India,07.3.3,134.43,30.18
+2,Urban,2026,July,All India,07.3.3,119.6,18.12
+3,Combined,2026,July,All India,07.3.3,125.46,22.94
+4,Rural,2026,July,Andaman And Nicobar Islands,07.3.3,97.37,41.06
+5,Urban,2026,July,Andaman And Nicobar Islands,07.3.3,97.37,41.06
+6,Combined,2026,July,Andaman And Nicobar Islands,07.3.3,97.37,41.06
+7,Rural,2026,July,Andhra Pradesh,07.3.3,56.6,-35.57
+8,Urban,2026,July,Andhra Pradesh,07.3.3,56.6,-35.57
+9,Combined,2026,July,Andhra Pradesh,07.3.3,56.6,-35.57
+10,Rural,2026,July,Arunachal Pradesh,07.3.3,130.27,-6.79
+11,Urban,2026,July,Arunachal Pradesh,07.3.3,130.27,-6.79
+12,Combined,2026,July,Arunachal Pradesh,07.3.3,130.27,-6.79
+13,Rural,2026,July,Assam,07.3.3,122.66,-6.77
+14,Urban,2026,July,Assam,07.3.3,122.66,-6.77
+15,Combined,2026,July,Assam,07.3.3,122.66,-6.77
+16,Rural,2026,July,Bihar,07.3.3,92.57,12.71
+17,Urban,2026,July,Bihar,07.3.3,92.57,12.71
+18,Combined,2026,July,Bihar,07.3.3,92.57,12.71
+19,Urban,2026,July,Chhattisgarh,07.3.3,113.44,-4.9
+20,Combined,2026,July,Chhattisgarh,07.3.3,113.44,-4.9
+21,Rural,2026,July,Goa,07.3.3,147.57,34.14
+22,Urban,2026,July,Goa,07.3.3,147.57,34.14
+23,Combined,2026,July,Goa,07.3.3,147.57,34.14
+24,Rural,2026,July,Gujarat,07.3.3,107.99,4.18
+25,Urban,2026,July,Gujarat,07.3.3,107.99,4.18
+26,Combined,2026,July,Gujarat,07.3.3,107.99,4.18
+27,Rural,2026,July,Haryana,07.3.3,131.72,45.6
+28,Urban,2026,July,Haryana,07.3.3,131.72,45.6
+29,Combined,2026,July,Haryana,07.3.3,131.72,45.6
+30,Rural,2026,July,Himachal Pradesh,07.3.3,154.11,72.95
+31,Urban,2026,July,Himachal Pradesh,07.3.3,154.11,72.95
+32,Combined,2026,July,Himachal Pradesh,07.3.3,154.11,72.95
+33,Urban,2026,July,Jammu And Kashmir,07.3.3,110.79,-2.59
+34,Combined,2026,July,Jammu And Kashmir,07.3.3,110.79,-2.59
+35,Urban,2026,July,Jharkhand,07.3.3,81.84,-8.84
+36,Combined,2026,July,Jharkhand,07.3.3,81.84,-8.84
+37,Rural,2026,July,Karnataka,07.3.3,119.02,10.45
+38,Urban,2026,July,Karnataka,07.3.3,119.02,10.45
+39,Combined,2026,July,Karnataka,07.3.3,119.02,10.45
+40,Rural,2026,July,Kerala,07.3.3,117.96,22.72
+41,Urban,2026,July,Kerala,07.3.3,117.96,22.72
+42,Combined,2026,July,Kerala,07.3.3,117.96,22.72
+43,Urban,2026,July,Ladakh,07.3.3,181.9,30.91
+44,Combined,2026,July,Ladakh,07.3.3,181.9,30.91
+45,Rural,2026,July,Lakshadweep,07.3.3,139.61,14.33
+46,Urban,2026,July,Lakshadweep,07.3.3,139.61,14.33
+47,Combined,2026,July,Lakshadweep,07.3.3,139.61,14.33
+48,Rural,2026,July,Madhya Pradesh,07.3.3,93.34,14.25
+49,Urban,2026,July,Madhya Pradesh,07.3.3,93.34,14.25
+50,Combined,2026,July,Madhya Pradesh,07.3.3,93.34,14.25
+51,Rural,2026,July,Maharashtra,07.3.3,125.83,34.86
+52,Urban,2026,July,Maharashtra,07.3.3,125.83,34.86
+53,Combined,2026,July,Maharashtra,07.3.3,125.83,34.86
+54,Rural,2026,July,Manipur,07.3.3,113.03,-14.59
+55,Urban,2026,July,Manipur,07.3.3,113.03,-14.59
+56,Combined,2026,July,Manipur,07.3.3,113.03,-14.59
+57,Urban,2026,July,Meghalaya,07.3.3,154.06,14.89
+58,Combined,2026,July,Meghalaya,07.3.3,154.06,14.89
+59,Rural,2026,July,Mizoram,07.3.3,136.49,-41.97
+60,Urban,2026,July,Mizoram,07.3.3,136.49,-41.97
+61,Combined,2026,July,Mizoram,07.3.3,136.49,-41.97
+62,Rural,2026,July,Nagaland,07.3.3,83.68,15.29
+63,Urban,2026,July,Nagaland,07.3.3,83.68,15.29
+64,Combined,2026,July,Nagaland,07.3.3,83.68,15.29
+65,Urban,2026,July,NCT of Delhi,07.3.3,131.72,45.6
+66,Combined,2026,July,NCT of Delhi,07.3.3,131.72,45.6
+67,Urban,2026,July,Odisha,07.3.3,245.5,148.83
+68,Combined,2026,July,Odisha,07.3.3,245.5,148.83
+69,Rural,2026,July,Punjab,07.3.3,432.69,172.01
+70,Urban,2026,July,Punjab,07.3.3,432.69,172.01
+71,Combined,2026,July,Punjab,07.3.3,432.69,172.01
+72,Rural,2026,July,Rajasthan,07.3.3,76.73,-36.78
+73,Urban,2026,July,Rajasthan,07.3.3,76.73,-36.78
+74,Combined,2026,July,Rajasthan,07.3.3,76.73,-36.78
+75,Rural,2026,July,Sikkim,07.3.3,100.0,0.0
+76,Urban,2026,July,Sikkim,07.3.3,100.0,0.0
+77,Combined,2026,July,Sikkim,07.3.3,100.0,0.0
+78,Rural,2026,July,Tamil Nadu,07.3.3,115.75,-1.05
+79,Urban,2026,July,Tamil Nadu,07.3.3,115.75,-1.05
+80,Combined,2026,July,Tamil Nadu,07.3.3,115.75,-1.05
+81,Rural,2026,July,Telangana,07.3.3,120.36,16.94
+82,Urban,2026,July,Telangana,07.3.3,120.36,16.94
+83,Combined,2026,July,Telangana,07.3.3,120.36,16.94
+84,Rural,2026,July,Tripura,07.3.3,98.22,13.08
+85,Urban,2026,July,Tripura,07.3.3,98.22,13.08
+86,Combined,2026,July,Tripura,07.3.3,98.22,13.08
+87,Rural,2026,July,Uttar Pradesh,07.3.3,81.72,-14.92
+88,Urban,2026,July,Uttar Pradesh,07.3.3,81.72,-14.92
+89,Combined,2026,July,Uttar Pradesh,07.3.3,81.72,-14.92
+90,Urban,2026,July,Uttarakhand,07.3.3,154.48,61.57
+91,Combined,2026,July,Uttarakhand,07.3.3,154.48,61.57
+92,Rural,2026,July,West Bengal,07.3.3,112.53,19.09
+93,Urban,2026,July,West Bengal,07.3.3,112.53,19.09
+94,Combined,2026,July,West Bengal,07.3.3,112.53,19.09
+95,Rural,2026,June,All India,07.3.3,134.56,7.54
+96,Urban,2026,June,All India,07.3.3,120.55,12.12
+97,Combined,2026,June,All India,07.3.3,126.09,10.14
+98,Rural,2026,June,Andaman And Nicobar Islands,07.3.3,131.12,-11.56
+99,Urban,2026,June,Andaman And Nicobar Islands,07.3.3,131.12,-11.56
+100,Combined,2026,June,Andaman And Nicobar Islands,07.3.3,131.12,-11.56
+101,Rural,2026,June,Andhra Pradesh,07.3.3,55.47,-37.73
+102,Urban,2026,June,Andhra Pradesh,07.3.3,55.47,-37.73
+103,Combined,2026,June,Andhra Pradesh,07.3.3,55.47,-37.73
+104,Rural,2026,June,Arunachal Pradesh,07.3.3,141.06,9.16
+105,Urban,2026,June,Arunachal Pradesh,07.3.3,141.06,9.16
+106,Combined,2026,June,Arunachal Pradesh,07.3.3,141.06,9.16
+107,Rural,2026,June,Assam,07.3.3,128.88,-1.71
+108,Urban,2026,June,Assam,07.3.3,128.88,-1.71
+109,Combined,2026,June,Assam,07.3.3,128.88,-1.71
+110,Rural,2026,June,Bihar,07.3.3,110.07,-1.49
+111,Urban,2026,June,Bihar,07.3.3,110.07,-1.49
+112,Combined,2026,June,Bihar,07.3.3,110.07,-1.49
+113,Urban,2026,June,Chhattisgarh,07.3.3,193.07,23.59
+114,Combined,2026,June,Chhattisgarh,07.3.3,193.07,23.59
+115,Rural,2026,June,Goa,07.3.3,156.77,29.07
+116,Urban,2026,June,Goa,07.3.3,156.77,29.07
+117,Combined,2026,June,Goa,07.3.3,156.77,29.07
+118,Rural,2026,June,Gujarat,07.3.3,117.82,12.88
+119,Urban,2026,June,Gujarat,07.3.3,117.82,12.88
+120,Combined,2026,June,Gujarat,07.3.3,117.82,12.88
+121,Rural,2026,June,Haryana,07.3.3,110.35,-2.32
+122,Urban,2026,June,Haryana,07.3.3,110.35,-2.32
+123,Combined,2026,June,Haryana,07.3.3,110.35,-2.32
+124,Rural,2026,June,Himachal Pradesh,07.3.3,185.06,68.92
+125,Urban,2026,June,Himachal Pradesh,07.3.3,185.06,68.92
+126,Combined,2026,June,Himachal Pradesh,07.3.3,185.06,68.92
+127,Urban,2026,June,Jammu And Kashmir,07.3.3,131.55,70.72
+128,Combined,2026,June,Jammu And Kashmir,07.3.3,131.55,70.72
+129,Urban,2026,June,Jharkhand,07.3.3,101.14,-15.48
+130,Combined,2026,June,Jharkhand,07.3.3,101.14,-15.48
+131,Rural,2026,June,Karnataka,07.3.3,115.35,12.82
+132,Urban,2026,June,Karnataka,07.3.3,115.35,12.82
+133,Combined,2026,June,Karnataka,07.3.3,115.35,12.82
+134,Rural,2026,June,Kerala,07.3.3,124.21,8.89
+135,Urban,2026,June,Kerala,07.3.3,124.21,8.89
+136,Combined,2026,June,Kerala,07.3.3,124.21,8.89
+137,Urban,2026,June,Ladakh,07.3.3,237.55,79.74
+138,Combined,2026,June,Ladakh,07.3.3,237.55,79.74
+139,Rural,2026,June,Lakshadweep,07.3.3,138.49,13.76
+140,Urban,2026,June,Lakshadweep,07.3.3,138.49,13.76
+141,Combined,2026,June,Lakshadweep,07.3.3,138.49,13.76
+142,Rural,2026,June,Madhya Pradesh,07.3.3,93.36,29.5
+143,Urban,2026,June,Madhya Pradesh,07.3.3,93.36,29.5
+144,Combined,2026,June,Madhya Pradesh,07.3.3,93.36,29.5
+145,Rural,2026,June,Maharashtra,07.3.3,114.18,-3.13
+146,Urban,2026,June,Maharashtra,07.3.3,114.18,-3.13
+147,Combined,2026,June,Maharashtra,07.3.3,114.18,-3.13
+148,Rural,2026,June,Manipur,07.3.3,114.56,21.72
+149,Urban,2026,June,Manipur,07.3.3,114.56,21.72
+150,Combined,2026,June,Manipur,07.3.3,114.56,21.72
+151,Urban,2026,June,Meghalaya,07.3.3,202.84,36.87
+152,Combined,2026,June,Meghalaya,07.3.3,202.84,36.87
+153,Rural,2026,June,Mizoram,07.3.3,136.49,-12.15
+154,Urban,2026,June,Mizoram,07.3.3,136.49,-12.15
+155,Combined,2026,June,Mizoram,07.3.3,136.49,-12.15
+156,Rural,2026,June,Nagaland,07.3.3,92.61,29.59
+157,Urban,2026,June,Nagaland,07.3.3,92.61,29.59
+158,Combined,2026,June,Nagaland,07.3.3,92.61,29.59
+159,Urban,2026,June,NCT of Delhi,07.3.3,110.35,-2.32
+160,Combined,2026,June,NCT of Delhi,07.3.3,110.35,-2.32
+161,Urban,2026,June,Odisha,07.3.3,210.48,111.42
+162,Combined,2026,June,Odisha,07.3.3,210.48,111.42
+163,Rural,2026,June,Punjab,07.3.3,343.96,26.25
+164,Urban,2026,June,Punjab,07.3.3,343.96,26.25
+165,Combined,2026,June,Punjab,07.3.3,343.96,26.25
+166,Rural,2026,June,Rajasthan,07.3.3,74.4,-36.2
+167,Urban,2026,June,Rajasthan,07.3.3,74.4,-36.2
+168,Combined,2026,June,Rajasthan,07.3.3,74.4,-36.2
+169,Rural,2026,June,Sikkim,07.3.3,100.0,0.0
+170,Urban,2026,June,Sikkim,07.3.3,100.0,0.0
+171,Combined,2026,June,Sikkim,07.3.3,100.0,0.0
+172,Rural,2026,June,Tamil Nadu,07.3.3,132.65,25.67
+173,Urban,2026,June,Tamil Nadu,07.3.3,132.65,25.67
+174,Combined,2026,June,Tamil Nadu,07.3.3,132.65,25.67
+175,Rural,2026,June,Telangana,07.3.3,120.11,7.21
+176,Urban,2026,June,Telangana,07.3.3,120.11,7.21
+177,Combined,2026,June,Telangana,07.3.3,120.11,7.21
+178,Rural,2026,June,Tripura,07.3.3,111.89,32.73
+179,Urban,2026,June,Tripura,07.3.3,111.89,32.73
+180,Combined,2026,June,Tripura,07.3.3,111.89,32.73
+181,Rural,2026,June,Uttar Pradesh,07.3.3,97.83,-19.01
+182,Urban,2026,June,Uttar Pradesh,07.3.3,97.83,-19.01
+183,Combined,2026,June,Uttar Pradesh,07.3.3,97.83,-19.01
+184,Urban,2026,June,Uttarakhand,07.3.3,143.15,22.16
+185,Combined,2026,June,Uttarakhand,07.3.3,143.15,22.16
+186,Rural,2026,June,West Bengal,07.3.3,119.86,21.46
+187,Urban,2026,June,West Bengal,07.3.3,119.86,21.46
+188,Combined,2026,June,West Bengal,07.3.3,119.86,21.46
+189,Rural,2026,May,All India,07.3.3,135.29,18.04
+190,Urban,2026,May,All India,07.3.3,122.61,13.01
+191,Combined,2026,May,All India,07.3.3,127.62,15.06
+192,Rural,2026,May,Andaman And Nicobar Islands,07.3.3,143.75,-36.37
+193,Urban,2026,May,Andaman And Nicobar Islands,07.3.3,143.75,-36.37
+194,Combined,2026,May,Andaman And Nicobar Islands,07.3.3,143.75,-36.37
+195,Rural,2026,May,Andhra Pradesh,07.3.3,56.89,-36.65
+196,Urban,2026,May,Andhra Pradesh,07.3.3,56.89,-36.65
+197,Combined,2026,May,Andhra Pradesh,07.3.3,56.89,-36.65
+198,Rural,2026,May,Arunachal Pradesh,07.3.3,135.2,11.21
+199,Urban,2026,May,Arunachal Pradesh,07.3.3,135.2,11.21
+200,Combined,2026,May,Arunachal Pradesh,07.3.3,135.2,11.21
+201,Rural,2026,May,Assam,07.3.3,136.63,-7.98
+202,Urban,2026,May,Assam,07.3.3,136.63,-7.98
+203,Combined,2026,May,Assam,07.3.3,136.63,-7.98
+204,Rural,2026,May,Bihar,07.3.3,112.2,27.14
+205,Urban,2026,May,Bihar,07.3.3,112.2,27.14
+206,Combined,2026,May,Bihar,07.3.3,112.2,27.14
+207,Urban,2026,May,Chhattisgarh,07.3.3,163.32,14.86
+208,Combined,2026,May,Chhattisgarh,07.3.3,163.32,14.86
+209,Rural,2026,May,Goa,07.3.3,141.0,20.99
+210,Urban,2026,May,Goa,07.3.3,141.0,20.99
+211,Combined,2026,May,Goa,07.3.3,141.0,20.99
+212,Rural,2026,May,Gujarat,07.3.3,110.56,6.7
+213,Urban,2026,May,Gujarat,07.3.3,110.56,6.7
+214,Combined,2026,May,Gujarat,07.3.3,110.56,6.7
+215,Rural,2026,May,Haryana,07.3.3,108.83,6.36
+216,Urban,2026,May,Haryana,07.3.3,108.83,6.36
+217,Combined,2026,May,Haryana,07.3.3,108.83,6.36
+218,Rural,2026,May,Himachal Pradesh,07.3.3,144.33,40.2
+219,Urban,2026,May,Himachal Pradesh,07.3.3,144.33,40.2
+220,Combined,2026,May,Himachal Pradesh,07.3.3,144.33,40.2
+221,Urban,2026,May,Jammu And Kashmir,07.3.3,136.8,72.23
+222,Combined,2026,May,Jammu And Kashmir,07.3.3,136.8,72.23
+223,Urban,2026,May,Jharkhand,07.3.3,96.81,14.1
+224,Combined,2026,May,Jharkhand,07.3.3,96.81,14.1
+225,Rural,2026,May,Karnataka,07.3.3,117.94,-9.4
+226,Urban,2026,May,Karnataka,07.3.3,117.94,-9.4
+227,Combined,2026,May,Karnataka,07.3.3,117.94,-9.4
+228,Rural,2026,May,Kerala,07.3.3,122.62,7.01
+229,Urban,2026,May,Kerala,07.3.3,122.62,7.01
+230,Combined,2026,May,Kerala,07.3.3,122.62,7.01
+231,Urban,2026,May,Ladakh,07.3.3,97.21,12.43
+232,Combined,2026,May,Ladakh,07.3.3,97.21,12.43
+233,Rural,2026,May,Lakshadweep,07.3.3,123.76,-5.14
+234,Urban,2026,May,Lakshadweep,07.3.3,123.76,-5.14
+235,Combined,2026,May,Lakshadweep,07.3.3,123.76,-5.14
+236,Rural,2026,May,Madhya Pradesh,07.3.3,91.66,18.26
+237,Urban,2026,May,Madhya Pradesh,07.3.3,91.66,18.26
+238,Combined,2026,May,Madhya Pradesh,07.3.3,91.66,18.26
+239,Rural,2026,May,Maharashtra,07.3.3,130.26,6.38
+240,Urban,2026,May,Maharashtra,07.3.3,130.26,6.38
+241,Combined,2026,May,Maharashtra,07.3.3,130.26,6.38
+242,Rural,2026,May,Manipur,07.3.3,95.88,-20.01
+243,Urban,2026,May,Manipur,07.3.3,95.88,-20.01
+244,Combined,2026,May,Manipur,07.3.3,95.88,-20.01
+245,Urban,2026,May,Meghalaya,07.3.3,200.64,14.45
+246,Combined,2026,May,Meghalaya,07.3.3,200.64,14.45
+247,Rural,2026,May,Mizoram,07.3.3,103.35,-12.78
+248,Urban,2026,May,Mizoram,07.3.3,103.35,-12.78
+249,Combined,2026,May,Mizoram,07.3.3,103.35,-12.78
+250,Rural,2026,May,Nagaland,07.3.3,107.31,37.43
+251,Urban,2026,May,Nagaland,07.3.3,107.31,37.43
+252,Combined,2026,May,Nagaland,07.3.3,107.31,37.43
+253,Urban,2026,May,NCT of Delhi,07.3.3,108.83,6.36
+254,Combined,2026,May,NCT of Delhi,07.3.3,108.83,6.36
+255,Urban,2026,May,Odisha,07.3.3,235.15,135.01
+256,Combined,2026,May,Odisha,07.3.3,235.15,135.01
+257,Rural,2026,May,Punjab,07.3.3,361.81,123.83
+258,Urban,2026,May,Punjab,07.3.3,361.81,123.83
+259,Combined,2026,May,Punjab,07.3.3,361.81,123.83
+260,Rural,2026,May,Rajasthan,07.3.3,73.81,-35.64
+261,Urban,2026,May,Rajasthan,07.3.3,73.81,-35.64
+262,Combined,2026,May,Rajasthan,07.3.3,73.81,-35.64
+263,Rural,2026,May,Sikkim,07.3.3,100.0,0.0
+264,Urban,2026,May,Sikkim,07.3.3,100.0,0.0
+265,Combined,2026,May,Sikkim,07.3.3,100.0,0.0
+266,Rural,2026,May,Tamil Nadu,07.3.3,137.36,31.57
+267,Urban,2026,May,Tamil Nadu,07.3.3,137.36,31.57
+268,Combined,2026,May,Tamil Nadu,07.3.3,137.36,31.57
+269,Rural,2026,May,Telangana,07.3.3,116.15,4.78
+270,Urban,2026,May,Telangana,07.3.3,116.15,4.78
+271,Combined,2026,May,Telangana,07.3.3,116.15,4.78
+272,Rural,2026,May,Tripura,07.3.3,119.49,42.81
+273,Urban,2026,May,Tripura,07.3.3,119.49,42.81
+274,Combined,2026,May,Tripura,07.3.3,119.49,42.81
+275,Rural,2026,May,Uttar Pradesh,07.3.3,100.69,-1.32
+276,Urban,2026,May,Uttar Pradesh,07.3.3,100.69,-1.32
+277,Combined,2026,May,Uttar Pradesh,07.3.3,100.69,-1.32
+278,Urban,2026,May,Uttarakhand,07.3.3,151.75,50.61
+279,Combined,2026,May,Uttarakhand,07.3.3,151.75,50.61
+280,Rural,2026,May,West Bengal,07.3.3,135.99,35.97
+281,Urban,2026,May,West Bengal,07.3.3,135.99,35.97
+282,Combined,2026,May,West Bengal,07.3.3,135.99,35.97
+283,Rural,2026,April,All India,07.3.3,132.86,13.29
+284,Urban,2026,April,All India,07.3.3,117.01,9.55
+285,Combined,2026,April,All India,07.3.3,123.27,11.11
+286,Rural,2026,April,Andaman And Nicobar Islands,07.3.3,128.76,-22.98
+287,Urban,2026,April,Andaman And Nicobar Islands,07.3.3,128.76,-22.98
+288,Combined,2026,April,Andaman And Nicobar Islands,07.3.3,128.76,-22.98
+289,Rural,2026,April,Andhra Pradesh,07.3.3,64.29,-26.77
+290,Urban,2026,April,Andhra Pradesh,07.3.3,64.29,-26.77
+291,Combined,2026,April,Andhra Pradesh,07.3.3,64.29,-26.77
+292,Rural,2026,April,Arunachal Pradesh,07.3.3,134.19,-10.58
+293,Urban,2026,April,Arunachal Pradesh,07.3.3,134.19,-10.58
+294,Combined,2026,April,Arunachal Pradesh,07.3.3,134.19,-10.58
+295,Rural,2026,April,Assam,07.3.3,134.62,2.6
+296,Urban,2026,April,Assam,07.3.3,134.62,2.6
+297,Combined,2026,April,Assam,07.3.3,134.62,2.6
+298,Rural,2026,April,Bihar,07.3.3,103.85,-5.72
+299,Urban,2026,April,Bihar,07.3.3,103.85,-5.72
+300,Combined,2026,April,Bihar,07.3.3,103.85,-5.72
+301,Urban,2026,April,Chhattisgarh,07.3.3,154.82,13.35
+302,Combined,2026,April,Chhattisgarh,07.3.3,154.82,13.35
+303,Rural,2026,April,Goa,07.3.3,157.3,-4.52
+304,Urban,2026,April,Goa,07.3.3,157.3,-4.52
+305,Combined,2026,April,Goa,07.3.3,157.3,-4.52
+306,Rural,2026,April,Gujarat,07.3.3,111.35,6.95
+307,Urban,2026,April,Gujarat,07.3.3,111.35,6.95
+308,Combined,2026,April,Gujarat,07.3.3,111.35,6.95
+309,Rural,2026,April,Haryana,07.3.3,109.35,9.98
+310,Urban,2026,April,Haryana,07.3.3,109.35,9.98
+311,Combined,2026,April,Haryana,07.3.3,109.35,9.98
+312,Rural,2026,April,Himachal Pradesh,07.3.3,132.79,41.44
+313,Urban,2026,April,Himachal Pradesh,07.3.3,132.79,41.44
+314,Combined,2026,April,Himachal Pradesh,07.3.3,132.79,41.44
+315,Urban,2026,April,Jammu And Kashmir,07.3.3,113.91,33.55
+316,Combined,2026,April,Jammu And Kashmir,07.3.3,113.91,33.55
+317,Urban,2026,April,Jharkhand,07.3.3,93.23,-3.45
+318,Combined,2026,April,Jharkhand,07.3.3,93.23,-3.45
+319,Rural,2026,April,Karnataka,07.3.3,113.93,-0.02
+320,Urban,2026,April,Karnataka,07.3.3,113.93,-0.02
+321,Combined,2026,April,Karnataka,07.3.3,113.93,-0.02
+322,Rural,2026,April,Kerala,07.3.3,124.36,4.9
+323,Urban,2026,April,Kerala,07.3.3,124.36,4.9
+324,Combined,2026,April,Kerala,07.3.3,124.36,4.9
+325,Urban,2026,April,Ladakh,07.3.3,75.46,-18.73
+326,Combined,2026,April,Ladakh,07.3.3,75.46,-18.73
+327,Rural,2026,April,Lakshadweep,07.3.3,122.94,-9.82
+328,Urban,2026,April,Lakshadweep,07.3.3,122.94,-9.82
+329,Combined,2026,April,Lakshadweep,07.3.3,122.94,-9.82
+330,Rural,2026,April,Madhya Pradesh,07.3.3,89.69,14.01
+331,Urban,2026,April,Madhya Pradesh,07.3.3,89.69,14.01
+332,Combined,2026,April,Madhya Pradesh,07.3.3,89.69,14.01
+333,Rural,2026,April,Maharashtra,07.3.3,121.66,16.3
+334,Urban,2026,April,Maharashtra,07.3.3,121.66,16.3
+335,Combined,2026,April,Maharashtra,07.3.3,121.66,16.3
+336,Rural,2026,April,Manipur,07.3.3,105.7,-12.03
+337,Urban,2026,April,Manipur,07.3.3,105.7,-12.03
+338,Combined,2026,April,Manipur,07.3.3,105.7,-12.03
+339,Urban,2026,April,Meghalaya,07.3.3,152.62,13.02
+340,Combined,2026,April,Meghalaya,07.3.3,152.62,13.02
+341,Rural,2026,April,Mizoram,07.3.3,98.83,17.05
+342,Urban,2026,April,Mizoram,07.3.3,98.83,17.05
+343,Combined,2026,April,Mizoram,07.3.3,98.83,17.05
+344,Rural,2026,April,Nagaland,07.3.3,107.09,31.93
+345,Urban,2026,April,Nagaland,07.3.3,107.09,31.93
+346,Combined,2026,April,Nagaland,07.3.3,107.09,31.93
+347,Urban,2026,April,NCT of Delhi,07.3.3,109.35,9.98
+348,Combined,2026,April,NCT of Delhi,07.3.3,109.35,9.98
+349,Urban,2026,April,Odisha,07.3.3,179.43,67.74
+350,Combined,2026,April,Odisha,07.3.3,179.43,67.74
+351,Rural,2026,April,Punjab,07.3.3,332.84,142.79
+352,Urban,2026,April,Punjab,07.3.3,332.84,142.79
+353,Combined,2026,April,Punjab,07.3.3,332.84,142.79
+354,Rural,2026,April,Rajasthan,07.3.3,98.04,-29.48
+355,Urban,2026,April,Rajasthan,07.3.3,98.04,-29.48
+356,Combined,2026,April,Rajasthan,07.3.3,98.04,-29.48
+357,Rural,2026,April,Sikkim,07.3.3,100.0,0.0
+358,Urban,2026,April,Sikkim,07.3.3,100.0,0.0
+359,Combined,2026,April,Sikkim,07.3.3,100.0,0.0
+360,Rural,2026,April,Tamil Nadu,07.3.3,132.09,23.06
+361,Urban,2026,April,Tamil Nadu,07.3.3,132.09,23.06
+362,Combined,2026,April,Tamil Nadu,07.3.3,132.09,23.06
+363,Rural,2026,April,Telangana,07.3.3,113.45,0.77
+364,Urban,2026,April,Telangana,07.3.3,113.45,0.77
+365,Combined,2026,April,Telangana,07.3.3,113.45,0.77
+366,Rural,2026,April,Tripura,07.3.3,122.19,40.71
+367,Urban,2026,April,Tripura,07.3.3,122.19,40.71
+368,Combined,2026,April,Tripura,07.3.3,122.19,40.71
+369,Rural,2026,April,Uttar Pradesh,07.3.3,84.88,-14.98
+370,Urban,2026,April,Uttar Pradesh,07.3.3,84.88,-14.98
+371,Combined,2026,April,Uttar Pradesh,07.3.3,84.88,-14.98
+372,Urban,2026,April,Uttarakhand,07.3.3,106.19,-36.39
+373,Combined,2026,April,Uttarakhand,07.3.3,106.19,-36.39
+374,Rural,2026,April,West Bengal,07.3.3,116.95,14.53
+375,Urban,2026,April,West Bengal,07.3.3,116.95,14.53
+376,Combined,2026,April,West Bengal,07.3.3,116.95,14.53
+377,Rural,2026,March,All India,07.3.3,135.84,20.98
+378,Urban,2026,March,All India,07.3.3,115.52,9.48
+379,Combined,2026,March,All India,07.3.3,123.55,14.2
+380,Rural,2026,March,Andaman And Nicobar Islands,07.3.3,127.02,-23.01
+381,Urban,2026,March,Andaman And Nicobar Islands,07.3.3,127.02,-23.01
+382,Combined,2026,March,Andaman And Nicobar Islands,07.3.3,127.02,-23.01
+383,Rural,2026,March,Andhra Pradesh,07.3.3,55.43,-36.15
+384,Urban,2026,March,Andhra Pradesh,07.3.3,55.43,-36.15
+385,Combined,2026,March,Andhra Pradesh,07.3.3,55.43,-36.15
+386,Rural,2026,March,Arunachal Pradesh,07.3.3,111.91,-16.54
+387,Urban,2026,March,Arunachal Pradesh,07.3.3,111.91,-16.54
+388,Combined,2026,March,Arunachal Pradesh,07.3.3,111.91,-16.54
+389,Rural,2026,March,Assam,07.3.3,129.05,-9.26
+390,Urban,2026,March,Assam,07.3.3,129.05,-9.26
+391,Combined,2026,March,Assam,07.3.3,129.05,-9.26
+392,Rural,2026,March,Bihar,07.3.3,114.88,0.38
+393,Urban,2026,March,Bihar,07.3.3,114.88,0.38
+394,Combined,2026,March,Bihar,07.3.3,114.88,0.38
+395,Urban,2026,March,Chhattisgarh,07.3.3,151.85,16.71
+396,Combined,2026,March,Chhattisgarh,07.3.3,151.85,16.71
+397,Rural,2026,March,Goa,07.3.3,151.96,33.19
+398,Urban,2026,March,Goa,07.3.3,151.96,33.19
+399,Combined,2026,March,Goa,07.3.3,151.96,33.19
+400,Rural,2026,March,Gujarat,07.3.3,111.73,12.78
+401,Urban,2026,March,Gujarat,07.3.3,111.73,12.78
+402,Combined,2026,March,Gujarat,07.3.3,111.73,12.78
+403,Rural,2026,March,Haryana,07.3.3,101.69,-12.64
+404,Urban,2026,March,Haryana,07.3.3,101.69,-12.64
+405,Combined,2026,March,Haryana,07.3.3,101.69,-12.64
+406,Rural,2026,March,Himachal Pradesh,07.3.3,113.44,51.64
+407,Urban,2026,March,Himachal Pradesh,07.3.3,113.44,51.64
+408,Combined,2026,March,Himachal Pradesh,07.3.3,113.44,51.64
+409,Urban,2026,March,Jammu And Kashmir,07.3.3,101.73,-5.05
+410,Combined,2026,March,Jammu And Kashmir,07.3.3,101.73,-5.05
+411,Urban,2026,March,Jharkhand,07.3.3,99.48,-14.15
+412,Combined,2026,March,Jharkhand,07.3.3,99.48,-14.15
+413,Rural,2026,March,Karnataka,07.3.3,119.21,9.43
+414,Urban,2026,March,Karnataka,07.3.3,119.21,9.43
+415,Combined,2026,March,Karnataka,07.3.3,119.21,9.43
+416,Rural,2026,March,Kerala,07.3.3,126.86,28.76
+417,Urban,2026,March,Kerala,07.3.3,126.86,28.76
+418,Combined,2026,March,Kerala,07.3.3,126.86,28.76
+419,Urban,2026,March,Ladakh,07.3.3,68.51,26.48
+420,Combined,2026,March,Ladakh,07.3.3,68.51,26.48
+421,Rural,2026,March,Lakshadweep,07.3.3,122.53,-8.65
+422,Urban,2026,March,Lakshadweep,07.3.3,122.53,-8.65
+423,Combined,2026,March,Lakshadweep,07.3.3,122.53,-8.65
+424,Rural,2026,March,Madhya Pradesh,07.3.3,88.09,-9.75
+425,Urban,2026,March,Madhya Pradesh,07.3.3,88.09,-9.75
+426,Combined,2026,March,Madhya Pradesh,07.3.3,88.09,-9.75
+427,Rural,2026,March,Maharashtra,07.3.3,114.71,3.71
+428,Urban,2026,March,Maharashtra,07.3.3,114.71,3.71
+429,Combined,2026,March,Maharashtra,07.3.3,114.71,3.71
+430,Rural,2026,March,Manipur,07.3.3,103.5,-7.96
+431,Urban,2026,March,Manipur,07.3.3,103.5,-7.96
+432,Combined,2026,March,Manipur,07.3.3,103.5,-7.96
+433,Urban,2026,March,Meghalaya,07.3.3,152.62,-2.91
+434,Combined,2026,March,Meghalaya,07.3.3,152.62,-2.91
+435,Rural,2026,March,Mizoram,07.3.3,114.48,4.97
+436,Urban,2026,March,Mizoram,07.3.3,114.48,4.97
+437,Combined,2026,March,Mizoram,07.3.3,114.48,4.97
+438,Rural,2026,March,Nagaland,07.3.3,71.99,-5.8
+439,Urban,2026,March,Nagaland,07.3.3,71.99,-5.8
+440,Combined,2026,March,Nagaland,07.3.3,71.99,-5.8
+441,Urban,2026,March,NCT of Delhi,07.3.3,101.69,-12.64
+442,Combined,2026,March,NCT of Delhi,07.3.3,101.69,-12.64
+443,Urban,2026,March,Odisha,07.3.3,226.54,112.66
+444,Combined,2026,March,Odisha,07.3.3,226.54,112.66
+445,Rural,2026,March,Punjab,07.3.3,344.15,103.13
+446,Urban,2026,March,Punjab,07.3.3,344.15,103.13
+447,Combined,2026,March,Punjab,07.3.3,344.15,103.13
+448,Rural,2026,March,Rajasthan,07.3.3,80.15,-39.3
+449,Urban,2026,March,Rajasthan,07.3.3,80.15,-39.3
+450,Combined,2026,March,Rajasthan,07.3.3,80.15,-39.3
+451,Rural,2026,March,Sikkim,07.3.3,100.0,0.0
+452,Urban,2026,March,Sikkim,07.3.3,100.0,0.0
+453,Combined,2026,March,Sikkim,07.3.3,100.0,0.0
+454,Rural,2026,March,Tamil Nadu,07.3.3,101.44,-3.85
+455,Urban,2026,March,Tamil Nadu,07.3.3,101.44,-3.85
+456,Combined,2026,March,Tamil Nadu,07.3.3,101.44,-3.85
+457,Rural,2026,March,Telangana,07.3.3,113.7,26.82
+458,Urban,2026,March,Telangana,07.3.3,113.7,26.82
+459,Combined,2026,March,Telangana,07.3.3,113.7,26.82
+460,Rural,2026,March,Tripura,07.3.3,98.88,1.81
+461,Urban,2026,March,Tripura,07.3.3,98.88,1.81
+462,Combined,2026,March,Tripura,07.3.3,98.88,1.81
+463,Rural,2026,March,Uttar Pradesh,07.3.3,120.81,-13.97
+464,Urban,2026,March,Uttar Pradesh,07.3.3,120.81,-13.97
+465,Combined,2026,March,Uttar Pradesh,07.3.3,120.81,-13.97
+466,Urban,2026,March,Uttarakhand,07.3.3,120.46,-20.79
+467,Combined,2026,March,Uttarakhand,07.3.3,120.46,-20.79
+468,Rural,2026,March,West Bengal,07.3.3,117.09,14.24
+469,Urban,2026,March,West Bengal,07.3.3,117.09,14.24
+470,Combined,2026,March,West Bengal,07.3.3,117.09,14.24
+471,Rural,2026,February,All India,07.3.3,130.76,-4.41
+472,Urban,2026,February,All India,07.3.3,116.99,-8.82
+473,Combined,2026,February,All India,07.3.3,122.43,-7.01
+474,Rural,2026,February,Andaman And Nicobar Islands,07.3.3,87.9,-34.92
+475,Urban,2026,February,Andaman And Nicobar Islands,07.3.3,87.9,-34.92
+476,Combined,2026,February,Andaman And Nicobar Islands,07.3.3,87.9,-34.92
+477,Rural,2026,February,Andhra Pradesh,07.3.3,53.98,-43.27
+478,Urban,2026,February,Andhra Pradesh,07.3.3,53.98,-43.27
+479,Combined,2026,February,Andhra Pradesh,07.3.3,53.98,-43.27
+480,Rural,2026,February,Arunachal Pradesh,07.3.3,158.05,5.59
+481,Urban,2026,February,Arunachal Pradesh,07.3.3,158.05,5.59
+482,Combined,2026,February,Arunachal Pradesh,07.3.3,158.05,5.59
+483,Rural,2026,February,Assam,07.3.3,160.05,16.81
+484,Urban,2026,February,Assam,07.3.3,160.05,16.81
+485,Combined,2026,February,Assam,07.3.3,160.05,16.81
+486,Rural,2026,February,Bihar,07.3.3,90.73,-44.34
+487,Urban,2026,February,Bihar,07.3.3,90.73,-44.34
+488,Combined,2026,February,Bihar,07.3.3,90.73,-44.34
+489,Urban,2026,February,Chhattisgarh,07.3.3,135.23,18.85
+490,Combined,2026,February,Chhattisgarh,07.3.3,135.23,18.85
+491,Rural,2026,February,Goa,07.3.3,154.08,25.21
+492,Urban,2026,February,Goa,07.3.3,154.08,25.21
+493,Combined,2026,February,Goa,07.3.3,154.08,25.21
+494,Rural,2026,February,Gujarat,07.3.3,120.86,12.78
+495,Urban,2026,February,Gujarat,07.3.3,120.86,12.78
+496,Combined,2026,February,Gujarat,07.3.3,120.86,12.78
+497,Rural,2026,February,Haryana,07.3.3,94.97,-40.63
+498,Urban,2026,February,Haryana,07.3.3,94.97,-40.63
+499,Combined,2026,February,Haryana,07.3.3,94.97,-40.63
+500,Rural,2026,February,Himachal Pradesh,07.3.3,107.61,43.85
+501,Urban,2026,February,Himachal Pradesh,07.3.3,107.61,43.85
+502,Combined,2026,February,Himachal Pradesh,07.3.3,107.61,43.85
+503,Urban,2026,February,Jammu And Kashmir,07.3.3,93.26,-11.64
+504,Combined,2026,February,Jammu And Kashmir,07.3.3,93.26,-11.64
+505,Urban,2026,February,Jharkhand,07.3.3,90.36,-25.97
+506,Combined,2026,February,Jharkhand,07.3.3,90.36,-25.97
+507,Rural,2026,February,Karnataka,07.3.3,128.65,-13.64
+508,Urban,2026,February,Karnataka,07.3.3,128.65,-13.64
+509,Combined,2026,February,Karnataka,07.3.3,128.65,-13.64
+510,Rural,2026,February,Kerala,07.3.3,133.74,7.53
+511,Urban,2026,February,Kerala,07.3.3,133.74,7.53
+512,Combined,2026,February,Kerala,07.3.3,133.74,7.53
+513,Urban,2026,February,Ladakh,07.3.3,58.86,-31.29
+514,Combined,2026,February,Ladakh,07.3.3,58.86,-31.29
+515,Rural,2026,February,Lakshadweep,07.3.3,123.76,-5.89
+516,Urban,2026,February,Lakshadweep,07.3.3,123.76,-5.89
+517,Combined,2026,February,Lakshadweep,07.3.3,123.76,-5.89
+518,Rural,2026,February,Madhya Pradesh,07.3.3,85.0,-26.35
+519,Urban,2026,February,Madhya Pradesh,07.3.3,85.0,-26.35
+520,Combined,2026,February,Madhya Pradesh,07.3.3,85.0,-26.35
+521,Rural,2026,February,Maharashtra,07.3.3,122.91,-7.89
+522,Urban,2026,February,Maharashtra,07.3.3,122.91,-7.89
+523,Combined,2026,February,Maharashtra,07.3.3,122.91,-7.89
+524,Rural,2026,February,Manipur,07.3.3,117.61,16.36
+525,Urban,2026,February,Manipur,07.3.3,117.61,16.36
+526,Combined,2026,February,Manipur,07.3.3,117.61,16.36
+527,Urban,2026,February,Meghalaya,07.3.3,123.09,19.72
+528,Combined,2026,February,Meghalaya,07.3.3,123.09,19.72
+529,Rural,2026,February,Mizoram,07.3.3,102.28,-34.87
+530,Urban,2026,February,Mizoram,07.3.3,102.28,-34.87
+531,Combined,2026,February,Mizoram,07.3.3,102.28,-34.87
+532,Rural,2026,February,Nagaland,07.3.3,69.75,-16.42
+533,Urban,2026,February,Nagaland,07.3.3,69.75,-16.42
+534,Combined,2026,February,Nagaland,07.3.3,69.75,-16.42
+535,Urban,2026,February,NCT of Delhi,07.3.3,94.97,-40.63
+536,Combined,2026,February,NCT of Delhi,07.3.3,94.97,-40.63
+537,Urban,2026,February,Odisha,07.3.3,237.29,115.48
+538,Combined,2026,February,Odisha,07.3.3,237.29,115.48
+539,Rural,2026,February,Punjab,07.3.3,241.88,78.39
+540,Urban,2026,February,Punjab,07.3.3,241.88,78.39
+541,Combined,2026,February,Punjab,07.3.3,241.88,78.39
+542,Rural,2026,February,Rajasthan,07.3.3,96.65,-23.92
+543,Urban,2026,February,Rajasthan,07.3.3,96.65,-23.92
+544,Combined,2026,February,Rajasthan,07.3.3,96.65,-23.92
+545,Rural,2026,February,Sikkim,07.3.3,100.0,0.0
+546,Urban,2026,February,Sikkim,07.3.3,100.0,0.0
+547,Combined,2026,February,Sikkim,07.3.3,100.0,0.0
+548,Rural,2026,February,Tamil Nadu,07.3.3,99.16,-30.83
+549,Urban,2026,February,Tamil Nadu,07.3.3,99.16,-30.83
+550,Combined,2026,February,Tamil Nadu,07.3.3,99.16,-30.83
+551,Rural,2026,February,Telangana,07.3.3,111.27,-11.87
+552,Urban,2026,February,Telangana,07.3.3,111.27,-11.87
+553,Combined,2026,February,Telangana,07.3.3,111.27,-11.87
+554,Rural,2026,February,Tripura,07.3.3,109.88,-3.48
+555,Urban,2026,February,Tripura,07.3.3,109.88,-3.48
+556,Combined,2026,February,Tripura,07.3.3,109.88,-3.48
+557,Rural,2026,February,Uttar Pradesh,07.3.3,109.37,-53.79
+558,Urban,2026,February,Uttar Pradesh,07.3.3,109.37,-53.79
+559,Combined,2026,February,Uttar Pradesh,07.3.3,109.37,-53.79
+560,Urban,2026,February,Uttarakhand,07.3.3,105.83,-39.75
+561,Combined,2026,February,Uttarakhand,07.3.3,105.83,-39.75
+562,Rural,2026,February,West Bengal,07.3.3,98.31,-17.62
+563,Urban,2026,February,West Bengal,07.3.3,98.31,-17.62
+564,Combined,2026,February,West Bengal,07.3.3,98.31,-17.62
+565,Rural,2026,January,All India,07.3.3,134.8,11.61
+566,Urban,2026,January,All India,07.3.3,114.8,3.13
+567,Combined,2026,January,All India,07.3.3,122.71,6.65
+568,Rural,2026,January,Andaman And Nicobar Islands,07.3.3,74.48,-29.06
+569,Urban,2026,January,Andaman And Nicobar Islands,07.3.3,74.48,-29.06
+570,Combined,2026,January,Andaman And Nicobar Islands,07.3.3,74.48,-29.06
+571,Rural,2026,January,Andhra Pradesh,07.3.3,58.86,-39.47
+572,Urban,2026,January,Andhra Pradesh,07.3.3,58.86,-39.47
+573,Combined,2026,January,Andhra Pradesh,07.3.3,58.86,-39.47
+574,Rural,2026,January,Arunachal Pradesh,07.3.3,196.55,31.1
+575,Urban,2026,January,Arunachal Pradesh,07.3.3,196.55,31.1
+576,Combined,2026,January,Arunachal Pradesh,07.3.3,196.55,31.1
+577,Rural,2026,January,Assam,07.3.3,156.84,50.26
+578,Urban,2026,January,Assam,07.3.3,156.84,50.26
+579,Combined,2026,January,Assam,07.3.3,156.84,50.26
+580,Rural,2026,January,Bihar,07.3.3,86.99,-7.65
+581,Urban,2026,January,Bihar,07.3.3,86.99,-7.65
+582,Combined,2026,January,Bihar,07.3.3,86.99,-7.65
+583,Urban,2026,January,Chhattisgarh,07.3.3,133.98,2.29
+584,Combined,2026,January,Chhattisgarh,07.3.3,133.98,2.29
+585,Rural,2026,January,Goa,07.3.3,138.98,18.78
+586,Urban,2026,January,Goa,07.3.3,138.98,18.78
+587,Combined,2026,January,Goa,07.3.3,138.98,18.78
+588,Rural,2026,January,Gujarat,07.3.3,107.34,4.22
+589,Urban,2026,January,Gujarat,07.3.3,107.34,4.22
+590,Combined,2026,January,Gujarat,07.3.3,107.34,4.22
+591,Rural,2026,January,Haryana,07.3.3,104.33,-13.95
+592,Urban,2026,January,Haryana,07.3.3,104.33,-13.95
+593,Combined,2026,January,Haryana,07.3.3,104.33,-13.95
+594,Rural,2026,January,Himachal Pradesh,07.3.3,80.34,-9.84
+595,Urban,2026,January,Himachal Pradesh,07.3.3,80.34,-9.84
+596,Combined,2026,January,Himachal Pradesh,07.3.3,80.34,-9.84
+597,Urban,2026,January,Jammu And Kashmir,07.3.3,90.34,-15.82
+598,Combined,2026,January,Jammu And Kashmir,07.3.3,90.34,-15.82
+599,Urban,2026,January,Jharkhand,07.3.3,83.47,-22.69
+600,Combined,2026,January,Jharkhand,07.3.3,83.47,-22.69
+601,Rural,2026,January,Karnataka,07.3.3,124.93,11.88
+602,Urban,2026,January,Karnataka,07.3.3,124.93,11.88
+603,Combined,2026,January,Karnataka,07.3.3,124.93,11.88
+604,Rural,2026,January,Kerala,07.3.3,149.14,10.53
+605,Urban,2026,January,Kerala,07.3.3,149.14,10.53
+606,Combined,2026,January,Kerala,07.3.3,149.14,10.53
+607,Urban,2026,January,Ladakh,07.3.3,63.94,-41.65
+608,Combined,2026,January,Ladakh,07.3.3,63.94,-41.65
+609,Rural,2026,January,Lakshadweep,07.3.3,124.99,-4.96
+610,Urban,2026,January,Lakshadweep,07.3.3,124.99,-4.96
+611,Combined,2026,January,Lakshadweep,07.3.3,124.99,-4.96
+612,Rural,2026,January,Madhya Pradesh,07.3.3,88.05,-18.95
+613,Urban,2026,January,Madhya Pradesh,07.3.3,88.05,-18.95
+614,Combined,2026,January,Madhya Pradesh,07.3.3,88.05,-18.95
+615,Rural,2026,January,Maharashtra,07.3.3,126.3,6.04
+616,Urban,2026,January,Maharashtra,07.3.3,126.3,6.04
+617,Combined,2026,January,Maharashtra,07.3.3,126.3,6.04
+618,Rural,2026,January,Manipur,07.3.3,142.94,-2.08
+619,Urban,2026,January,Manipur,07.3.3,142.94,-2.08
+620,Combined,2026,January,Manipur,07.3.3,142.94,-2.08
+621,Urban,2026,January,Meghalaya,07.3.3,128.17,63.58
+622,Combined,2026,January,Meghalaya,07.3.3,128.17,63.58
+623,Rural,2026,January,Mizoram,07.3.3,98.18,-23.46
+624,Urban,2026,January,Mizoram,07.3.3,98.18,-23.46
+625,Combined,2026,January,Mizoram,07.3.3,98.18,-23.46
+626,Rural,2026,January,Nagaland,07.3.3,73.28,-59.77
+627,Urban,2026,January,Nagaland,07.3.3,73.28,-59.77
+628,Combined,2026,January,Nagaland,07.3.3,73.28,-59.77
+629,Urban,2026,January,NCT of Delhi,07.3.3,104.33,-13.95
+630,Combined,2026,January,NCT of Delhi,07.3.3,104.33,-13.95
+631,Urban,2026,January,Odisha,07.3.3,212.56,89.42
+632,Combined,2026,January,Odisha,07.3.3,212.56,89.42
+633,Rural,2026,January,Punjab,07.3.3,234.68,128.09
+634,Urban,2026,January,Punjab,07.3.3,234.68,128.09
+635,Combined,2026,January,Punjab,07.3.3,234.68,128.09
+636,Rural,2026,January,Rajasthan,07.3.3,92.7,-9.07
+637,Urban,2026,January,Rajasthan,07.3.3,92.7,-9.07
+638,Combined,2026,January,Rajasthan,07.3.3,92.7,-9.07
+639,Rural,2026,January,Sikkim,07.3.3,100.0,0.0
+640,Urban,2026,January,Sikkim,07.3.3,100.0,0.0
+641,Combined,2026,January,Sikkim,07.3.3,100.0,0.0
+642,Rural,2026,January,Tamil Nadu,07.3.3,108.12,-6.68
+643,Urban,2026,January,Tamil Nadu,07.3.3,108.12,-6.68
+644,Combined,2026,January,Tamil Nadu,07.3.3,108.12,-6.68
+645,Rural,2026,January,Telangana,07.3.3,111.3,0.01
+646,Urban,2026,January,Telangana,07.3.3,111.3,0.01
+647,Combined,2026,January,Telangana,07.3.3,111.3,0.01
+648,Rural,2026,January,Tripura,07.3.3,97.73,-0.23
+649,Urban,2026,January,Tripura,07.3.3,97.73,-0.23
+650,Combined,2026,January,Tripura,07.3.3,97.73,-0.23
+651,Rural,2026,January,Uttar Pradesh,07.3.3,96.51,-23.26
+652,Urban,2026,January,Uttar Pradesh,07.3.3,96.51,-23.26
+653,Combined,2026,January,Uttar Pradesh,07.3.3,96.51,-23.26
+654,Urban,2026,January,Uttarakhand,07.3.3,89.03,-20.74
+655,Combined,2026,January,Uttarakhand,07.3.3,89.03,-20.74
+656,Rural,2026,January,West Bengal,07.3.3,97.67,-4.89
+657,Urban,2026,January,West Bengal,07.3.3,97.67,-4.89
+658,Combined,2026,January,West Bengal,07.3.3,97.67,-4.89
+659,Rural,2025,December,All India,07.3.3,134.18,
+660,Urban,2025,December,All India,07.3.3,117.73,
+661,Combined,2025,December,All India,07.3.3,124.23,
+662,Rural,2025,December,Andaman And Nicobar Islands,07.3.3,81.86,
+663,Urban,2025,December,Andaman And Nicobar Islands,07.3.3,81.86,
+664,Combined,2025,December,Andaman And Nicobar Islands,07.3.3,81.86,
+665,Rural,2025,December,Andhra Pradesh,07.3.3,52.69,
+666,Urban,2025,December,Andhra Pradesh,07.3.3,52.69,
+667,Combined,2025,December,Andhra Pradesh,07.3.3,52.69,
+668,Rural,2025,December,Arunachal Pradesh,07.3.3,181.81,
+669,Urban,2025,December,Arunachal Pradesh,07.3.3,181.81,
+670,Combined,2025,December,Arunachal Pradesh,07.3.3,181.81,
+671,Rural,2025,December,Assam,07.3.3,157.59,
+672,Urban,2025,December,Assam,07.3.3,157.59,
+673,Combined,2025,December,Assam,07.3.3,157.59,
+674,Rural,2025,December,Bihar,07.3.3,99.58,
+675,Urban,2025,December,Bihar,07.3.3,99.58,
+676,Combined,2025,December,Bihar,07.3.3,99.58,
+677,Urban,2025,December,Chhattisgarh,07.3.3,149.16,
+678,Combined,2025,December,Chhattisgarh,07.3.3,149.16,
+679,Rural,2025,December,Goa,07.3.3,114.48,
+680,Urban,2025,December,Goa,07.3.3,114.48,
+681,Combined,2025,December,Goa,07.3.3,114.48,
+682,Rural,2025,December,Gujarat,07.3.3,115.25,
+683,Urban,2025,December,Gujarat,07.3.3,115.25,
+684,Combined,2025,December,Gujarat,07.3.3,115.25,
+685,Rural,2025,December,Haryana,07.3.3,104.37,
+686,Urban,2025,December,Haryana,07.3.3,104.37,
+687,Combined,2025,December,Haryana,07.3.3,104.37,
+688,Rural,2025,December,Himachal Pradesh,07.3.3,101.15,
+689,Urban,2025,December,Himachal Pradesh,07.3.3,101.15,
+690,Combined,2025,December,Himachal Pradesh,07.3.3,101.15,
+691,Urban,2025,December,Jammu And Kashmir,07.3.3,100.23,
+692,Combined,2025,December,Jammu And Kashmir,07.3.3,100.23,
+693,Urban,2025,December,Jharkhand,07.3.3,90.52,
+694,Combined,2025,December,Jharkhand,07.3.3,90.52,
+695,Rural,2025,December,Karnataka,07.3.3,140.42,
+696,Urban,2025,December,Karnataka,07.3.3,140.42,
+697,Combined,2025,December,Karnataka,07.3.3,140.42,
+698,Rural,2025,December,Kerala,07.3.3,128.22,
+699,Urban,2025,December,Kerala,07.3.3,128.22,
+700,Combined,2025,December,Kerala,07.3.3,128.22,
+701,Urban,2025,December,Ladakh,07.3.3,89.15,
+702,Combined,2025,December,Ladakh,07.3.3,89.15,
+703,Rural,2025,December,Lakshadweep,07.3.3,120.86,
+704,Urban,2025,December,Lakshadweep,07.3.3,120.86,
+705,Combined,2025,December,Lakshadweep,07.3.3,120.86,
+706,Rural,2025,December,Madhya Pradesh,07.3.3,90.45,
+707,Urban,2025,December,Madhya Pradesh,07.3.3,90.45,
+708,Combined,2025,December,Madhya Pradesh,07.3.3,90.45,
+709,Rural,2025,December,Maharashtra,07.3.3,131.96,
+710,Urban,2025,December,Maharashtra,07.3.3,131.96,
+711,Combined,2025,December,Maharashtra,07.3.3,131.96,
+712,Rural,2025,December,Manipur,07.3.3,127.64,
+713,Urban,2025,December,Manipur,07.3.3,127.64,
+714,Combined,2025,December,Manipur,07.3.3,127.64,
+715,Urban,2025,December,Meghalaya,07.3.3,240.43,
+716,Combined,2025,December,Meghalaya,07.3.3,240.43,
+717,Rural,2025,December,Mizoram,07.3.3,117.98,
+718,Urban,2025,December,Mizoram,07.3.3,117.98,
+719,Combined,2025,December,Mizoram,07.3.3,117.98,
+720,Rural,2025,December,Nagaland,07.3.3,91.25,
+721,Urban,2025,December,Nagaland,07.3.3,91.25,
+722,Combined,2025,December,Nagaland,07.3.3,91.25,
+723,Urban,2025,December,NCT of Delhi,07.3.3,104.37,
+724,Combined,2025,December,NCT of Delhi,07.3.3,104.37,
+725,Urban,2025,December,Odisha,07.3.3,174.85,
+726,Combined,2025,December,Odisha,07.3.3,174.85,
+727,Rural,2025,December,Punjab,07.3.3,303.92,
+728,Urban,2025,December,Punjab,07.3.3,303.92,
+729,Combined,2025,December,Punjab,07.3.3,303.92,
+730,Rural,2025,December,Rajasthan,07.3.3,111.38,
+731,Urban,2025,December,Rajasthan,07.3.3,111.38,
+732,Combined,2025,December,Rajasthan,07.3.3,111.38,
+733,Rural,2025,December,Sikkim,07.3.3,100.0,
+734,Urban,2025,December,Sikkim,07.3.3,100.0,
+735,Combined,2025,December,Sikkim,07.3.3,100.0,
+736,Rural,2025,December,Tamil Nadu,07.3.3,101.01,
+737,Urban,2025,December,Tamil Nadu,07.3.3,101.01,
+738,Combined,2025,December,Tamil Nadu,07.3.3,101.01,
+739,Rural,2025,December,Telangana,07.3.3,116.49,
+740,Urban,2025,December,Telangana,07.3.3,116.49,
+741,Combined,2025,December,Telangana,07.3.3,116.49,
+742,Rural,2025,December,Tripura,07.3.3,110.07,
+743,Urban,2025,December,Tripura,07.3.3,110.07,
+744,Combined,2025,December,Tripura,07.3.3,110.07,
+745,Rural,2025,December,Uttar Pradesh,07.3.3,108.36,
+746,Urban,2025,December,Uttar Pradesh,07.3.3,108.36,
+747,Combined,2025,December,Uttar Pradesh,07.3.3,108.36,
+748,Urban,2025,December,Uttarakhand,07.3.3,103.08,
+749,Combined,2025,December,Uttarakhand,07.3.3,103.08,
+750,Rural,2025,December,West Bengal,07.3.3,106.43,
+751,Urban,2025,December,West Bengal,07.3.3,106.43,
+752,Combined,2025,December,West Bengal,07.3.3,106.43,
+753,Rural,2025,November,All India,07.3.3,136.83,
+754,Urban,2025,November,All India,07.3.3,111.39,
+755,Combined,2025,November,All India,07.3.3,121.45,
+756,Rural,2025,November,Andaman And Nicobar Islands,07.3.3,73.0,
+757,Urban,2025,November,Andaman And Nicobar Islands,07.3.3,73.0,
+758,Combined,2025,November,Andaman And Nicobar Islands,07.3.3,73.0,
+759,Rural,2025,November,Andhra Pradesh,07.3.3,54.54,
+760,Urban,2025,November,Andhra Pradesh,07.3.3,54.54,
+761,Combined,2025,November,Andhra Pradesh,07.3.3,54.54,
+762,Rural,2025,November,Arunachal Pradesh,07.3.3,136.88,
+763,Urban,2025,November,Arunachal Pradesh,07.3.3,136.88,
+764,Combined,2025,November,Arunachal Pradesh,07.3.3,136.88,
+765,Rural,2025,November,Assam,07.3.3,148.14,
+766,Urban,2025,November,Assam,07.3.3,148.14,
+767,Combined,2025,November,Assam,07.3.3,148.14,
+768,Rural,2025,November,Bihar,07.3.3,89.9,
+769,Urban,2025,November,Bihar,07.3.3,89.9,
+770,Combined,2025,November,Bihar,07.3.3,89.9,
+771,Urban,2025,November,Chhattisgarh,07.3.3,129.98,
+772,Combined,2025,November,Chhattisgarh,07.3.3,129.98,
+773,Rural,2025,November,Goa,07.3.3,125.3,
+774,Urban,2025,November,Goa,07.3.3,125.3,
+775,Combined,2025,November,Goa,07.3.3,125.3,
+776,Rural,2025,November,Gujarat,07.3.3,123.43,
+777,Urban,2025,November,Gujarat,07.3.3,123.43,
+778,Combined,2025,November,Gujarat,07.3.3,123.43,
+779,Rural,2025,November,Haryana,07.3.3,89.98,
+780,Urban,2025,November,Haryana,07.3.3,89.98,
+781,Combined,2025,November,Haryana,07.3.3,89.98,
+782,Rural,2025,November,Himachal Pradesh,07.3.3,70.08,
+783,Urban,2025,November,Himachal Pradesh,07.3.3,70.08,
+784,Combined,2025,November,Himachal Pradesh,07.3.3,70.08,
+785,Urban,2025,November,Jammu And Kashmir,07.3.3,105.19,
+786,Combined,2025,November,Jammu And Kashmir,07.3.3,105.19,
+787,Urban,2025,November,Jharkhand,07.3.3,101.89,
+788,Combined,2025,November,Jharkhand,07.3.3,101.89,
+789,Rural,2025,November,Karnataka,07.3.3,121.43,
+790,Urban,2025,November,Karnataka,07.3.3,121.43,
+791,Combined,2025,November,Karnataka,07.3.3,121.43,
+792,Rural,2025,November,Kerala,07.3.3,107.26,
+793,Urban,2025,November,Kerala,07.3.3,107.26,
+794,Combined,2025,November,Kerala,07.3.3,107.26,
+795,Urban,2025,November,Ladakh,07.3.3,73.53,
+796,Combined,2025,November,Ladakh,07.3.3,73.53,
+797,Rural,2025,November,Lakshadweep,07.3.3,124.99,
+798,Urban,2025,November,Lakshadweep,07.3.3,124.99,
+799,Combined,2025,November,Lakshadweep,07.3.3,124.99,
+800,Rural,2025,November,Madhya Pradesh,07.3.3,89.84,
+801,Urban,2025,November,Madhya Pradesh,07.3.3,89.84,
+802,Combined,2025,November,Madhya Pradesh,07.3.3,89.84,
+803,Rural,2025,November,Maharashtra,07.3.3,121.53,
+804,Urban,2025,November,Maharashtra,07.3.3,121.53,
+805,Combined,2025,November,Maharashtra,07.3.3,121.53,
+806,Rural,2025,November,Manipur,07.3.3,116.37,
+807,Urban,2025,November,Manipur,07.3.3,116.37,
+808,Combined,2025,November,Manipur,07.3.3,116.37,
+809,Urban,2025,November,Meghalaya,07.3.3,159.59,
+810,Combined,2025,November,Meghalaya,07.3.3,159.59,
+811,Rural,2025,November,Mizoram,07.3.3,153.05,
+812,Urban,2025,November,Mizoram,07.3.3,153.05,
+813,Combined,2025,November,Mizoram,07.3.3,153.05,
+814,Rural,2025,November,Nagaland,07.3.3,91.25,
+815,Urban,2025,November,Nagaland,07.3.3,91.25,
+816,Combined,2025,November,Nagaland,07.3.3,91.25,
+817,Urban,2025,November,NCT of Delhi,07.3.3,89.98,
+818,Combined,2025,November,NCT of Delhi,07.3.3,89.98,
+819,Urban,2025,November,Odisha,07.3.3,105.67,
+820,Combined,2025,November,Odisha,07.3.3,105.67,
+821,Rural,2025,November,Punjab,07.3.3,518.87,
+822,Urban,2025,November,Punjab,07.3.3,518.87,
+823,Combined,2025,November,Punjab,07.3.3,518.87,
+824,Rural,2025,November,Rajasthan,07.3.3,107.19,
+825,Urban,2025,November,Rajasthan,07.3.3,107.19,
+826,Combined,2025,November,Rajasthan,07.3.3,107.19,
+827,Rural,2025,November,Sikkim,07.3.3,100.0,
+828,Urban,2025,November,Sikkim,07.3.3,100.0,
+829,Combined,2025,November,Sikkim,07.3.3,100.0,
+830,Rural,2025,November,Tamil Nadu,07.3.3,100.54,
+831,Urban,2025,November,Tamil Nadu,07.3.3,100.54,
+832,Combined,2025,November,Tamil Nadu,07.3.3,100.54,
+833,Rural,2025,November,Telangana,07.3.3,107.63,
+834,Urban,2025,November,Telangana,07.3.3,107.63,
+835,Combined,2025,November,Telangana,07.3.3,107.63,
+836,Rural,2025,November,Tripura,07.3.3,88.94,
+837,Urban,2025,November,Tripura,07.3.3,88.94,
+838,Combined,2025,November,Tripura,07.3.3,88.94,
+839,Rural,2025,November,Uttar Pradesh,07.3.3,103.72,
+840,Urban,2025,November,Uttar Pradesh,07.3.3,103.72,
+841,Combined,2025,November,Uttar Pradesh,07.3.3,103.72,
+842,Urban,2025,November,Uttarakhand,07.3.3,131.04,
+843,Combined,2025,November,Uttarakhand,07.3.3,131.04,
+844,Rural,2025,November,West Bengal,07.3.3,102.72,
+845,Urban,2025,November,West Bengal,07.3.3,102.72,
+846,Combined,2025,November,West Bengal,07.3.3,102.72,
+847,Rural,2025,October,All India,07.3.3,104.47,
+848,Urban,2025,October,All India,07.3.3,110.62,
+849,Combined,2025,October,All India,07.3.3,108.19,
+850,Rural,2025,October,Andaman And Nicobar Islands,07.3.3,90.12,
+851,Urban,2025,October,Andaman And Nicobar Islands,07.3.3,90.12,
+852,Combined,2025,October,Andaman And Nicobar Islands,07.3.3,90.12,
+853,Rural,2025,October,Andhra Pradesh,07.3.3,88.32,
+854,Urban,2025,October,Andhra Pradesh,07.3.3,88.32,
+855,Combined,2025,October,Andhra Pradesh,07.3.3,88.32,
+856,Rural,2025,October,Arunachal Pradesh,07.3.3,118.87,
+857,Urban,2025,October,Arunachal Pradesh,07.3.3,118.87,
+858,Combined,2025,October,Arunachal Pradesh,07.3.3,118.87,
+859,Rural,2025,October,Assam,07.3.3,177.19,
+860,Urban,2025,October,Assam,07.3.3,177.19,
+861,Combined,2025,October,Assam,07.3.3,177.19,
+862,Rural,2025,October,Bihar,07.3.3,87.67,
+863,Urban,2025,October,Bihar,07.3.3,87.67,
+864,Combined,2025,October,Bihar,07.3.3,87.67,
+865,Urban,2025,October,Chhattisgarh,07.3.3,162.01,
+866,Combined,2025,October,Chhattisgarh,07.3.3,162.01,
+867,Rural,2025,October,Goa,07.3.3,176.25,
+868,Urban,2025,October,Goa,07.3.3,176.25,
+869,Combined,2025,October,Goa,07.3.3,176.25,
+870,Rural,2025,October,Gujarat,07.3.3,122.38,
+871,Urban,2025,October,Gujarat,07.3.3,122.38,
+872,Combined,2025,October,Gujarat,07.3.3,122.38,
+873,Rural,2025,October,Haryana,07.3.3,87.11,
+874,Urban,2025,October,Haryana,07.3.3,87.11,
+875,Combined,2025,October,Haryana,07.3.3,87.11,
+876,Rural,2025,October,Himachal Pradesh,07.3.3,70.08,
+877,Urban,2025,October,Himachal Pradesh,07.3.3,70.08,
+878,Combined,2025,October,Himachal Pradesh,07.3.3,70.08,
+879,Urban,2025,October,Jammu And Kashmir,07.3.3,128.62,
+880,Combined,2025,October,Jammu And Kashmir,07.3.3,128.62,
+881,Urban,2025,October,Jharkhand,07.3.3,101.89,
+882,Combined,2025,October,Jharkhand,07.3.3,101.89,
+883,Rural,2025,October,Karnataka,07.3.3,119.4,
+884,Urban,2025,October,Karnataka,07.3.3,119.4,
+885,Combined,2025,October,Karnataka,07.3.3,119.4,
+886,Rural,2025,October,Kerala,07.3.3,100.25,
+887,Urban,2025,October,Kerala,07.3.3,100.25,
+888,Combined,2025,October,Kerala,07.3.3,100.25,
+889,Urban,2025,October,Ladakh,07.3.3,121.06,
+890,Combined,2025,October,Ladakh,07.3.3,121.06,
+891,Rural,2025,October,Lakshadweep,07.3.3,122.11,
+892,Urban,2025,October,Lakshadweep,07.3.3,122.11,
+893,Combined,2025,October,Lakshadweep,07.3.3,122.11,
+894,Rural,2025,October,Madhya Pradesh,07.3.3,92.58,
+895,Urban,2025,October,Madhya Pradesh,07.3.3,92.58,
+896,Combined,2025,October,Madhya Pradesh,07.3.3,92.58,
+897,Rural,2025,October,Maharashtra,07.3.3,127.19,
+898,Urban,2025,October,Maharashtra,07.3.3,127.19,
+899,Combined,2025,October,Maharashtra,07.3.3,127.19,
+900,Rural,2025,October,Manipur,07.3.3,127.85,
+901,Urban,2025,October,Manipur,07.3.3,127.85,
+902,Combined,2025,October,Manipur,07.3.3,127.85,
+903,Urban,2025,October,Meghalaya,07.3.3,160.06,
+904,Combined,2025,October,Meghalaya,07.3.3,160.06,
+905,Rural,2025,October,Mizoram,07.3.3,149.92,
+906,Urban,2025,October,Mizoram,07.3.3,149.92,
+907,Combined,2025,October,Mizoram,07.3.3,149.92,
+908,Rural,2025,October,Nagaland,07.3.3,80.85,
+909,Urban,2025,October,Nagaland,07.3.3,80.85,
+910,Combined,2025,October,Nagaland,07.3.3,80.85,
+911,Urban,2025,October,NCT of Delhi,07.3.3,87.11,
+912,Combined,2025,October,NCT of Delhi,07.3.3,87.11,
+913,Urban,2025,October,Odisha,07.3.3,105.19,
+914,Combined,2025,October,Odisha,07.3.3,105.19,
+915,Rural,2025,October,Punjab,07.3.3,166.11,
+916,Urban,2025,October,Punjab,07.3.3,166.11,
+917,Combined,2025,October,Punjab,07.3.3,166.11,
+918,Rural,2025,October,Rajasthan,07.3.3,89.93,
+919,Urban,2025,October,Rajasthan,07.3.3,89.93,
+920,Combined,2025,October,Rajasthan,07.3.3,89.93,
+921,Rural,2025,October,Sikkim,07.3.3,100.0,
+922,Urban,2025,October,Sikkim,07.3.3,100.0,
+923,Combined,2025,October,Sikkim,07.3.3,100.0,
+924,Rural,2025,October,Tamil Nadu,07.3.3,101.69,
+925,Urban,2025,October,Tamil Nadu,07.3.3,101.69,
+926,Combined,2025,October,Tamil Nadu,07.3.3,101.69,
+927,Rural,2025,October,Telangana,07.3.3,104.06,
+928,Urban,2025,October,Telangana,07.3.3,104.06,
+929,Combined,2025,October,Telangana,07.3.3,104.06,
+930,Rural,2025,October,Tripura,07.3.3,89.09,
+931,Urban,2025,October,Tripura,07.3.3,89.09,
+932,Combined,2025,October,Tripura,07.3.3,89.09,
+933,Rural,2025,October,Uttar Pradesh,07.3.3,76.45,
+934,Urban,2025,October,Uttar Pradesh,07.3.3,76.45,
+935,Combined,2025,October,Uttar Pradesh,07.3.3,76.45,
+936,Urban,2025,October,Uttarakhand,07.3.3,129.27,
+937,Combined,2025,October,Uttarakhand,07.3.3,129.27,
+938,Rural,2025,October,West Bengal,07.3.3,97.86,
+939,Urban,2025,October,West Bengal,07.3.3,97.86,
+940,Combined,2025,October,West Bengal,07.3.3,97.86,
+941,Rural,2025,September,All India,07.3.3,109.43,
+942,Urban,2025,September,All India,07.3.3,102.46,
+943,Combined,2025,September,All India,07.3.3,105.22,
+944,Rural,2025,September,Andaman And Nicobar Islands,07.3.3,83.68,
+945,Urban,2025,September,Andaman And Nicobar Islands,07.3.3,83.68,
+946,Combined,2025,September,Andaman And Nicobar Islands,07.3.3,83.68,
+947,Rural,2025,September,Andhra Pradesh,07.3.3,83.38,
+948,Urban,2025,September,Andhra Pradesh,07.3.3,83.38,
+949,Combined,2025,September,Andhra Pradesh,07.3.3,83.38,
+950,Rural,2025,September,Arunachal Pradesh,07.3.3,131.41,
+951,Urban,2025,September,Arunachal Pradesh,07.3.3,131.41,
+952,Combined,2025,September,Arunachal Pradesh,07.3.3,131.41,
+953,Rural,2025,September,Assam,07.3.3,123.55,
+954,Urban,2025,September,Assam,07.3.3,123.55,
+955,Combined,2025,September,Assam,07.3.3,123.55,
+956,Rural,2025,September,Bihar,07.3.3,90.84,
+957,Urban,2025,September,Bihar,07.3.3,90.84,
+958,Combined,2025,September,Bihar,07.3.3,90.84,
+959,Urban,2025,September,Chhattisgarh,07.3.3,141.69,
+960,Combined,2025,September,Chhattisgarh,07.3.3,141.69,
+961,Rural,2025,September,Goa,07.3.3,110.88,
+962,Urban,2025,September,Goa,07.3.3,110.88,
+963,Combined,2025,September,Goa,07.3.3,110.88,
+964,Rural,2025,September,Gujarat,07.3.3,98.95,
+965,Urban,2025,September,Gujarat,07.3.3,98.95,
+966,Combined,2025,September,Gujarat,07.3.3,98.95,
+967,Rural,2025,September,Haryana,07.3.3,106.9,
+968,Urban,2025,September,Haryana,07.3.3,106.9,
+969,Combined,2025,September,Haryana,07.3.3,106.9,
+970,Rural,2025,September,Himachal Pradesh,07.3.3,65.0,
+971,Urban,2025,September,Himachal Pradesh,07.3.3,65.0,
+972,Combined,2025,September,Himachal Pradesh,07.3.3,65.0,
+973,Urban,2025,September,Jammu And Kashmir,07.3.3,114.4,
+974,Combined,2025,September,Jammu And Kashmir,07.3.3,114.4,
+975,Urban,2025,September,Jharkhand,07.3.3,89.6,
+976,Combined,2025,September,Jharkhand,07.3.3,89.6,
+977,Rural,2025,September,Karnataka,07.3.3,109.57,
+978,Urban,2025,September,Karnataka,07.3.3,109.57,
+979,Combined,2025,September,Karnataka,07.3.3,109.57,
+980,Rural,2025,September,Kerala,07.3.3,108.47,
+981,Urban,2025,September,Kerala,07.3.3,108.47,
+982,Combined,2025,September,Kerala,07.3.3,108.47,
+983,Urban,2025,September,Ladakh,07.3.3,162.48,
+984,Combined,2025,September,Ladakh,07.3.3,162.48,
+985,Rural,2025,September,Lakshadweep,07.3.3,122.11,
+986,Urban,2025,September,Lakshadweep,07.3.3,122.11,
+987,Combined,2025,September,Lakshadweep,07.3.3,122.11,
+988,Rural,2025,September,Madhya Pradesh,07.3.3,88.01,
+989,Urban,2025,September,Madhya Pradesh,07.3.3,88.01,
+990,Combined,2025,September,Madhya Pradesh,07.3.3,88.01,
+991,Rural,2025,September,Maharashtra,07.3.3,108.96,
+992,Urban,2025,September,Maharashtra,07.3.3,108.96,
+993,Combined,2025,September,Maharashtra,07.3.3,108.96,
+994,Rural,2025,September,Manipur,07.3.3,105.57,
+995,Urban,2025,September,Manipur,07.3.3,105.57,
+996,Combined,2025,September,Manipur,07.3.3,105.57,
+997,Urban,2025,September,Meghalaya,07.3.3,157.94,
+998,Combined,2025,September,Meghalaya,07.3.3,157.94,
+999,Rural,2025,September,Mizoram,07.3.3,148.08,
+1000,Urban,2025,September,Mizoram,07.3.3,148.08,
+1001,Combined,2025,September,Mizoram,07.3.3,148.08,
+1002,Rural,2025,September,Nagaland,07.3.3,70.5,
+1003,Urban,2025,September,Nagaland,07.3.3,70.5,
+1004,Combined,2025,September,Nagaland,07.3.3,70.5,
+1005,Urban,2025,September,NCT of Delhi,07.3.3,106.9,
+1006,Combined,2025,September,NCT of Delhi,07.3.3,106.9,
+1007,Urban,2025,September,Odisha,07.3.3,110.11,
+1008,Combined,2025,September,Odisha,07.3.3,110.11,
+1009,Rural,2025,September,Punjab,07.3.3,175.07,
+1010,Urban,2025,September,Punjab,07.3.3,175.07,
+1011,Combined,2025,September,Punjab,07.3.3,175.07,
+1012,Rural,2025,September,Rajasthan,07.3.3,138.21,
+1013,Urban,2025,September,Rajasthan,07.3.3,138.21,
+1014,Combined,2025,September,Rajasthan,07.3.3,138.21,
+1015,Rural,2025,September,Sikkim,07.3.3,100.0,
+1016,Urban,2025,September,Sikkim,07.3.3,100.0,
+1017,Combined,2025,September,Sikkim,07.3.3,100.0,
+1018,Rural,2025,September,Tamil Nadu,07.3.3,108.09,
+1019,Urban,2025,September,Tamil Nadu,07.3.3,108.09,
+1020,Combined,2025,September,Tamil Nadu,07.3.3,108.09,
+1021,Rural,2025,September,Telangana,07.3.3,99.08,
+1022,Urban,2025,September,Telangana,07.3.3,99.08,
+1023,Combined,2025,September,Telangana,07.3.3,99.08,
+1024,Rural,2025,September,Tripura,07.3.3,78.42,
+1025,Urban,2025,September,Tripura,07.3.3,78.42,
+1026,Combined,2025,September,Tripura,07.3.3,78.42,
+1027,Rural,2025,September,Uttar Pradesh,07.3.3,82.43,
+1028,Urban,2025,September,Uttar Pradesh,07.3.3,82.43,
+1029,Combined,2025,September,Uttar Pradesh,07.3.3,82.43,
+1030,Urban,2025,September,Uttarakhand,07.3.3,97.02,
+1031,Combined,2025,September,Uttarakhand,07.3.3,97.02,
+1032,Rural,2025,September,West Bengal,07.3.3,86.7,
+1033,Urban,2025,September,West Bengal,07.3.3,86.7,
+1034,Combined,2025,September,West Bengal,07.3.3,86.7,
+1035,Rural,2025,August,All India,07.3.3,115.09,
+1036,Urban,2025,August,All India,07.3.3,110.16,
+1037,Combined,2025,August,All India,07.3.3,112.11,
+1038,Rural,2025,August,Andaman And Nicobar Islands,07.3.3,73.6,
+1039,Urban,2025,August,Andaman And Nicobar Islands,07.3.3,73.6,
+1040,Combined,2025,August,Andaman And Nicobar Islands,07.3.3,73.6,
+1041,Rural,2025,August,Andhra Pradesh,07.3.3,122.77,
+1042,Urban,2025,August,Andhra Pradesh,07.3.3,122.77,
+1043,Combined,2025,August,Andhra Pradesh,07.3.3,122.77,
+1044,Rural,2025,August,Arunachal Pradesh,07.3.3,139.76,
+1045,Urban,2025,August,Arunachal Pradesh,07.3.3,139.76,
+1046,Combined,2025,August,Arunachal Pradesh,07.3.3,139.76,
+1047,Rural,2025,August,Assam,07.3.3,122.33,
+1048,Urban,2025,August,Assam,07.3.3,122.33,
+1049,Combined,2025,August,Assam,07.3.3,122.33,
+1050,Rural,2025,August,Bihar,07.3.3,88.98,
+1051,Urban,2025,August,Bihar,07.3.3,88.98,
+1052,Combined,2025,August,Bihar,07.3.3,88.98,
+1053,Urban,2025,August,Chhattisgarh,07.3.3,121.24,
+1054,Combined,2025,August,Chhattisgarh,07.3.3,121.24,
+1055,Rural,2025,August,Goa,07.3.3,121.96,
+1056,Urban,2025,August,Goa,07.3.3,121.96,
+1057,Combined,2025,August,Goa,07.3.3,121.96,
+1058,Rural,2025,August,Gujarat,07.3.3,104.49,
+1059,Urban,2025,August,Gujarat,07.3.3,104.49,
+1060,Combined,2025,August,Gujarat,07.3.3,104.49,
+1061,Rural,2025,August,Haryana,07.3.3,118.99,
+1062,Urban,2025,August,Haryana,07.3.3,118.99,
+1063,Combined,2025,August,Haryana,07.3.3,118.99,
+1064,Rural,2025,August,Himachal Pradesh,07.3.3,63.52,
+1065,Urban,2025,August,Himachal Pradesh,07.3.3,63.52,
+1066,Combined,2025,August,Himachal Pradesh,07.3.3,63.52,
+1067,Urban,2025,August,Jammu And Kashmir,07.3.3,118.74,
+1068,Combined,2025,August,Jammu And Kashmir,07.3.3,118.74,
+1069,Urban,2025,August,Jharkhand,07.3.3,89.1,
+1070,Combined,2025,August,Jharkhand,07.3.3,89.1,
+1071,Rural,2025,August,Karnataka,07.3.3,108.24,
+1072,Urban,2025,August,Karnataka,07.3.3,108.24,
+1073,Combined,2025,August,Karnataka,07.3.3,108.24,
+1074,Rural,2025,August,Kerala,07.3.3,107.48,
+1075,Urban,2025,August,Kerala,07.3.3,107.48,
+1076,Combined,2025,August,Kerala,07.3.3,107.48,
+1077,Urban,2025,August,Ladakh,07.3.3,161.99,
+1078,Combined,2025,August,Ladakh,07.3.3,161.99,
+1079,Rural,2025,August,Lakshadweep,07.3.3,122.11,
+1080,Urban,2025,August,Lakshadweep,07.3.3,122.11,
+1081,Combined,2025,August,Lakshadweep,07.3.3,122.11,
+1082,Rural,2025,August,Madhya Pradesh,07.3.3,85.87,
+1083,Urban,2025,August,Madhya Pradesh,07.3.3,85.87,
+1084,Combined,2025,August,Madhya Pradesh,07.3.3,85.87,
+1085,Rural,2025,August,Maharashtra,07.3.3,112.14,
+1086,Urban,2025,August,Maharashtra,07.3.3,112.14,
+1087,Combined,2025,August,Maharashtra,07.3.3,112.14,
+1088,Rural,2025,August,Manipur,07.3.3,135.79,
+1089,Urban,2025,August,Manipur,07.3.3,135.79,
+1090,Combined,2025,August,Manipur,07.3.3,135.79,
+1091,Urban,2025,August,Meghalaya,07.3.3,195.04,
+1092,Combined,2025,August,Meghalaya,07.3.3,195.04,
+1093,Rural,2025,August,Mizoram,07.3.3,156.69,
+1094,Urban,2025,August,Mizoram,07.3.3,156.69,
+1095,Combined,2025,August,Mizoram,07.3.3,156.69,
+1096,Rural,2025,August,Nagaland,07.3.3,70.55,
+1097,Urban,2025,August,Nagaland,07.3.3,70.55,
+1098,Combined,2025,August,Nagaland,07.3.3,70.55,
+1099,Urban,2025,August,NCT of Delhi,07.3.3,118.99,
+1100,Combined,2025,August,NCT of Delhi,07.3.3,118.99,
+1101,Urban,2025,August,Odisha,07.3.3,104.94,
+1102,Combined,2025,August,Odisha,07.3.3,104.94,
+1103,Rural,2025,August,Punjab,07.3.3,206.03,
+1104,Urban,2025,August,Punjab,07.3.3,206.03,
+1105,Combined,2025,August,Punjab,07.3.3,206.03,
+1106,Rural,2025,August,Rajasthan,07.3.3,152.82,
+1107,Urban,2025,August,Rajasthan,07.3.3,152.82,
+1108,Combined,2025,August,Rajasthan,07.3.3,152.82,
+1109,Rural,2025,August,Sikkim,07.3.3,100.0,
+1110,Urban,2025,August,Sikkim,07.3.3,100.0,
+1111,Combined,2025,August,Sikkim,07.3.3,100.0,
+1112,Rural,2025,August,Tamil Nadu,07.3.3,133.51,
+1113,Urban,2025,August,Tamil Nadu,07.3.3,133.51,
+1114,Combined,2025,August,Tamil Nadu,07.3.3,133.51,
+1115,Rural,2025,August,Telangana,07.3.3,111.64,
+1116,Urban,2025,August,Telangana,07.3.3,111.64,
+1117,Combined,2025,August,Telangana,07.3.3,111.64,
+1118,Rural,2025,August,Tripura,07.3.3,88.65,
+1119,Urban,2025,August,Tripura,07.3.3,88.65,
+1120,Combined,2025,August,Tripura,07.3.3,88.65,
+1121,Rural,2025,August,Uttar Pradesh,07.3.3,93.8,
+1122,Urban,2025,August,Uttar Pradesh,07.3.3,93.8,
+1123,Combined,2025,August,Uttar Pradesh,07.3.3,93.8,
+1124,Urban,2025,August,Uttarakhand,07.3.3,95.11,
+1125,Combined,2025,August,Uttarakhand,07.3.3,95.11,
+1126,Rural,2025,August,West Bengal,07.3.3,93.61,
+1127,Urban,2025,August,West Bengal,07.3.3,93.61,
+1128,Combined,2025,August,West Bengal,07.3.3,93.61,
+1129,Rural,2025,July,All India,07.3.3,103.27,
+1130,Urban,2025,July,All India,07.3.3,101.25,
+1131,Combined,2025,July,All India,07.3.3,102.05,
+1132,Rural,2025,July,Andaman And Nicobar Islands,07.3.3,69.03,
+1133,Urban,2025,July,Andaman And Nicobar Islands,07.3.3,69.03,
+1134,Combined,2025,July,Andaman And Nicobar Islands,07.3.3,69.03,
+1135,Rural,2025,July,Andhra Pradesh,07.3.3,87.85,
+1136,Urban,2025,July,Andhra Pradesh,07.3.3,87.85,
+1137,Combined,2025,July,Andhra Pradesh,07.3.3,87.85,
+1138,Rural,2025,July,Arunachal Pradesh,07.3.3,139.76,
+1139,Urban,2025,July,Arunachal Pradesh,07.3.3,139.76,
+1140,Combined,2025,July,Arunachal Pradesh,07.3.3,139.76,
+1141,Rural,2025,July,Assam,07.3.3,131.57,
+1142,Urban,2025,July,Assam,07.3.3,131.57,
+1143,Combined,2025,July,Assam,07.3.3,131.57,
+1144,Rural,2025,July,Bihar,07.3.3,82.13,
+1145,Urban,2025,July,Bihar,07.3.3,82.13,
+1146,Combined,2025,July,Bihar,07.3.3,82.13,
+1147,Urban,2025,July,Chhattisgarh,07.3.3,119.29,
+1148,Combined,2025,July,Chhattisgarh,07.3.3,119.29,
+1149,Rural,2025,July,Goa,07.3.3,110.01,
+1150,Urban,2025,July,Goa,07.3.3,110.01,
+1151,Combined,2025,July,Goa,07.3.3,110.01,
+1152,Rural,2025,July,Gujarat,07.3.3,103.66,
+1153,Urban,2025,July,Gujarat,07.3.3,103.66,
+1154,Combined,2025,July,Gujarat,07.3.3,103.66,
+1155,Rural,2025,July,Haryana,07.3.3,90.47,
+1156,Urban,2025,July,Haryana,07.3.3,90.47,
+1157,Combined,2025,July,Haryana,07.3.3,90.47,
+1158,Rural,2025,July,Himachal Pradesh,07.3.3,89.11,
+1159,Urban,2025,July,Himachal Pradesh,07.3.3,89.11,
+1160,Combined,2025,July,Himachal Pradesh,07.3.3,89.11,
+1161,Urban,2025,July,Jammu And Kashmir,07.3.3,113.73,
+1162,Combined,2025,July,Jammu And Kashmir,07.3.3,113.73,
+1163,Urban,2025,July,Jharkhand,07.3.3,89.77,
+1164,Combined,2025,July,Jharkhand,07.3.3,89.77,
+1165,Rural,2025,July,Karnataka,07.3.3,107.76,
+1166,Urban,2025,July,Karnataka,07.3.3,107.76,
+1167,Combined,2025,July,Karnataka,07.3.3,107.76,
+1168,Rural,2025,July,Kerala,07.3.3,96.12,
+1169,Urban,2025,July,Kerala,07.3.3,96.12,
+1170,Combined,2025,July,Kerala,07.3.3,96.12,
+1171,Urban,2025,July,Ladakh,07.3.3,138.96,
+1172,Combined,2025,July,Ladakh,07.3.3,138.96,
+1173,Rural,2025,July,Lakshadweep,07.3.3,122.11,
+1174,Urban,2025,July,Lakshadweep,07.3.3,122.11,
+1175,Combined,2025,July,Lakshadweep,07.3.3,122.11,
+1176,Rural,2025,July,Madhya Pradesh,07.3.3,81.69,
+1177,Urban,2025,July,Madhya Pradesh,07.3.3,81.69,
+1178,Combined,2025,July,Madhya Pradesh,07.3.3,81.69,
+1179,Rural,2025,July,Maharashtra,07.3.3,93.3,
+1180,Urban,2025,July,Maharashtra,07.3.3,93.3,
+1181,Combined,2025,July,Maharashtra,07.3.3,93.3,
+1182,Rural,2025,July,Manipur,07.3.3,132.34,
+1183,Urban,2025,July,Manipur,07.3.3,132.34,
+1184,Combined,2025,July,Manipur,07.3.3,132.34,
+1185,Urban,2025,July,Meghalaya,07.3.3,134.09,
+1186,Combined,2025,July,Meghalaya,07.3.3,134.09,
+1187,Rural,2025,July,Mizoram,07.3.3,235.21,
+1188,Urban,2025,July,Mizoram,07.3.3,235.21,
+1189,Combined,2025,July,Mizoram,07.3.3,235.21,
+1190,Rural,2025,July,Nagaland,07.3.3,72.59,
+1191,Urban,2025,July,Nagaland,07.3.3,72.59,
+1192,Combined,2025,July,Nagaland,07.3.3,72.59,
+1193,Urban,2025,July,NCT of Delhi,07.3.3,90.47,
+1194,Combined,2025,July,NCT of Delhi,07.3.3,90.47,
+1195,Urban,2025,July,Odisha,07.3.3,98.66,
+1196,Combined,2025,July,Odisha,07.3.3,98.66,
+1197,Rural,2025,July,Punjab,07.3.3,159.07,
+1198,Urban,2025,July,Punjab,07.3.3,159.07,
+1199,Combined,2025,July,Punjab,07.3.3,159.07,
+1200,Rural,2025,July,Rajasthan,07.3.3,121.36,
+1201,Urban,2025,July,Rajasthan,07.3.3,121.36,
+1202,Combined,2025,July,Rajasthan,07.3.3,121.36,
+1203,Rural,2025,July,Sikkim,07.3.3,100.0,
+1204,Urban,2025,July,Sikkim,07.3.3,100.0,
+1205,Combined,2025,July,Sikkim,07.3.3,100.0,
+1206,Rural,2025,July,Tamil Nadu,07.3.3,116.97,
+1207,Urban,2025,July,Tamil Nadu,07.3.3,116.97,
+1208,Combined,2025,July,Tamil Nadu,07.3.3,116.97,
+1209,Rural,2025,July,Telangana,07.3.3,102.93,
+1210,Urban,2025,July,Telangana,07.3.3,102.93,
+1211,Combined,2025,July,Telangana,07.3.3,102.93,
+1212,Rural,2025,July,Tripura,07.3.3,86.86,
+1213,Urban,2025,July,Tripura,07.3.3,86.86,
+1214,Combined,2025,July,Tripura,07.3.3,86.86,
+1215,Rural,2025,July,Uttar Pradesh,07.3.3,96.05,
+1216,Urban,2025,July,Uttar Pradesh,07.3.3,96.05,
+1217,Combined,2025,July,Uttar Pradesh,07.3.3,96.05,
+1218,Urban,2025,July,Uttarakhand,07.3.3,95.61,
+1219,Combined,2025,July,Uttarakhand,07.3.3,95.61,
+1220,Rural,2025,July,West Bengal,07.3.3,94.49,
+1221,Urban,2025,July,West Bengal,07.3.3,94.49,
+1222,Combined,2025,July,West Bengal,07.3.3,94.49,
+1223,Rural,2025,June,All India,07.3.3,125.13,
+1224,Urban,2025,June,All India,07.3.3,107.52,
+1225,Combined,2025,June,All India,07.3.3,114.48,
+1226,Rural,2025,June,Andaman And Nicobar Islands,07.3.3,148.26,
+1227,Urban,2025,June,Andaman And Nicobar Islands,07.3.3,148.26,
+1228,Combined,2025,June,Andaman And Nicobar Islands,07.3.3,148.26,
+1229,Rural,2025,June,Andhra Pradesh,07.3.3,89.08,
+1230,Urban,2025,June,Andhra Pradesh,07.3.3,89.08,
+1231,Combined,2025,June,Andhra Pradesh,07.3.3,89.08,
+1232,Rural,2025,June,Arunachal Pradesh,07.3.3,129.22,
+1233,Urban,2025,June,Arunachal Pradesh,07.3.3,129.22,
+1234,Combined,2025,June,Arunachal Pradesh,07.3.3,129.22,
+1235,Rural,2025,June,Assam,07.3.3,131.13,
+1236,Urban,2025,June,Assam,07.3.3,131.13,
+1237,Combined,2025,June,Assam,07.3.3,131.13,
+1238,Rural,2025,June,Bihar,07.3.3,111.74,
+1239,Urban,2025,June,Bihar,07.3.3,111.74,
+1240,Combined,2025,June,Bihar,07.3.3,111.74,
+1241,Urban,2025,June,Chhattisgarh,07.3.3,156.22,
+1242,Combined,2025,June,Chhattisgarh,07.3.3,156.22,
+1243,Rural,2025,June,Goa,07.3.3,121.46,
+1244,Urban,2025,June,Goa,07.3.3,121.46,
+1245,Combined,2025,June,Goa,07.3.3,121.46,
+1246,Rural,2025,June,Gujarat,07.3.3,104.38,
+1247,Urban,2025,June,Gujarat,07.3.3,104.38,
+1248,Combined,2025,June,Gujarat,07.3.3,104.38,
+1249,Rural,2025,June,Haryana,07.3.3,112.97,
+1250,Urban,2025,June,Haryana,07.3.3,112.97,
+1251,Combined,2025,June,Haryana,07.3.3,112.97,
+1252,Rural,2025,June,Himachal Pradesh,07.3.3,109.56,
+1253,Urban,2025,June,Himachal Pradesh,07.3.3,109.56,
+1254,Combined,2025,June,Himachal Pradesh,07.3.3,109.56,
+1255,Urban,2025,June,Jammu And Kashmir,07.3.3,77.05,
+1256,Combined,2025,June,Jammu And Kashmir,07.3.3,77.05,
+1257,Urban,2025,June,Jharkhand,07.3.3,119.66,
+1258,Combined,2025,June,Jharkhand,07.3.3,119.66,
+1259,Rural,2025,June,Karnataka,07.3.3,102.25,
+1260,Urban,2025,June,Karnataka,07.3.3,102.25,
+1261,Combined,2025,June,Karnataka,07.3.3,102.25,
+1262,Rural,2025,June,Kerala,07.3.3,114.07,
+1263,Urban,2025,June,Kerala,07.3.3,114.07,
+1264,Combined,2025,June,Kerala,07.3.3,114.07,
+1265,Urban,2025,June,Ladakh,07.3.3,132.16,
+1266,Combined,2025,June,Ladakh,07.3.3,132.16,
+1267,Rural,2025,June,Lakshadweep,07.3.3,121.74,
+1268,Urban,2025,June,Lakshadweep,07.3.3,121.74,
+1269,Combined,2025,June,Lakshadweep,07.3.3,121.74,
+1270,Rural,2025,June,Madhya Pradesh,07.3.3,72.09,
+1271,Urban,2025,June,Madhya Pradesh,07.3.3,72.09,
+1272,Combined,2025,June,Madhya Pradesh,07.3.3,72.09,
+1273,Rural,2025,June,Maharashtra,07.3.3,117.87,
+1274,Urban,2025,June,Maharashtra,07.3.3,117.87,
+1275,Combined,2025,June,Maharashtra,07.3.3,117.87,
+1276,Rural,2025,June,Manipur,07.3.3,94.11,
+1277,Urban,2025,June,Manipur,07.3.3,94.11,
+1278,Combined,2025,June,Manipur,07.3.3,94.11,
+1279,Urban,2025,June,Meghalaya,07.3.3,148.2,
+1280,Combined,2025,June,Meghalaya,07.3.3,148.2,
+1281,Rural,2025,June,Mizoram,07.3.3,155.37,
+1282,Urban,2025,June,Mizoram,07.3.3,155.37,
+1283,Combined,2025,June,Mizoram,07.3.3,155.37,
+1284,Rural,2025,June,Nagaland,07.3.3,71.46,
+1285,Urban,2025,June,Nagaland,07.3.3,71.46,
+1286,Combined,2025,June,Nagaland,07.3.3,71.46,
+1287,Urban,2025,June,NCT of Delhi,07.3.3,112.97,
+1288,Combined,2025,June,NCT of Delhi,07.3.3,112.97,
+1289,Urban,2025,June,Odisha,07.3.3,99.56,
+1290,Combined,2025,June,Odisha,07.3.3,99.56,
+1291,Rural,2025,June,Punjab,07.3.3,272.44,
+1292,Urban,2025,June,Punjab,07.3.3,272.44,
+1293,Combined,2025,June,Punjab,07.3.3,272.44,
+1294,Rural,2025,June,Rajasthan,07.3.3,116.61,
+1295,Urban,2025,June,Rajasthan,07.3.3,116.61,
+1296,Combined,2025,June,Rajasthan,07.3.3,116.61,
+1297,Rural,2025,June,Sikkim,07.3.3,100.0,
+1298,Urban,2025,June,Sikkim,07.3.3,100.0,
+1299,Combined,2025,June,Sikkim,07.3.3,100.0,
+1300,Rural,2025,June,Tamil Nadu,07.3.3,105.56,
+1301,Urban,2025,June,Tamil Nadu,07.3.3,105.56,
+1302,Combined,2025,June,Tamil Nadu,07.3.3,105.56,
+1303,Rural,2025,June,Telangana,07.3.3,112.03,
+1304,Urban,2025,June,Telangana,07.3.3,112.03,
+1305,Combined,2025,June,Telangana,07.3.3,112.03,
+1306,Rural,2025,June,Tripura,07.3.3,84.3,
+1307,Urban,2025,June,Tripura,07.3.3,84.3,
+1308,Combined,2025,June,Tripura,07.3.3,84.3,
+1309,Rural,2025,June,Uttar Pradesh,07.3.3,120.79,
+1310,Urban,2025,June,Uttar Pradesh,07.3.3,120.79,
+1311,Combined,2025,June,Uttar Pradesh,07.3.3,120.79,
+1312,Urban,2025,June,Uttarakhand,07.3.3,117.18,
+1313,Combined,2025,June,Uttarakhand,07.3.3,117.18,
+1314,Rural,2025,June,West Bengal,07.3.3,98.69,
+1315,Urban,2025,June,West Bengal,07.3.3,98.69,
+1316,Combined,2025,June,West Bengal,07.3.3,98.69,
+1317,Rural,2025,May,All India,07.3.3,114.62,
+1318,Urban,2025,May,All India,07.3.3,108.5,
+1319,Combined,2025,May,All India,07.3.3,110.92,
+1320,Rural,2025,May,Andaman And Nicobar Islands,07.3.3,225.92,
+1321,Urban,2025,May,Andaman And Nicobar Islands,07.3.3,225.92,
+1322,Combined,2025,May,Andaman And Nicobar Islands,07.3.3,225.92,
+1323,Rural,2025,May,Andhra Pradesh,07.3.3,89.79,
+1324,Urban,2025,May,Andhra Pradesh,07.3.3,89.79,
+1325,Combined,2025,May,Andhra Pradesh,07.3.3,89.79,
+1326,Rural,2025,May,Arunachal Pradesh,07.3.3,121.58,
+1327,Urban,2025,May,Arunachal Pradesh,07.3.3,121.58,
+1328,Combined,2025,May,Arunachal Pradesh,07.3.3,121.58,
+1329,Rural,2025,May,Assam,07.3.3,148.47,
+1330,Urban,2025,May,Assam,07.3.3,148.47,
+1331,Combined,2025,May,Assam,07.3.3,148.47,
+1332,Rural,2025,May,Bihar,07.3.3,88.25,
+1333,Urban,2025,May,Bihar,07.3.3,88.25,
+1334,Combined,2025,May,Bihar,07.3.3,88.25,
+1335,Urban,2025,May,Chhattisgarh,07.3.3,142.19,
+1336,Combined,2025,May,Chhattisgarh,07.3.3,142.19,
+1337,Rural,2025,May,Goa,07.3.3,116.53,
+1338,Urban,2025,May,Goa,07.3.3,116.53,
+1339,Combined,2025,May,Goa,07.3.3,116.53,
+1340,Rural,2025,May,Gujarat,07.3.3,103.61,
+1341,Urban,2025,May,Gujarat,07.3.3,103.61,
+1342,Combined,2025,May,Gujarat,07.3.3,103.61,
+1343,Rural,2025,May,Haryana,07.3.3,102.32,
+1344,Urban,2025,May,Haryana,07.3.3,102.32,
+1345,Combined,2025,May,Haryana,07.3.3,102.32,
+1346,Rural,2025,May,Himachal Pradesh,07.3.3,102.95,
+1347,Urban,2025,May,Himachal Pradesh,07.3.3,102.95,
+1348,Combined,2025,May,Himachal Pradesh,07.3.3,102.95,
+1349,Urban,2025,May,Jammu And Kashmir,07.3.3,79.43,
+1350,Combined,2025,May,Jammu And Kashmir,07.3.3,79.43,
+1351,Urban,2025,May,Jharkhand,07.3.3,84.85,
+1352,Combined,2025,May,Jharkhand,07.3.3,84.85,
+1353,Rural,2025,May,Karnataka,07.3.3,130.18,
+1354,Urban,2025,May,Karnataka,07.3.3,130.18,
+1355,Combined,2025,May,Karnataka,07.3.3,130.18,
+1356,Rural,2025,May,Kerala,07.3.3,114.6,
+1357,Urban,2025,May,Kerala,07.3.3,114.6,
+1358,Combined,2025,May,Kerala,07.3.3,114.6,
+1359,Urban,2025,May,Ladakh,07.3.3,86.46,
+1360,Combined,2025,May,Ladakh,07.3.3,86.46,
+1361,Rural,2025,May,Lakshadweep,07.3.3,130.47,
+1362,Urban,2025,May,Lakshadweep,07.3.3,130.47,
+1363,Combined,2025,May,Lakshadweep,07.3.3,130.47,
+1364,Rural,2025,May,Madhya Pradesh,07.3.3,77.51,
+1365,Urban,2025,May,Madhya Pradesh,07.3.3,77.51,
+1366,Combined,2025,May,Madhya Pradesh,07.3.3,77.51,
+1367,Rural,2025,May,Maharashtra,07.3.3,122.45,
+1368,Urban,2025,May,Maharashtra,07.3.3,122.45,
+1369,Combined,2025,May,Maharashtra,07.3.3,122.45,
+1370,Rural,2025,May,Manipur,07.3.3,119.86,
+1371,Urban,2025,May,Manipur,07.3.3,119.86,
+1372,Combined,2025,May,Manipur,07.3.3,119.86,
+1373,Urban,2025,May,Meghalaya,07.3.3,175.31,
+1374,Combined,2025,May,Meghalaya,07.3.3,175.31,
+1375,Rural,2025,May,Mizoram,07.3.3,118.49,
+1376,Urban,2025,May,Mizoram,07.3.3,118.49,
+1377,Combined,2025,May,Mizoram,07.3.3,118.49,
+1378,Rural,2025,May,Nagaland,07.3.3,78.08,
+1379,Urban,2025,May,Nagaland,07.3.3,78.08,
+1380,Combined,2025,May,Nagaland,07.3.3,78.08,
+1381,Urban,2025,May,NCT of Delhi,07.3.3,102.32,
+1382,Combined,2025,May,NCT of Delhi,07.3.3,102.32,
+1383,Urban,2025,May,Odisha,07.3.3,100.06,
+1384,Combined,2025,May,Odisha,07.3.3,100.06,
+1385,Rural,2025,May,Punjab,07.3.3,161.64,
+1386,Urban,2025,May,Punjab,07.3.3,161.64,
+1387,Combined,2025,May,Punjab,07.3.3,161.64,
+1388,Rural,2025,May,Rajasthan,07.3.3,114.67,
+1389,Urban,2025,May,Rajasthan,07.3.3,114.67,
+1390,Combined,2025,May,Rajasthan,07.3.3,114.67,
+1391,Rural,2025,May,Sikkim,07.3.3,100.0,
+1392,Urban,2025,May,Sikkim,07.3.3,100.0,
+1393,Combined,2025,May,Sikkim,07.3.3,100.0,
+1394,Rural,2025,May,Tamil Nadu,07.3.3,104.4,
+1395,Urban,2025,May,Tamil Nadu,07.3.3,104.4,
+1396,Combined,2025,May,Tamil Nadu,07.3.3,104.4,
+1397,Rural,2025,May,Telangana,07.3.3,110.84,
+1398,Urban,2025,May,Telangana,07.3.3,110.84,
+1399,Combined,2025,May,Telangana,07.3.3,110.84,
+1400,Rural,2025,May,Tripura,07.3.3,83.67,
+1401,Urban,2025,May,Tripura,07.3.3,83.67,
+1402,Combined,2025,May,Tripura,07.3.3,83.67,
+1403,Rural,2025,May,Uttar Pradesh,07.3.3,102.04,
+1404,Urban,2025,May,Uttar Pradesh,07.3.3,102.04,
+1405,Combined,2025,May,Uttar Pradesh,07.3.3,102.04,
+1406,Urban,2025,May,Uttarakhand,07.3.3,100.76,
+1407,Combined,2025,May,Uttarakhand,07.3.3,100.76,
+1408,Rural,2025,May,West Bengal,07.3.3,100.02,
+1409,Urban,2025,May,West Bengal,07.3.3,100.02,
+1410,Combined,2025,May,West Bengal,07.3.3,100.02,
+1411,Rural,2025,April,All India,07.3.3,117.27,
+1412,Urban,2025,April,All India,07.3.3,106.81,
+1413,Combined,2025,April,All India,07.3.3,110.94,
+1414,Rural,2025,April,Andaman And Nicobar Islands,07.3.3,167.18,
+1415,Urban,2025,April,Andaman And Nicobar Islands,07.3.3,167.18,
+1416,Combined,2025,April,Andaman And Nicobar Islands,07.3.3,167.18,
+1417,Rural,2025,April,Andhra Pradesh,07.3.3,87.78,
+1418,Urban,2025,April,Andhra Pradesh,07.3.3,87.78,
+1419,Combined,2025,April,Andhra Pradesh,07.3.3,87.78,
+1420,Rural,2025,April,Arunachal Pradesh,07.3.3,150.08,
+1421,Urban,2025,April,Arunachal Pradesh,07.3.3,150.08,
+1422,Combined,2025,April,Arunachal Pradesh,07.3.3,150.08,
+1423,Rural,2025,April,Assam,07.3.3,131.2,
+1424,Urban,2025,April,Assam,07.3.3,131.2,
+1425,Combined,2025,April,Assam,07.3.3,131.2,
+1426,Rural,2025,April,Bihar,07.3.3,110.14,
+1427,Urban,2025,April,Bihar,07.3.3,110.14,
+1428,Combined,2025,April,Bihar,07.3.3,110.14,
+1429,Urban,2025,April,Chhattisgarh,07.3.3,136.58,
+1430,Combined,2025,April,Chhattisgarh,07.3.3,136.58,
+1431,Rural,2025,April,Goa,07.3.3,164.75,
+1432,Urban,2025,April,Goa,07.3.3,164.75,
+1433,Combined,2025,April,Goa,07.3.3,164.75,
+1434,Rural,2025,April,Gujarat,07.3.3,104.12,
+1435,Urban,2025,April,Gujarat,07.3.3,104.12,
+1436,Combined,2025,April,Gujarat,07.3.3,104.12,
+1437,Rural,2025,April,Haryana,07.3.3,99.42,
+1438,Urban,2025,April,Haryana,07.3.3,99.42,
+1439,Combined,2025,April,Haryana,07.3.3,99.42,
+1440,Rural,2025,April,Himachal Pradesh,07.3.3,93.88,
+1441,Urban,2025,April,Himachal Pradesh,07.3.3,93.88,
+1442,Combined,2025,April,Himachal Pradesh,07.3.3,93.88,
+1443,Urban,2025,April,Jammu And Kashmir,07.3.3,85.29,
+1444,Combined,2025,April,Jammu And Kashmir,07.3.3,85.29,
+1445,Urban,2025,April,Jharkhand,07.3.3,96.56,
+1446,Combined,2025,April,Jharkhand,07.3.3,96.56,
+1447,Rural,2025,April,Karnataka,07.3.3,113.96,
+1448,Urban,2025,April,Karnataka,07.3.3,113.96,
+1449,Combined,2025,April,Karnataka,07.3.3,113.96,
+1450,Rural,2025,April,Kerala,07.3.3,118.55,
+1451,Urban,2025,April,Kerala,07.3.3,118.55,
+1452,Combined,2025,April,Kerala,07.3.3,118.55,
+1453,Urban,2025,April,Ladakh,07.3.3,92.85,
+1454,Combined,2025,April,Ladakh,07.3.3,92.85,
+1455,Rural,2025,April,Lakshadweep,07.3.3,136.33,
+1456,Urban,2025,April,Lakshadweep,07.3.3,136.33,
+1457,Combined,2025,April,Lakshadweep,07.3.3,136.33,
+1458,Rural,2025,April,Madhya Pradesh,07.3.3,78.67,
+1459,Urban,2025,April,Madhya Pradesh,07.3.3,78.67,
+1460,Combined,2025,April,Madhya Pradesh,07.3.3,78.67,
+1461,Rural,2025,April,Maharashtra,07.3.3,104.6,
+1462,Urban,2025,April,Maharashtra,07.3.3,104.6,
+1463,Combined,2025,April,Maharashtra,07.3.3,104.6,
+1464,Rural,2025,April,Manipur,07.3.3,120.15,
+1465,Urban,2025,April,Manipur,07.3.3,120.15,
+1466,Combined,2025,April,Manipur,07.3.3,120.15,
+1467,Urban,2025,April,Meghalaya,07.3.3,135.04,
+1468,Combined,2025,April,Meghalaya,07.3.3,135.04,
+1469,Rural,2025,April,Mizoram,07.3.3,84.44,
+1470,Urban,2025,April,Mizoram,07.3.3,84.44,
+1471,Combined,2025,April,Mizoram,07.3.3,84.44,
+1472,Rural,2025,April,Nagaland,07.3.3,81.17,
+1473,Urban,2025,April,Nagaland,07.3.3,81.17,
+1474,Combined,2025,April,Nagaland,07.3.3,81.17,
+1475,Urban,2025,April,NCT of Delhi,07.3.3,99.42,
+1476,Combined,2025,April,NCT of Delhi,07.3.3,99.42,
+1477,Urban,2025,April,Odisha,07.3.3,106.97,
+1478,Combined,2025,April,Odisha,07.3.3,106.97,
+1479,Rural,2025,April,Punjab,07.3.3,137.09,
+1480,Urban,2025,April,Punjab,07.3.3,137.09,
+1481,Combined,2025,April,Punjab,07.3.3,137.09,
+1482,Rural,2025,April,Rajasthan,07.3.3,139.01,
+1483,Urban,2025,April,Rajasthan,07.3.3,139.01,
+1484,Combined,2025,April,Rajasthan,07.3.3,139.01,
+1485,Rural,2025,April,Sikkim,07.3.3,100.0,
+1486,Urban,2025,April,Sikkim,07.3.3,100.0,
+1487,Combined,2025,April,Sikkim,07.3.3,100.0,
+1488,Rural,2025,April,Tamil Nadu,07.3.3,107.34,
+1489,Urban,2025,April,Tamil Nadu,07.3.3,107.34,
+1490,Combined,2025,April,Tamil Nadu,07.3.3,107.34,
+1491,Rural,2025,April,Telangana,07.3.3,112.58,
+1492,Urban,2025,April,Telangana,07.3.3,112.58,
+1493,Combined,2025,April,Telangana,07.3.3,112.58,
+1494,Rural,2025,April,Tripura,07.3.3,86.84,
+1495,Urban,2025,April,Tripura,07.3.3,86.84,
+1496,Combined,2025,April,Tripura,07.3.3,86.84,
+1497,Rural,2025,April,Uttar Pradesh,07.3.3,99.84,
+1498,Urban,2025,April,Uttar Pradesh,07.3.3,99.84,
+1499,Combined,2025,April,Uttar Pradesh,07.3.3,99.84,
+1500,Urban,2025,April,Uttarakhand,07.3.3,166.95,
+1501,Combined,2025,April,Uttarakhand,07.3.3,166.95,
+1502,Rural,2025,April,West Bengal,07.3.3,102.12,
+1503,Urban,2025,April,West Bengal,07.3.3,102.12,
+1504,Combined,2025,April,West Bengal,07.3.3,102.12,
+1505,Rural,2025,March,All India,07.3.3,112.28,
+1506,Urban,2025,March,All India,07.3.3,105.51,
+1507,Combined,2025,March,All India,07.3.3,108.19,
+1508,Rural,2025,March,Andaman And Nicobar Islands,07.3.3,164.99,
+1509,Urban,2025,March,Andaman And Nicobar Islands,07.3.3,164.99,
+1510,Combined,2025,March,Andaman And Nicobar Islands,07.3.3,164.99,
+1511,Rural,2025,March,Andhra Pradesh,07.3.3,86.81,
+1512,Urban,2025,March,Andhra Pradesh,07.3.3,86.81,
+1513,Combined,2025,March,Andhra Pradesh,07.3.3,86.81,
+1514,Rural,2025,March,Arunachal Pradesh,07.3.3,134.08,
+1515,Urban,2025,March,Arunachal Pradesh,07.3.3,134.08,
+1516,Combined,2025,March,Arunachal Pradesh,07.3.3,134.08,
+1517,Rural,2025,March,Assam,07.3.3,142.22,
+1518,Urban,2025,March,Assam,07.3.3,142.22,
+1519,Combined,2025,March,Assam,07.3.3,142.22,
+1520,Rural,2025,March,Bihar,07.3.3,114.45,
+1521,Urban,2025,March,Bihar,07.3.3,114.45,
+1522,Combined,2025,March,Bihar,07.3.3,114.45,
+1523,Urban,2025,March,Chhattisgarh,07.3.3,130.12,
+1524,Combined,2025,March,Chhattisgarh,07.3.3,130.12,
+1525,Rural,2025,March,Goa,07.3.3,114.09,
+1526,Urban,2025,March,Goa,07.3.3,114.09,
+1527,Combined,2025,March,Goa,07.3.3,114.09,
+1528,Rural,2025,March,Gujarat,07.3.3,99.07,
+1529,Urban,2025,March,Gujarat,07.3.3,99.07,
+1530,Combined,2025,March,Gujarat,07.3.3,99.07,
+1531,Rural,2025,March,Haryana,07.3.3,116.41,
+1532,Urban,2025,March,Haryana,07.3.3,116.41,
+1533,Combined,2025,March,Haryana,07.3.3,116.41,
+1534,Rural,2025,March,Himachal Pradesh,07.3.3,74.81,
+1535,Urban,2025,March,Himachal Pradesh,07.3.3,74.81,
+1536,Combined,2025,March,Himachal Pradesh,07.3.3,74.81,
+1537,Urban,2025,March,Jammu And Kashmir,07.3.3,107.15,
+1538,Combined,2025,March,Jammu And Kashmir,07.3.3,107.15,
+1539,Urban,2025,March,Jharkhand,07.3.3,115.89,
+1540,Combined,2025,March,Jharkhand,07.3.3,115.89,
+1541,Rural,2025,March,Karnataka,07.3.3,108.94,
+1542,Urban,2025,March,Karnataka,07.3.3,108.94,
+1543,Combined,2025,March,Karnataka,07.3.3,108.94,
+1544,Rural,2025,March,Kerala,07.3.3,98.52,
+1545,Urban,2025,March,Kerala,07.3.3,98.52,
+1546,Combined,2025,March,Kerala,07.3.3,98.52,
+1547,Urban,2025,March,Ladakh,07.3.3,54.16,
+1548,Combined,2025,March,Ladakh,07.3.3,54.16,
+1549,Rural,2025,March,Lakshadweep,07.3.3,134.14,
+1550,Urban,2025,March,Lakshadweep,07.3.3,134.14,
+1551,Combined,2025,March,Lakshadweep,07.3.3,134.14,
+1552,Rural,2025,March,Madhya Pradesh,07.3.3,97.6,
+1553,Urban,2025,March,Madhya Pradesh,07.3.3,97.6,
+1554,Combined,2025,March,Madhya Pradesh,07.3.3,97.6,
+1555,Rural,2025,March,Maharashtra,07.3.3,110.61,
+1556,Urban,2025,March,Maharashtra,07.3.3,110.61,
+1557,Combined,2025,March,Maharashtra,07.3.3,110.61,
+1558,Rural,2025,March,Manipur,07.3.3,112.45,
+1559,Urban,2025,March,Manipur,07.3.3,112.45,
+1560,Combined,2025,March,Manipur,07.3.3,112.45,
+1561,Urban,2025,March,Meghalaya,07.3.3,157.18,
+1562,Combined,2025,March,Meghalaya,07.3.3,157.18,
+1563,Rural,2025,March,Mizoram,07.3.3,109.06,
+1564,Urban,2025,March,Mizoram,07.3.3,109.06,
+1565,Combined,2025,March,Mizoram,07.3.3,109.06,
+1566,Rural,2025,March,Nagaland,07.3.3,76.42,
+1567,Urban,2025,March,Nagaland,07.3.3,76.42,
+1568,Combined,2025,March,Nagaland,07.3.3,76.42,
+1569,Urban,2025,March,NCT of Delhi,07.3.3,116.41,
+1570,Combined,2025,March,NCT of Delhi,07.3.3,116.41,
+1571,Urban,2025,March,Odisha,07.3.3,106.53,
+1572,Combined,2025,March,Odisha,07.3.3,106.53,
+1573,Rural,2025,March,Punjab,07.3.3,169.43,
+1574,Urban,2025,March,Punjab,07.3.3,169.43,
+1575,Combined,2025,March,Punjab,07.3.3,169.43,
+1576,Rural,2025,March,Rajasthan,07.3.3,132.04,
+1577,Urban,2025,March,Rajasthan,07.3.3,132.04,
+1578,Combined,2025,March,Rajasthan,07.3.3,132.04,
+1579,Rural,2025,March,Sikkim,07.3.3,100.0,
+1580,Urban,2025,March,Sikkim,07.3.3,100.0,
+1581,Combined,2025,March,Sikkim,07.3.3,100.0,
+1582,Rural,2025,March,Tamil Nadu,07.3.3,105.51,
+1583,Urban,2025,March,Tamil Nadu,07.3.3,105.51,
+1584,Combined,2025,March,Tamil Nadu,07.3.3,105.51,
+1585,Rural,2025,March,Telangana,07.3.3,89.65,
+1586,Urban,2025,March,Telangana,07.3.3,89.65,
+1587,Combined,2025,March,Telangana,07.3.3,89.65,
+1588,Rural,2025,March,Tripura,07.3.3,97.12,
+1589,Urban,2025,March,Tripura,07.3.3,97.12,
+1590,Combined,2025,March,Tripura,07.3.3,97.12,
+1591,Rural,2025,March,Uttar Pradesh,07.3.3,140.42,
+1592,Urban,2025,March,Uttar Pradesh,07.3.3,140.42,
+1593,Combined,2025,March,Uttar Pradesh,07.3.3,140.42,
+1594,Urban,2025,March,Uttarakhand,07.3.3,152.07,
+1595,Combined,2025,March,Uttarakhand,07.3.3,152.07,
+1596,Rural,2025,March,West Bengal,07.3.3,102.5,
+1597,Urban,2025,March,West Bengal,07.3.3,102.5,
+1598,Combined,2025,March,West Bengal,07.3.3,102.5,
+1599,Rural,2025,February,All India,07.3.3,136.79,
+1600,Urban,2025,February,All India,07.3.3,128.31,
+1601,Combined,2025,February,All India,07.3.3,131.66,
+1602,Rural,2025,February,Andaman And Nicobar Islands,07.3.3,135.06,
+1603,Urban,2025,February,Andaman And Nicobar Islands,07.3.3,135.06,
+1604,Combined,2025,February,Andaman And Nicobar Islands,07.3.3,135.06,
+1605,Rural,2025,February,Andhra Pradesh,07.3.3,95.16,
+1606,Urban,2025,February,Andhra Pradesh,07.3.3,95.16,
+1607,Combined,2025,February,Andhra Pradesh,07.3.3,95.16,
+1608,Rural,2025,February,Arunachal Pradesh,07.3.3,149.68,
+1609,Urban,2025,February,Arunachal Pradesh,07.3.3,149.68,
+1610,Combined,2025,February,Arunachal Pradesh,07.3.3,149.68,
+1611,Rural,2025,February,Assam,07.3.3,137.01,
+1612,Urban,2025,February,Assam,07.3.3,137.01,
+1613,Combined,2025,February,Assam,07.3.3,137.01,
+1614,Rural,2025,February,Bihar,07.3.3,163.01,
+1615,Urban,2025,February,Bihar,07.3.3,163.01,
+1616,Combined,2025,February,Bihar,07.3.3,163.01,
+1617,Urban,2025,February,Chhattisgarh,07.3.3,113.78,
+1618,Combined,2025,February,Chhattisgarh,07.3.3,113.78,
+1619,Rural,2025,February,Goa,07.3.3,123.06,
+1620,Urban,2025,February,Goa,07.3.3,123.06,
+1621,Combined,2025,February,Goa,07.3.3,123.06,
+1622,Rural,2025,February,Gujarat,07.3.3,107.17,
+1623,Urban,2025,February,Gujarat,07.3.3,107.17,
+1624,Combined,2025,February,Gujarat,07.3.3,107.17,
+1625,Rural,2025,February,Haryana,07.3.3,159.97,
+1626,Urban,2025,February,Haryana,07.3.3,159.97,
+1627,Combined,2025,February,Haryana,07.3.3,159.97,
+1628,Rural,2025,February,Himachal Pradesh,07.3.3,74.81,
+1629,Urban,2025,February,Himachal Pradesh,07.3.3,74.81,
+1630,Combined,2025,February,Himachal Pradesh,07.3.3,74.81,
+1631,Urban,2025,February,Jammu And Kashmir,07.3.3,105.55,
+1632,Combined,2025,February,Jammu And Kashmir,07.3.3,105.55,
+1633,Urban,2025,February,Jharkhand,07.3.3,122.05,
+1634,Combined,2025,February,Jharkhand,07.3.3,122.05,
+1635,Rural,2025,February,Karnataka,07.3.3,148.96,
+1636,Urban,2025,February,Karnataka,07.3.3,148.96,
+1637,Combined,2025,February,Karnataka,07.3.3,148.96,
+1638,Rural,2025,February,Kerala,07.3.3,124.38,
+1639,Urban,2025,February,Kerala,07.3.3,124.38,
+1640,Combined,2025,February,Kerala,07.3.3,124.38,
+1641,Urban,2025,February,Ladakh,07.3.3,85.67,
+1642,Combined,2025,February,Ladakh,07.3.3,85.67,
+1643,Rural,2025,February,Lakshadweep,07.3.3,131.51,
+1644,Urban,2025,February,Lakshadweep,07.3.3,131.51,
+1645,Combined,2025,February,Lakshadweep,07.3.3,131.51,
+1646,Rural,2025,February,Madhya Pradesh,07.3.3,115.41,
+1647,Urban,2025,February,Madhya Pradesh,07.3.3,115.41,
+1648,Combined,2025,February,Madhya Pradesh,07.3.3,115.41,
+1649,Rural,2025,February,Maharashtra,07.3.3,133.43,
+1650,Urban,2025,February,Maharashtra,07.3.3,133.43,
+1651,Combined,2025,February,Maharashtra,07.3.3,133.43,
+1652,Rural,2025,February,Manipur,07.3.3,101.07,
+1653,Urban,2025,February,Manipur,07.3.3,101.07,
+1654,Combined,2025,February,Manipur,07.3.3,101.07,
+1655,Urban,2025,February,Meghalaya,07.3.3,102.82,
+1656,Combined,2025,February,Meghalaya,07.3.3,102.82,
+1657,Rural,2025,February,Mizoram,07.3.3,157.05,
+1658,Urban,2025,February,Mizoram,07.3.3,157.05,
+1659,Combined,2025,February,Mizoram,07.3.3,157.05,
+1660,Rural,2025,February,Nagaland,07.3.3,83.45,
+1661,Urban,2025,February,Nagaland,07.3.3,83.45,
+1662,Combined,2025,February,Nagaland,07.3.3,83.45,
+1663,Urban,2025,February,NCT of Delhi,07.3.3,159.97,
+1664,Combined,2025,February,NCT of Delhi,07.3.3,159.97,
+1665,Urban,2025,February,Odisha,07.3.3,110.12,
+1666,Combined,2025,February,Odisha,07.3.3,110.12,
+1667,Rural,2025,February,Punjab,07.3.3,135.59,
+1668,Urban,2025,February,Punjab,07.3.3,135.59,
+1669,Combined,2025,February,Punjab,07.3.3,135.59,
+1670,Rural,2025,February,Rajasthan,07.3.3,127.04,
+1671,Urban,2025,February,Rajasthan,07.3.3,127.04,
+1672,Combined,2025,February,Rajasthan,07.3.3,127.04,
+1673,Rural,2025,February,Sikkim,07.3.3,100.0,
+1674,Urban,2025,February,Sikkim,07.3.3,100.0,
+1675,Combined,2025,February,Sikkim,07.3.3,100.0,
+1676,Rural,2025,February,Tamil Nadu,07.3.3,143.37,
+1677,Urban,2025,February,Tamil Nadu,07.3.3,143.37,
+1678,Combined,2025,February,Tamil Nadu,07.3.3,143.37,
+1679,Rural,2025,February,Telangana,07.3.3,126.25,
+1680,Urban,2025,February,Telangana,07.3.3,126.25,
+1681,Combined,2025,February,Telangana,07.3.3,126.25,
+1682,Rural,2025,February,Tripura,07.3.3,113.84,
+1683,Urban,2025,February,Tripura,07.3.3,113.84,
+1684,Combined,2025,February,Tripura,07.3.3,113.84,
+1685,Rural,2025,February,Uttar Pradesh,07.3.3,236.68,
+1686,Urban,2025,February,Uttar Pradesh,07.3.3,236.68,
+1687,Combined,2025,February,Uttar Pradesh,07.3.3,236.68,
+1688,Urban,2025,February,Uttarakhand,07.3.3,175.67,
+1689,Combined,2025,February,Uttarakhand,07.3.3,175.67,
+1690,Rural,2025,February,West Bengal,07.3.3,119.33,
+1691,Urban,2025,February,West Bengal,07.3.3,119.33,
+1692,Combined,2025,February,West Bengal,07.3.3,119.33,
+1693,Rural,2025,January,All India,07.3.3,120.78,
+1694,Urban,2025,January,All India,07.3.3,111.31,
+1695,Combined,2025,January,All India,07.3.3,115.05,
+1696,Rural,2025,January,Andaman And Nicobar Islands,07.3.3,104.99,
+1697,Urban,2025,January,Andaman And Nicobar Islands,07.3.3,104.99,
+1698,Combined,2025,January,Andaman And Nicobar Islands,07.3.3,104.99,
+1699,Rural,2025,January,Andhra Pradesh,07.3.3,97.24,
+1700,Urban,2025,January,Andhra Pradesh,07.3.3,97.24,
+1701,Combined,2025,January,Andhra Pradesh,07.3.3,97.24,
+1702,Rural,2025,January,Arunachal Pradesh,07.3.3,149.92,
+1703,Urban,2025,January,Arunachal Pradesh,07.3.3,149.92,
+1704,Combined,2025,January,Arunachal Pradesh,07.3.3,149.92,
+1705,Rural,2025,January,Assam,07.3.3,104.38,
+1706,Urban,2025,January,Assam,07.3.3,104.38,
+1707,Combined,2025,January,Assam,07.3.3,104.38,
+1708,Rural,2025,January,Bihar,07.3.3,94.2,
+1709,Urban,2025,January,Bihar,07.3.3,94.2,
+1710,Combined,2025,January,Bihar,07.3.3,94.2,
+1711,Urban,2025,January,Chhattisgarh,07.3.3,130.97,
+1712,Combined,2025,January,Chhattisgarh,07.3.3,130.97,
+1713,Rural,2025,January,Goa,07.3.3,117.0,
+1714,Urban,2025,January,Goa,07.3.3,117.0,
+1715,Combined,2025,January,Goa,07.3.3,117.0,
+1716,Rural,2025,January,Gujarat,07.3.3,103.0,
+1717,Urban,2025,January,Gujarat,07.3.3,103.0,
+1718,Combined,2025,January,Gujarat,07.3.3,103.0,
+1719,Rural,2025,January,Haryana,07.3.3,121.24,
+1720,Urban,2025,January,Haryana,07.3.3,121.24,
+1721,Combined,2025,January,Haryana,07.3.3,121.24,
+1722,Rural,2025,January,Himachal Pradesh,07.3.3,89.11,
+1723,Urban,2025,January,Himachal Pradesh,07.3.3,89.11,
+1724,Combined,2025,January,Himachal Pradesh,07.3.3,89.11,
+1725,Urban,2025,January,Jammu And Kashmir,07.3.3,107.31,
+1726,Combined,2025,January,Jammu And Kashmir,07.3.3,107.31,
+1727,Urban,2025,January,Jharkhand,07.3.3,107.97,
+1728,Combined,2025,January,Jharkhand,07.3.3,107.97,
+1729,Rural,2025,January,Karnataka,07.3.3,111.66,
+1730,Urban,2025,January,Karnataka,07.3.3,111.66,
+1731,Combined,2025,January,Karnataka,07.3.3,111.66,
+1732,Rural,2025,January,Kerala,07.3.3,134.93,
+1733,Urban,2025,January,Kerala,07.3.3,134.93,
+1734,Combined,2025,January,Kerala,07.3.3,134.93,
+1735,Urban,2025,January,Ladakh,07.3.3,109.57,
+1736,Combined,2025,January,Ladakh,07.3.3,109.57,
+1737,Rural,2025,January,Lakshadweep,07.3.3,131.51,
+1738,Urban,2025,January,Lakshadweep,07.3.3,131.51,
+1739,Combined,2025,January,Lakshadweep,07.3.3,131.51,
+1740,Rural,2025,January,Madhya Pradesh,07.3.3,108.65,
+1741,Urban,2025,January,Madhya Pradesh,07.3.3,108.65,
+1742,Combined,2025,January,Madhya Pradesh,07.3.3,108.65,
+1743,Rural,2025,January,Maharashtra,07.3.3,119.11,
+1744,Urban,2025,January,Maharashtra,07.3.3,119.11,
+1745,Combined,2025,January,Maharashtra,07.3.3,119.11,
+1746,Rural,2025,January,Manipur,07.3.3,145.97,
+1747,Urban,2025,January,Manipur,07.3.3,145.97,
+1748,Combined,2025,January,Manipur,07.3.3,145.97,
+1749,Urban,2025,January,Meghalaya,07.3.3,78.35,
+1750,Combined,2025,January,Meghalaya,07.3.3,78.35,
+1751,Rural,2025,January,Mizoram,07.3.3,128.27,
+1752,Urban,2025,January,Mizoram,07.3.3,128.27,
+1753,Combined,2025,January,Mizoram,07.3.3,128.27,
+1754,Rural,2025,January,Nagaland,07.3.3,182.14,
+1755,Urban,2025,January,Nagaland,07.3.3,182.14,
+1756,Combined,2025,January,Nagaland,07.3.3,182.14,
+1757,Urban,2025,January,NCT of Delhi,07.3.3,121.24,
+1758,Combined,2025,January,NCT of Delhi,07.3.3,121.24,
+1759,Urban,2025,January,Odisha,07.3.3,112.22,
+1760,Combined,2025,January,Odisha,07.3.3,112.22,
+1761,Rural,2025,January,Punjab,07.3.3,102.89,
+1762,Urban,2025,January,Punjab,07.3.3,102.89,
+1763,Combined,2025,January,Punjab,07.3.3,102.89,
+1764,Rural,2025,January,Rajasthan,07.3.3,101.95,
+1765,Urban,2025,January,Rajasthan,07.3.3,101.95,
+1766,Combined,2025,January,Rajasthan,07.3.3,101.95,
+1767,Rural,2025,January,Sikkim,07.3.3,100.0,
+1768,Urban,2025,January,Sikkim,07.3.3,100.0,
+1769,Combined,2025,January,Sikkim,07.3.3,100.0,
+1770,Rural,2025,January,Tamil Nadu,07.3.3,115.86,
+1771,Urban,2025,January,Tamil Nadu,07.3.3,115.86,
+1772,Combined,2025,January,Tamil Nadu,07.3.3,115.86,
+1773,Rural,2025,January,Telangana,07.3.3,111.28,
+1774,Urban,2025,January,Telangana,07.3.3,111.28,
+1775,Combined,2025,January,Telangana,07.3.3,111.28,
+1776,Rural,2025,January,Tripura,07.3.3,97.96,
+1777,Urban,2025,January,Tripura,07.3.3,97.96,
+1778,Combined,2025,January,Tripura,07.3.3,97.96,
+1779,Rural,2025,January,Uttar Pradesh,07.3.3,125.76,
+1780,Urban,2025,January,Uttar Pradesh,07.3.3,125.76,
+1781,Combined,2025,January,Uttar Pradesh,07.3.3,125.76,
+1782,Urban,2025,January,Uttarakhand,07.3.3,112.33,
+1783,Combined,2025,January,Uttarakhand,07.3.3,112.33,
+1784,Rural,2025,January,West Bengal,07.3.3,102.7,
+1785,Urban,2025,January,West Bengal,07.3.3,102.7,
+1786,Combined,2025,January,West Bengal,07.3.3,102.7,

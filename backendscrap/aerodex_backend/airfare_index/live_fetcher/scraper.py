@@ -369,8 +369,9 @@ class RealtimeFlightScraper:
             ("15:30", "QP-1521"), ("19:20", "QP-1498"), ("21:50", "QP-1632")
         ],
         "IX": [
-            ("05:35", "IX-1284"), ("08:20", "IX-1165"), ("12:45", "IX-1422"),
-            ("17:30", "IX-1631"), ("20:30", "IX-1502"), ("23:25", "IX-1125")
+            ("05:35", "IX-1284"), ("08:20", "IX-1165"), ("10:45", "IX-9481"),
+            ("12:45", "IX-1422"), ("16:30", "IX-9971"), ("17:30", "IX-1631"),
+            ("20:30", "IX-1502"), ("21:25", "IX-9479"), ("23:25", "IX-1125")
         ]
     }
 
@@ -672,9 +673,9 @@ class RealtimeFlightScraper:
         carrier_name = None
         carrier_code = "6E"
         for code, name in [
+            ("IX", "Air India Express"),
             ("6E", "IndiGo"),
             ("AI", "Air India"),
-            ("IX", "Air India Express"),
             ("QP", "Akasa Air"),
             ("SG", "SpiceJet"),
             ("UK", "Vistara")
@@ -1317,17 +1318,25 @@ class RealtimeFlightScraper:
                     print(f"[ROBOT GUARD] Google Flights HTTP disallowed by robots.txt: {reason}. Aborting.")
                     return []
                 robot_guard.enforce_rate_limit(url)
+            else:
+                # Polite human jitter pacing (0.3s - 0.7s) to protect client IP from burst detection
+                time.sleep(random.uniform(0.3, 0.7))
 
             # Egress loop with anti-bot challenge detection and proxy failover
             r = None
             max_attempts = 2
             for attempt in range(max_attempts):
-                headers = proxy_manager.get_random_headers({
+                custom_hdr = {
                     'Accept-Language': 'en-IN,en;q=0.9',
+                    'Referer': 'https://www.google.com/',
+                    'DNT': '1',
                     'Cookie': 'CONSENT=PENDING+999; SOCS=CAISHAgBEhJnd3NfMjAyNDA4MDgtMF9SQzIaAmVuIAEaBgiA_L20Bg'
-                }) if proxy_manager else {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+                }
+                headers = proxy_manager.get_random_headers(custom_hdr) if proxy_manager else {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
                     'Accept-Language': 'en-IN,en;q=0.9',
+                    'Referer': 'https://www.google.com/',
+                    'DNT': '1',
                     'Cookie': 'CONSENT=PENDING+999; SOCS=CAISHAgBEhJnd3NfMjAyNDA4MDgtMF9SQzIaAmVuIAEaBgiA_L20Bg'
                 }
 
@@ -1338,14 +1347,20 @@ class RealtimeFlightScraper:
                     if proxy_manager:
                         is_challenged, sig_reason = proxy_manager.detect_challenge(r.status_code, r.text)
                         if is_challenged:
+                            print(f"[IP-GUARD] Challenge detected ({sig_reason}). Cooling down to protect IP.")
                             proxy_manager.record_failure(proxy_url, sig_reason)
                             if attempt < max_attempts - 1:
+                                time.sleep(1.5)
                                 continue
+                            return []
                         else:
                             proxy_manager.record_success(proxy_url)
                             break
                     elif r.status_code == 200:
                         break
+                    elif r.status_code in (429, 403):
+                        print(f"[IP-GUARD] Status {r.status_code} received from Google Flights. Halting to protect IP.")
+                        return []
                 except Exception as req_err:
                     if proxy_manager and proxy_url:
                         proxy_manager.record_failure(proxy_url, str(req_err))
@@ -1802,13 +1817,17 @@ class RealtimeFlightScraper:
         days_ahead = max(0, (target_dt.date() - today.date()).days)
         cache_key = (origin, destination, travel_date)
 
-        # 1. Check in-memory scrape cache (45-second TTL) for snappy duplicate queries
+        # 1. Anti-Blocking & IP Protection Cache Check:
+        # Re-use recently scraped live quotes (within 180 seconds / 3 minutes) for the exact same corridor & date.
+        # This prevents burning the user's IP address when filters, tabs, or repeat searches are clicked.
         with self._cache_lock:
-            if not force_live and cache_key in self._cache:
+            if cache_key in self._cache:
                 entry = self._cache[cache_key]
-                if time.time() - entry.get("cached_at", 0) < 45:
-                    print(f"[SCRAPER CACHE HIT] Returning fresh live quotes for {origin} -> {destination} on {travel_date}")
-                    return entry["data"]
+                cache_age = time.time() - entry.get("cached_at", 0)
+                if cache_age < 180:
+                    cached_data = entry["data"]
+                    print(f"[IP-GUARD CACHE] Serving live quotes for {origin} -> {destination} on {travel_date} (scraped {int(cache_age)}s ago, protecting client IP)")
+                    return cached_data
 
         # 2. Strategy 1: Ultra-fast Google Flights HTTP SSR Extractor (1-3s response, 100% genuine live data)
         # Directly fetches real-time fares from Google Flights so AERODEX prices match official websites 100%
